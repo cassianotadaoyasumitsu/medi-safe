@@ -31,8 +31,9 @@ puts "Finished creating doctors"
 
 # ---------------------------------------------
 # Patients
-# name gender age severity location doctor
+# name gender age severity room bed doctor
 GENDERS = %w( male female )
+EMERGENCY = ['Low Care', 'Medium Care', 'High Care']
 puts "Creating patients"
 30.times do
   params = {}
@@ -41,6 +42,7 @@ puts "Creating patients"
   params[:age] = rand(15..80)
   params[:room] = "#{rand(1..7)}#{rand(0..1)}#{rand(1..9)}"
   params[:bed] = "0#{rand(1..8)}"
+  params[:severity] = EMERGENCY.sample
   params[:doctor] = Doctor.all.sample
   new_patient = Patient.new(params)
   puts "Created patient #{new_patient.id}" if new_patient.save
