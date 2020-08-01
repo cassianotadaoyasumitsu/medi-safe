@@ -4,9 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
   :recoverable, :rememberable, :validatable
 
+  belongs_to :leader, required: false, class_name: 'User'
   validates :name, presence: true
   validates :email, uniqueness: true
-  validates :encrypted_password, :email, presence: true
-
-  has_many :tasks, dependent: :destroy
+  has_many :nurse_tasks, dependent: :destroy
 end

@@ -28,10 +28,10 @@ ActiveRecord::Schema.define(version: 2020_08_01_030302) do
     t.boolean "completed", default: false
     t.bigint "task_template_id", null: false
     t.bigint "user_id", null: false
-    t.bigint "helper_id_id", null: false
+    t.bigint "helper_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["helper_id_id"], name: "index_nurse_tasks_on_helper_id_id"
+    t.index ["helper_id"], name: "index_nurse_tasks_on_helper_id"
     t.index ["task_template_id"], name: "index_nurse_tasks_on_task_template_id"
     t.index ["user_id"], name: "index_nurse_tasks_on_user_id"
   end
@@ -80,14 +80,15 @@ ActiveRecord::Schema.define(version: 2020_08_01_030302) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
-    t.boolean "leader"
+    t.boolean "leader", default: false
+    t.integer "leader_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "nurse_tasks", "task_templates"
   add_foreign_key "nurse_tasks", "users"
-  add_foreign_key "nurse_tasks", "users", column: "helper_id_id"
+  add_foreign_key "nurse_tasks", "users", column: "helper_id"
   add_foreign_key "patients", "doctors"
   add_foreign_key "patients", "tasks"
   add_foreign_key "patients", "users"

@@ -1,4 +1,4 @@
 class Task < ApplicationRecord
-  belongs_to :user
+  has_many :task_templates
   validates :user_id, :description, :note, presence: true
 end
