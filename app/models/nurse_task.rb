@@ -1,0 +1,2 @@
+class NurseTask < ApplicationRecord
+end

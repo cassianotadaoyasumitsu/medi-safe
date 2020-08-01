@@ -1,0 +1,2 @@
+class NurseTasksController < ApplicationController
+end
