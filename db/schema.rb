@@ -23,6 +23,19 @@ ActiveRecord::Schema.define(version: 2020_08_01_030302) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "nurse_tasks", force: :cascade do |t|
+    t.text "note"
+    t.boolean "completed", default: false
+    t.bigint "task_template_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "helper_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["helper_id"], name: "index_nurse_tasks_on_helper_id"
+    t.index ["task_template_id"], name: "index_nurse_tasks_on_task_template_id"
+    t.index ["user_id"], name: "index_nurse_tasks_on_user_id"
+  end
+
   create_table "patients", force: :cascade do |t|
     t.string "name"
     t.string "gender"
@@ -41,20 +54,21 @@ ActiveRecord::Schema.define(version: 2020_08_01_030302) do
   end
 
   create_table "task_templates", force: :cascade do |t|
+    t.integer "frequency"
+    t.boolean "active", default: true
+    t.bigint "patient_id", null: false
+    t.bigint "task_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["patient_id"], name: "index_task_templates_on_patient_id"
+    t.index ["task_id"], name: "index_task_templates_on_task_id"
   end
 
   create_table "tasks", force: :cascade do |t|
     t.string "description"
-    t.string "note"
-    t.boolean "completed"
-    t.bigint "user_id", null: false
-    t.bigint "task_template_id", null: false
+    t.integer "duration"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["task_template_id"], name: "index_tasks_on_task_template_id"
-    t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -66,14 +80,18 @@ ActiveRecord::Schema.define(version: 2020_08_01_030302) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
-    t.boolean "leader"
+    t.boolean "leader", default: false
+    t.integer "leader_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "nurse_tasks", "task_templates"
+  add_foreign_key "nurse_tasks", "users"
+  add_foreign_key "nurse_tasks", "users", column: "helper_id"
   add_foreign_key "patients", "doctors"
   add_foreign_key "patients", "tasks"
   add_foreign_key "patients", "users"
-  add_foreign_key "tasks", "task_templates"
-  add_foreign_key "tasks", "users"
+  add_foreign_key "task_templates", "patients"
+  add_foreign_key "task_templates", "tasks"
 end
