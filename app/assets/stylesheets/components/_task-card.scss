@@ -1,0 +1,27 @@
+.task-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 16px;
+  .task-card {
+    width: 500px;
+    height: 140px;
+    background-color: $light-gray;
+    .task-patient-info {
+      padding: 25px 15px;
+      width: 160px;
+      height: 140px;
+      background-color: $yellow
+    }
+    .task-info {
+      width: 340px;
+      padding: 16px;
+      background-color: $red;
+      .task-info-duration {
+        margin: auto;
+      }
+      .task-info-description {
+        margin: auto;
+      }
+    }
+  }
+}
