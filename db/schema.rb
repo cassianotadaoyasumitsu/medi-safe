@@ -43,14 +43,10 @@ ActiveRecord::Schema.define(version: 2020_08_01_030302) do
     t.string "severity"
     t.string "room"
     t.string "bed"
-    t.bigint "user_id", null: false
-    t.bigint "task_id", null: false
     t.bigint "doctor_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["doctor_id"], name: "index_patients_on_doctor_id"
-    t.index ["task_id"], name: "index_patients_on_task_id"
-    t.index ["user_id"], name: "index_patients_on_user_id"
   end
 
   create_table "task_templates", force: :cascade do |t|
@@ -90,8 +86,6 @@ ActiveRecord::Schema.define(version: 2020_08_01_030302) do
   add_foreign_key "nurse_tasks", "users"
   add_foreign_key "nurse_tasks", "users", column: "helper_id"
   add_foreign_key "patients", "doctors"
-  add_foreign_key "patients", "tasks"
-  add_foreign_key "patients", "users"
   add_foreign_key "task_templates", "patients"
   add_foreign_key "task_templates", "tasks"
 end
