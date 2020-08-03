@@ -10,76 +10,181 @@
 
 puts "creating users"
 params = {}
-params[:name] = "Linlu"
-params[:leader] = true
+params[:name] = "Linlu Liu"
 linlu = User.new(params)
 linlu.save
 puts "Created user #{linlu.id}"
 
 params = {}
 params[:name] = "Hayato Clarke"
-params[:leader] = true
 hayato = User.new(params)
 hayato.save
 puts "Created user #{hayato.id}"
 
-leaders = [hayato, linlu]
-
 params = {}
 params[:name] = "Davide Zannet"
-params[:leader] = false
-params[:leader_id] = leaders.sample.id
+params[:leader] = hayato
 new_user = User.new(params)
 new_user.save
 puts "Created user #{new_user.id}"
 
 params = {}
 params[:name] = "Cassiano Yasumitsu"
-params[:leader] = false
-params[:leader_id] = leaders.sample.id
+params[:leader] = hayato
 new_user = User.new(params)
 new_user.save
 puts "Created user #{new_user.id}"
 
 params = {}
 params[:name] = "Liam Baker"
-params[:leader] = false
-params[:leader_id] = leaders.sample.id
+params[:leader] = hayato
 new_user = User.new(params)
 new_user.save
 puts "Created user #{new_user.id}"
 
 params = {}
 params[:name] = "Yurie Shiotani"
-params[:leader] = false
-params[:leader_id] = leaders.sample.id
+params[:leader] = hayato
 new_user = User.new(params)
 new_user.save
 puts "Created user #{new_user.id}"
 
 params = {}
 params[:name] = "Wanying Kwok"
-params[:leader] = false
-params[:leader_id] = leaders.sample.id
+params[:leader] = linlu
 new_user = User.new(params)
 new_user.save
 puts "Created user #{new_user.id}"
 
 params = {}
 params[:name] = "Shinya Tawata"
-params[:leader] = false
-params[:leader_id] = leaders.sample.id
+params[:leader] = linlu
 new_user = User.new(params)
 new_user.save
 puts "Created user #{new_user.id}"
 
 params = {}
 params[:name] = "Aki"
-params[:leader] = false
-params[:leader_id] = leaders.sample.id
+params[:leader] = linlu
+new_user = User.new(params)
+new_user.save
+puts "Created user #{new_user.id}"
+
+params = {}
+params[:name] = "Ayako Amano"
+params[:leader] = linlu
 new_user = User.new(params)
 new_user.save
 puts "Created user #{new_user.id}"
 
 puts "Users created"
+
+puts "creating tasks"
+params = {}
+params[:description] = "VS check"
+params[:duration] = "10mins"
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] =
+params[:duration] =
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] =
+params[:duration] =
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] =
+params[:duration] =
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] =
+params[:duration] =
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] =
+params[:duration] =
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] =
+params[:duration] =
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] =
+params[:duration] =
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] =
+params[:duration] =
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] =
+params[:duration] =
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] =
+params[:duration] =
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] =
+params[:duration] =
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] =
+params[:duration] =
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] =
+params[:duration] =
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] =
+params[:duration] =
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+puts "Tasks created"
+
 
