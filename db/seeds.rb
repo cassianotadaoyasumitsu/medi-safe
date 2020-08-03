@@ -47,8 +47,6 @@ puts "Creating patients"
   params[:severity] = EMERGENCY.sample
   params[:doctor] = Doctor.all.sample
   new_patient = Patient.new(params)
-  p params
-  p new_patient
   puts "Created patient #{new_patient.id}" if new_patient.save
 end
 puts "Finished creating patients"
