@@ -10,7 +10,9 @@ puts "Cleaning up start"
 TaskTemplate.destroy_all
 NurseTask.destroy_all
 Patient.destroy_all
+User.destroy_all
 Doctor.destroy_all
+Task.destroy_all
 puts "Cleaning up done"
 
 # ---------------------------------------------
@@ -49,6 +51,222 @@ puts "Creating patients"
   puts "Created patient #{new_patient.id}" if new_patient.save
 end
 puts "Finished creating patients"
+
+puts "creating tasks"
+params = {}
+params[:description] = "VS check"
+params[:duration] = 10
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] ="BS check"
+params[:duration] = 5
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] ="IV"
+params[:duration] = 5
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] ="Dr.round"
+params[:duration] = 15
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] ="Meds"
+params[:duration] = 5
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] ="Family conference"
+params[:duration] = 30
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] = "Lunch"
+params[:duration] = 30
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] = "Lunch break"
+params[:duration] = 50
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] = "Meeting"
+params[:duration] = 5
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] = "Urinary volume check"
+params[:duration] = 5
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] = "Operation"
+params[:duration] = 15
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] = "Admission"
+params[:duration] = 30
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] = "Discharge"
+params[:duration] = 30
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] = "Diaper"
+params[:duration] = 5
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] = "Shower"
+params[:duration] = 20
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] = "Change gown"
+params[:duration] = 10
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] = "Bed bath"
+params[:duration] = 20
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] = "Walk"
+params[:duration] = 20
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] = "Wound care"
+params[:duration] = 20
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+
+puts "Tasks created"
+
+puts "creating users"
+params = {}
+params[:name] = "Linlu Liu"
+linlu = User.new(params)
+linlu.save
+puts "Created user #{linlu.id}"
+
+params = {}
+params[:name] = "Hayato Clarke"
+hayato = User.new(params)
+hayato.save
+puts "Created user #{hayato.id}"
+
+params = {}
+params[:name] = "Davide Zanetto"
+params[:leader] = hayato
+params[:email] = "davide@medisafe.com"
+params[:password] = "password"
+new_user = User.new(params)
+new_user.save
+puts "Created user #{new_user.id}"
+
+params = {}
+params[:name] = "Cassiano Yasumitsu"
+params[:leader] = hayato
+params[:email] = "cassiano@medisafe.com"
+params[:password] = "password"
+new_user = User.new(params)
+new_user.save
+puts "Created user #{new_user.id}"
+
+params = {}
+params[:name] = "Liam Baker"
+params[:leader] = hayato
+params[:email] = 'liam@medisafe.com'
+params[:password] = 'password'
+new_user = User.new(params)
+new_user.save
+puts "Created user #{new_user.id}"
+
+params = {}
+params[:name] = "Yurie Shiotani"
+params[:leader] = hayato
+new_user = User.new(params)
+new_user.save
+puts "Created user #{new_user.id}"
+
+params = {}
+params[:name] = "Wanying Kwok"
+params[:leader] = linlu
+new_user = User.new(params)
+new_user.save
+puts "Created user #{new_user.id}"
+
+params = {}
+params[:name] = "Shinya Tawata"
+params[:leader] = linlu
+new_user = User.new(params)
+new_user.save
+puts "Created user #{new_user.id}"
+
+params = {}
+params[:name] = "Aki"
+params[:leader] = linlu
+new_user = User.new(params)
+new_user.save
+puts "Created user #{new_user.id}"
+
+params = {}
+params[:name] = "Ayako Amano"
+params[:leader] = linlu
+params[:email] = "ayako@medisafe.com"
+params[:password] = "password"
+new_user = User.new(params)
+new_user.save
+puts "Created user #{new_user.id}"
+
+puts "Users created"
 
 # ---------------------------------------------
 # Task template
