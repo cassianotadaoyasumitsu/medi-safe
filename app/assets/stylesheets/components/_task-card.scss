@@ -5,19 +5,23 @@
   .task-card {
     width: 500px;
     height: 140px;
-    background-color: $light-gray;
     .task-patient-info {
       padding: 25px 15px;
       width: 160px;
       height: 140px;
-      background-color: $yellow
+      margin: 0 auto;
+      background-color: $purple
     }
     .task-info {
       width: 340px;
       padding: 16px;
-      background-color: $red;
+      background-color: $light-gray;
       .task-info-duration {
         margin: auto;
+        text-align: center;
+        .complete-btn {
+          display: none;
+        }
       }
       .task-info-description {
         margin: auto;
@@ -25,3 +29,21 @@
     }
   }
 }
+
+.task-card.active {
+  width: 540px;
+  height: 160px;
+  .task-patient-info {
+    width: 170px;
+    height: 160px;
+  }
+  .task-info {
+    width: 370px;
+    .task-info-duration {
+      .complete-btn {
+        display: block;
+      }
+    }
+  }
+}
+
