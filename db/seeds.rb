@@ -192,12 +192,16 @@ puts "Tasks created"
 puts "creating users"
 params = {}
 params[:name] = "Linlu Liu"
+params[:email] = "linlu@medisafe.com"
+params[:password] = "password"
 linlu = User.new(params)
 linlu.save
 puts "Created user #{linlu.id}"
 
 params = {}
 params[:name] = "Hayato Clarke"
+params[:email] = "hayato@medisafe.com"
+params[:password] = "password"
 hayato = User.new(params)
 hayato.save
 puts "Created user #{hayato.id}"
@@ -232,6 +236,8 @@ puts "Created user #{new_user.id}"
 params = {}
 params[:name] = "Yurie Shiotani"
 params[:leader] = hayato
+params[:email] = "yurie@medisafe.com"
+params[:password] = "password"
 new_user = User.new(params)
 new_user.save
 puts "Created user #{new_user.id}"
@@ -239,6 +245,8 @@ puts "Created user #{new_user.id}"
 params = {}
 params[:name] = "Wanying Kwok"
 params[:leader] = linlu
+params[:email] = "farrah@medisafe.com"
+params[:password] = "password"
 new_user = User.new(params)
 new_user.save
 puts "Created user #{new_user.id}"
@@ -246,6 +254,8 @@ puts "Created user #{new_user.id}"
 params = {}
 params[:name] = "Shinya Tawata"
 params[:leader] = linlu
+params[:email] = "shinya@medisafe.com"
+params[:password] = "password"
 new_user = User.new(params)
 new_user.save
 puts "Created user #{new_user.id}"
@@ -253,6 +263,8 @@ puts "Created user #{new_user.id}"
 params = {}
 params[:name] = "Aki"
 params[:leader] = linlu
+params[:email] = "aki@medisafe.com"
+params[:password] = "password"
 new_user = User.new(params)
 new_user.save
 puts "Created user #{new_user.id}"
