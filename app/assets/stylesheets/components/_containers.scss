@@ -2,3 +2,20 @@
   margin: 80px auto;
   width: 1100px;
 }
+
+.devise-container {
+  display: flex;
+  margin: 100px auto;
+  width: 800px;
+  padding: 100px 100px;
+  background-color: $light-gray;
+  border-radius: 50px;
+  justify-content: center;
+  .form-inputs {
+    width: 500px;
+  }
+  .form-actions {
+    width: 500px;
+    margin: auto;
+  }
+}
