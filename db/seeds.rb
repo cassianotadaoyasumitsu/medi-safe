@@ -12,6 +12,7 @@
 puts "Cleaning up start"
 Doctor.destroy_all
 Patient.destroy_all
+User.destroy_all
 puts "Cleaning up done"
 
 # ---------------------------------------------
@@ -121,111 +122,3 @@ new_user.save
 puts "Created user #{new_user.id}"
 
 puts "Users created"
-
-puts "creating tasks"
-params = {}
-params[:description] = "VS check"
-params[:duration] = "10mins"
-new_task = Task.new(params)
-new_task.save
-puts "Created task #{new_task.id}"
-
-params = {}
-params[:description] =
-params[:duration] =
-new_task = Task.new(params)
-new_task.save
-puts "Created task #{new_task.id}"
-
-params = {}
-params[:description] =
-params[:duration] =
-new_task = Task.new(params)
-new_task.save
-puts "Created task #{new_task.id}"
-
-params = {}
-params[:description] =
-params[:duration] =
-new_task = Task.new(params)
-new_task.save
-puts "Created task #{new_task.id}"
-
-params = {}
-params[:description] =
-params[:duration] =
-new_task = Task.new(params)
-new_task.save
-puts "Created task #{new_task.id}"
-
-params = {}
-params[:description] =
-params[:duration] =
-new_task = Task.new(params)
-new_task.save
-puts "Created task #{new_task.id}"
-
-params = {}
-params[:description] =
-params[:duration] =
-new_task = Task.new(params)
-new_task.save
-puts "Created task #{new_task.id}"
-
-params = {}
-params[:description] =
-params[:duration] =
-new_task = Task.new(params)
-new_task.save
-puts "Created task #{new_task.id}"
-
-params = {}
-params[:description] =
-params[:duration] =
-new_task = Task.new(params)
-new_task.save
-puts "Created task #{new_task.id}"
-
-params = {}
-params[:description] =
-params[:duration] =
-new_task = Task.new(params)
-new_task.save
-puts "Created task #{new_task.id}"
-
-params = {}
-params[:description] =
-params[:duration] =
-new_task = Task.new(params)
-new_task.save
-puts "Created task #{new_task.id}"
-
-params = {}
-params[:description] =
-params[:duration] =
-new_task = Task.new(params)
-new_task.save
-puts "Created task #{new_task.id}"
-
-params = {}
-params[:description] =
-params[:duration] =
-new_task = Task.new(params)
-new_task.save
-puts "Created task #{new_task.id}"
-
-params = {}
-params[:description] =
-params[:duration] =
-new_task = Task.new(params)
-new_task.save
-puts "Created task #{new_task.id}"
-
-params = {}
-params[:description] =
-params[:duration] =
-new_task = Task.new(params)
-new_task.save
-puts "Created task #{new_task.id}"
-
-puts "Tasks created"
