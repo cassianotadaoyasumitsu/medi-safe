@@ -53,133 +53,133 @@ puts "Finished creating patients"
 puts "creating tasks"
 params = {}
 params[:description] = "VS check"
-params[:duration] = "10mins"
+params[:duration] = 10
 new_task = Task.new(params)
 new_task.save
 puts "Created task #{new_task.id}"
 
 params = {}
 params[:description] ="BS check"
-params[:duration] ="5mins"
+params[:duration] = 5
 new_task = Task.new(params)
 new_task.save
 puts "Created task #{new_task.id}"
 
 params = {}
 params[:description] ="IV"
-params[:duration] ="5mins"
+params[:duration] = 5
 new_task = Task.new(params)
 new_task.save
 puts "Created task #{new_task.id}"
 
 params = {}
 params[:description] ="Dr.round"
-params[:duration] ="15mins"
+params[:duration] = 15
 new_task = Task.new(params)
 new_task.save
 puts "Created task #{new_task.id}"
 
 params = {}
 params[:description] ="Meds"
-params[:duration] ="5mins"
+params[:duration] = 5
 new_task = Task.new(params)
 new_task.save
 puts "Created task #{new_task.id}"
 
 params = {}
 params[:description] ="Family conference"
-params[:duration] = "30mins"
+params[:duration] = 30
 new_task = Task.new(params)
 new_task.save
 puts "Created task #{new_task.id}"
 
 params = {}
 params[:description] = "Lunch"
-params[:duration] ="30mins"
+params[:duration] = 30
 new_task = Task.new(params)
 new_task.save
 puts "Created task #{new_task.id}"
 
 params = {}
 params[:description] = "Lunch break"
-params[:duration] = "1H"
+params[:duration] = 50
 new_task = Task.new(params)
 new_task.save
 puts "Created task #{new_task.id}"
 
 params = {}
 params[:description] = "Meeting"
-params[:duration] = "5mins"
+params[:duration] = 5
 new_task = Task.new(params)
 new_task.save
 puts "Created task #{new_task.id}"
 
 params = {}
 params[:description] = "Urinary volume check"
-params[:duration] = "5mins"
+params[:duration] = 5
 new_task = Task.new(params)
 new_task.save
 puts "Created task #{new_task.id}"
 
 params = {}
 params[:description] = "Operation"
-params[:duration] = "15mins"
+params[:duration] = 15
 new_task = Task.new(params)
 new_task.save
 puts "Created task #{new_task.id}"
 
 params = {}
 params[:description] = "Admission"
-params[:duration] = "30mins"
+params[:duration] = 30
 new_task = Task.new(params)
 new_task.save
 puts "Created task #{new_task.id}"
 
 params = {}
 params[:description] = "Discharge"
-params[:duration] = "30mins"
+params[:duration] = 30
 new_task = Task.new(params)
 new_task.save
 puts "Created task #{new_task.id}"
 
 params = {}
-params[:description] = "Diper"
-params[:duration] = "5mins"
+params[:description] = "Diaper"
+params[:duration] = 5
 new_task = Task.new(params)
 new_task.save
 puts "Created task #{new_task.id}"
 
 params = {}
 params[:description] = "Shower"
-params[:duration] = "20mins"
+params[:duration] = 20
 new_task = Task.new(params)
 new_task.save
 puts "Created task #{new_task.id}"
 
 params = {}
 params[:description] = "Change gown"
-params[:duration] = "10mins"
+params[:duration] = 10
 new_task = Task.new(params)
 new_task.save
 puts "Created task #{new_task.id}"
 
 params = {}
 params[:description] = "Bed bath"
-params[:duration] = "20mins"
+params[:duration] = 20
 new_task = Task.new(params)
 new_task.save
 puts "Created task #{new_task.id}"
 
 params = {}
 params[:description] = "Walk"
-params[:duration] = "20mins"
+params[:duration] = 20
 new_task = Task.new(params)
 new_task.save
 puts "Created task #{new_task.id}"
 
 params = {}
-params[:description] = "Wund care"
-params[:duration] = "20mins"
+params[:description] = "Wound care"
+params[:duration] = 20
 new_task = Task.new(params)
 new_task.save
 puts "Created task #{new_task.id}"
