@@ -311,7 +311,11 @@ TaskTemplate.all.each do |task_template|
   params[:completed] = false
   task_template.frequency.times do
     new_nurse_task = NurseTask.new(params)
-    puts "Created nurse task #{new_nurse_task.id}" if new_nurse_task.save
+    if new_nurse_task.save
+      puts "Created nurse task #{new_nurse_task.id}"
+    else
+      puts new_nurse_task.errors.messages
+    end
   end
 end
 puts "Finished creating nurse tasks"
