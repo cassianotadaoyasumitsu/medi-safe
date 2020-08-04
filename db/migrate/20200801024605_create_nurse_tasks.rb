@@ -6,7 +6,7 @@ class CreateNurseTasks < ActiveRecord::Migration[6.0]
       t.boolean :completed, default: false
       t.references :task_template, null: false, foreign_key: true
       t.references :user, null: false, foreign_key: { to_table: 'users'}
-      t.references :helper, null: false, foreign_key: { to_table: 'users'}
+      t.references :helper, foreign_key: { to_table: 'users'}
 
       t.timestamps
     end
