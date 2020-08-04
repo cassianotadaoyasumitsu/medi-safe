@@ -279,7 +279,7 @@ Patient.all.each do |patient|
     params[:frequency] = rand(1..3)
     params[:patient] = patient
     params[:active] = true
-    params[:task] = Task.all.rand
+    params[:task] = Task.all.sample
     new_task_template = TaskTemplate.new(params)
     puts "Created task template #{new_task_template.id}" if new_task_template.save
   end
@@ -293,7 +293,7 @@ puts "Finished creating task templates"
 puts "Creating nurse tasks"
 TaskTemplate.all.each do |task_template|
   params = {}
-  params[:user] = User.where(:leader? false).sample
+  params[:user] = User.where(leader?: false).sample
   task_template.frequency.times do
     params[:complete] = false
     params[:task_template] = task_template
