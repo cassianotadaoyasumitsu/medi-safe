@@ -12,6 +12,7 @@ NurseTask.destroy_all
 Patient.destroy_all
 Doctor.destroy_all
 Task.destroy_all
+User.where.not(leader_id: nil).destroy_all
 User.destroy_all
 puts "Cleaning up done"
 
@@ -305,10 +306,10 @@ puts "Finished creating task templates"
 puts "Creating nurse tasks"
 TaskTemplate.all.each do |task_template|
   params = {}
-  params[:user] = User.where(leader_id: true).sample
+  params[:user] = User.where.not(leader_id: nil).sample
+  params[:task_template] = task_template
+  params[:completed] = false
   task_template.frequency.times do
-    params[:completed] = false
-    params[:task_template] = task_template
     new_nurse_task = NurseTask.new(params)
     puts "Created nurse task #{new_nurse_task.id}" if new_nurse_task.save
   end
