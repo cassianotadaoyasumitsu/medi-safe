@@ -7,8 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
+
+
 puts "Cleaning up start"
 Patient.destroy_all
+User.destroy_all
 Doctor.destroy_all
 puts "Cleaning up done"
 
@@ -48,3 +51,82 @@ puts "Creating patients"
   puts "Created patient #{new_patient.id}" if new_patient.save
 end
 puts "Finished creating patients"
+
+puts "creating users"
+params = {}
+params[:name] = "Linlu Liu"
+linlu = User.new(params)
+linlu.save
+puts "Created user #{linlu.id}"
+
+params = {}
+params[:name] = "Hayato Clarke"
+hayato = User.new(params)
+hayato.save
+puts "Created user #{hayato.id}"
+
+params = {}
+params[:name] = "Davide Zanetto"
+params[:leader] = hayato
+params[:email] = "davide@medisafe.com"
+params[:password] = "password"
+new_user = User.new(params)
+new_user.save
+puts "Created user #{new_user.id}"
+
+params = {}
+params[:name] = "Cassiano Yasumitsu"
+params[:leader] = hayato
+params[:email] = "cassiano@medisafe.com"
+params[:password] = "password"
+new_user = User.new(params)
+new_user.save
+puts "Created user #{new_user.id}"
+
+params = {}
+params[:name] = "Liam Baker"
+params[:leader] = hayato
+params[:email] = 'liam@medisafe.com'
+params[:password] = 'password'
+new_user = User.new(params)
+new_user.save
+puts "Created user #{new_user.id}"
+
+params = {}
+params[:name] = "Yurie Shiotani"
+params[:leader] = hayato
+new_user = User.new(params)
+new_user.save
+puts "Created user #{new_user.id}"
+
+params = {}
+params[:name] = "Wanying Kwok"
+params[:leader] = linlu
+new_user = User.new(params)
+new_user.save
+puts "Created user #{new_user.id}"
+
+params = {}
+params[:name] = "Shinya Tawata"
+params[:leader] = linlu
+new_user = User.new(params)
+new_user.save
+puts "Created user #{new_user.id}"
+
+params = {}
+params[:name] = "Aki"
+params[:leader] = linlu
+new_user = User.new(params)
+new_user.save
+puts "Created user #{new_user.id}"
+
+params = {}
+params[:name] = "Ayako Amano"
+params[:leader] = linlu
+params[:email] = "ayako@medisafe.com"
+params[:password] = "password"
+new_user = User.new(params)
+new_user.save
+puts "Created user #{new_user.id}"
+
+puts "Users created"
