@@ -68,8 +68,8 @@ puts "Created user #{hayato.id}"
 params = {}
 params[:name] = "Davide Zanetto"
 params[:leader] = hayato
-params[:email] = davide@medisafe.com
-params[:password] = password
+params[:email] = "davide@medisafe.com"
+params[:password] = "password"
 new_user = User.new(params)
 new_user.save
 puts "Created user #{new_user.id}"
@@ -77,8 +77,8 @@ puts "Created user #{new_user.id}"
 params = {}
 params[:name] = "Cassiano Yasumitsu"
 params[:leader] = hayato
-params[:email] = cassiano@medisafe.com
-params[:password] = password
+params[:email] = "cassiano@medisafe.com"
+params[:password] = "password"
 new_user = User.new(params)
 new_user.save
 puts "Created user #{new_user.id}"
@@ -86,8 +86,8 @@ puts "Created user #{new_user.id}"
 params = {}
 params[:name] = "Liam Baker"
 params[:leader] = hayato
-params[:email] = liam@medisafe.com
-params[:password] = password
+params[:email] = 'liam@medisafe.com'
+params[:password] = 'password'
 new_user = User.new(params)
 new_user.save
 puts "Created user #{new_user.id}"
@@ -123,8 +123,8 @@ puts "Created user #{new_user.id}"
 params = {}
 params[:name] = "Ayako Amano"
 params[:leader] = linlu
-params[:email] = ayako@medisafe.com
-params[:password] = password
+params[:email] = "ayako@medisafe.com"
+params[:password] = "password"
 new_user = User.new(params)
 new_user.save
 puts "Created user #{new_user.id}"
