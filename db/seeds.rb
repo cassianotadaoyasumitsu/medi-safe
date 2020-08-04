@@ -8,8 +8,8 @@
 
 
 puts "Cleaning up start"
-Doctor.destroy_all
 Patient.destroy_all
+Doctor.destroy_all
 puts "Cleaning up done"
 
 # ---------------------------------------------
