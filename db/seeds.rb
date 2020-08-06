@@ -7,12 +7,13 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 puts "Cleaning up start"
-TaskTemplate.destroy_all
 NurseTask.destroy_all
+TaskTemplate.destroy_all
 Patient.destroy_all
-User.destroy_all
 Doctor.destroy_all
 Task.destroy_all
+User.where.not(leader_id: nil).destroy_all
+User.destroy_all
 puts "Cleaning up done"
 
 # ---------------------------------------------
@@ -192,12 +193,16 @@ puts "Tasks created"
 puts "creating users"
 params = {}
 params[:name] = "Linlu Liu"
+params[:email] = "linlu@medisafe.com"
+params[:password] = "password"
 linlu = User.new(params)
 linlu.save
 puts "Created user #{linlu.id}"
 
 params = {}
 params[:name] = "Hayato Clarke"
+params[:email] = "hayato@medisafe.com"
+params[:password] = "password"
 hayato = User.new(params)
 hayato.save
 puts "Created user #{hayato.id}"
@@ -232,6 +237,8 @@ puts "Created user #{new_user.id}"
 params = {}
 params[:name] = "Yurie Shiotani"
 params[:leader] = hayato
+params[:email] = "yurie@medisafe.com"
+params[:password] = "password"
 new_user = User.new(params)
 new_user.save
 puts "Created user #{new_user.id}"
@@ -239,6 +246,8 @@ puts "Created user #{new_user.id}"
 params = {}
 params[:name] = "Wanying Kwok"
 params[:leader] = linlu
+params[:email] = "farrah@medisafe.com"
+params[:password] = "password"
 new_user = User.new(params)
 new_user.save
 puts "Created user #{new_user.id}"
@@ -246,6 +255,8 @@ puts "Created user #{new_user.id}"
 params = {}
 params[:name] = "Shinya Tawata"
 params[:leader] = linlu
+params[:email] = "shinya@medisafe.com"
+params[:password] = "password"
 new_user = User.new(params)
 new_user.save
 puts "Created user #{new_user.id}"
@@ -253,6 +264,8 @@ puts "Created user #{new_user.id}"
 params = {}
 params[:name] = "Aki"
 params[:leader] = linlu
+params[:email] = "aki@medisafe.com"
+params[:password] = "password"
 new_user = User.new(params)
 new_user.save
 puts "Created user #{new_user.id}"
@@ -276,10 +289,10 @@ puts "Creating task templates"
 Patient.all.each do |patient|
   8.times do
     params = {}
-    params[:frequency] = rand(1..3)
+    params[:frequency] = [1,1,1,1,1,1,2,2,3].sample
     params[:patient] = patient
     params[:active] = true
-    params[:task] = Task.all.rand
+    params[:task] = Task.all.sample
     new_task_template = TaskTemplate.new(params)
     puts "Created task template #{new_task_template.id}" if new_task_template.save
   end
@@ -293,12 +306,16 @@ puts "Finished creating task templates"
 puts "Creating nurse tasks"
 TaskTemplate.all.each do |task_template|
   params = {}
-  params[:user] = User.where(:leader? false).sample
+  params[:user] = User.where.not(leader_id: nil).sample
+  params[:task_template] = task_template
+  params[:completed] = false
   task_template.frequency.times do
-    params[:complete] = false
-    params[:task_template] = task_template
     new_nurse_task = NurseTask.new(params)
-    puts "Created nurse task #{new_nurse_task.id}" if new_nurse_task.save
+    if new_nurse_task.save
+      puts "Created nurse task #{new_nurse_task.id}"
+    else
+      puts new_nurse_task.errors.messages
+    end
   end
 end
 puts "Finished creating nurse tasks"
