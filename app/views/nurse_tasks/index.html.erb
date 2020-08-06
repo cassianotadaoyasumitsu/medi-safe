@@ -1,0 +1,12 @@
+<hr>
+<hr>
+<hr>
+<hr>
+<%= @nurse_tasks.count %> vs <%= NurseTask.all.count %>
+<% @nurse_tasks.each do |nurse_task| %>
+
+  <div>
+    <%=  nurse_task.task_template.task.description%>
+    <%=  nurse_task.task_template.patient.name%>
+  </div>
+<% end %>
