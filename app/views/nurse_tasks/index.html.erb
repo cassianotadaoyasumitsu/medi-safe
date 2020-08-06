@@ -2,11 +2,13 @@
 <hr>
 <hr>
 <hr>
-<%= @nurse_tasks.count %> vs <%= NurseTask.all.count %>
-<% @nurse_tasks.each do |nurse_task| %>
+<div id="nurse-tasks" class="list-group" data-url="<%= sort_nurse_tasks_path(format: :json) %>">
+  <%= @nurse_tasks.count %> vs <%= NurseTask.all.count %>
+  <% @nurse_tasks.each do |nurse_task| %>
 
-  <div>
-    <%=  nurse_task.task_template.task.description%>
-    <%=  nurse_task.task_template.patient.name%>
-  </div>
-<% end %>
+    <div class="list-item" data-id=<%= nurse_task.id %>>
+      <%=  nurse_task.task_template.task.description%>
+      <%=  nurse_task.task_template.patient.name%>
+    </div>
+  <% end %>
+</div>
