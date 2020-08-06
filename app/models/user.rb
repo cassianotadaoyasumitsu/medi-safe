@@ -8,4 +8,6 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :email, uniqueness: true
   has_many :nurse_tasks, dependent: :destroy
+  has_many :task_templates, through: :nurse_tasks
+  has_many :patients, through: :task_templates
 end
