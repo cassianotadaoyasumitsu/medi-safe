@@ -23,8 +23,7 @@
           </div>
           <div class="patient-info-footer pt-2">
             <div class="col">
-              <!-- Need to get the number of nurse_tasks where completed = false. No path from template to nurse task. -->
-              <h5 class="mb-0">Tasks not completed: <%= patient.task_templates.count %></h5>
+              <h5 class="mb-0">Tasks not completed: <%= patient.nurse_tasks.where(completed: false).count %></h5>
             </div>
           </div>
         </div>
