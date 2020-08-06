@@ -1,0 +1,19 @@
+
+<div>
+  <div>
+    <p>Room:<%= @patient.room %></p>
+    <p>Bed:<%= @patient.bed %></p>
+  </div>
+  <div>
+    <h2>Name:<%= @patient.name %></h2>
+    <p>(ID:<%= @patient.id %>)</p>
+  </div>
+</div>
+
+<div>
+  <h4><%= @doctor.name %></h4>
+  <%= @doctor.contact %>
+  <%= @patient.severity %>
+</div>
+
+
