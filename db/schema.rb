@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2020_08_01_030302) do
     t.boolean "completed", default: false
     t.bigint "task_template_id", null: false
     t.bigint "user_id", null: false
-    t.bigint "helper_id", null: false
+    t.bigint "helper_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["helper_id"], name: "index_nurse_tasks_on_helper_id"
