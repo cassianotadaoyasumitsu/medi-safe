@@ -7,8 +7,8 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 puts "Cleaning up start"
-TaskTemplate.destroy_all
 NurseTask.destroy_all
+TaskTemplate.destroy_all
 Patient.destroy_all
 Doctor.destroy_all
 Task.destroy_all
@@ -289,7 +289,7 @@ puts "Creating task templates"
 Patient.all.each do |patient|
   8.times do
     params = {}
-    params[:frequency] = rand(1..3)
+    params[:frequency] = [1,1,1,1,1,1,2,2,3].sample
     params[:patient] = patient
     params[:active] = true
     params[:task] = Task.all.sample
