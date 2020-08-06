@@ -1,21 +1,36 @@
 .patient-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 16px;
+  // display: grid;
+  // grid-template-columns: 1fr 1fr;
+  // grid-gap: 16px;
   .patient-card {
-    width: 500px;
-    height: 140px;
+    // width: 550px;
+    // height: 140px;
+    min-width: 500px;
     background-color: $light-gray;
     .patient-room-info {
-      padding: 40px 20px;
-      width: 140px;
-      height: 140px;
+      // padding: 40px 20px;
+      // width: 140px;
+      // height: 140px;
       background-color: $peach
     }
     .patient-info {
-      width: 360px;
+      // width: 360px;
+      .patient-info-body {
+        p {
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+      }
       .patient-info-header {
         display: flex;
+        h2 {
+          max-width: 300px;
+          max-height: 40px;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
       }
     }
   }
