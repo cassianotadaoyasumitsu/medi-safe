@@ -48,6 +48,7 @@ puts "Creating patients"
   params[:bed] = "0#{rand(1..8)}"
   params[:severity] = EMERGENCY.sample
   params[:doctor] = Doctor.all.sample
+  params[:emr_id] = Faker::Number.number(digits: 8)
   new_patient = Patient.new(params)
   puts "Created patient #{new_patient.id}" if new_patient.save
 end
