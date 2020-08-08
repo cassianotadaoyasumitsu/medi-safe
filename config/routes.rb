@@ -7,4 +7,5 @@ Rails.application.routes.draw do
       patch :sort
     end
   end
+  resources :patients, only: [:index, :show]
 end
