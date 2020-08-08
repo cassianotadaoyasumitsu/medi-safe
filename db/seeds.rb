@@ -286,8 +286,11 @@ puts "Users created"
 # Task template
 # frequency patient(ref) active task(ref)
 
-puts "Creating task templates"
+puts "Creating task templates and nurse tasks"
 Patient.all.each do |patient|
+  params_nurse_task = {}
+  params_nurse_task[:user] = User.where.not(leader_id: nil).sample
+  params_nurse_task[:completed] = false
   Array(4..8).sample.times do
     params = {}
     params[:frequency] = [1,1,1,1,1,1,2,2,3].sample
@@ -296,28 +299,16 @@ Patient.all.each do |patient|
     params[:task] = Task.all.sample
     new_task_template = TaskTemplate.new(params)
     puts "Created task template #{new_task_template.id}" if new_task_template.save
-  end
-end
-puts "Finished creating task templates"
-
-# ---------------------------------------------
-# Nurse tasks
-# note completed(default false) task_template(ref) user_id(ref)
-
-puts "Creating nurse tasks"
-TaskTemplate.all.each do |task_template|
-  params = {}
-  params[:user] = User.where.not(leader_id: nil).sample
-  params[:task_template] = task_template
-  params[:completed] = false
-  params[:slot] = [8, 12].sample
-  task_template.frequency.times do
-    new_nurse_task = NurseTask.new(params)
-    if new_nurse_task.save
-      puts "Created nurse task #{new_nurse_task.id}"
-    else
-      puts new_nurse_task.errors.messages
+    params_nurse_task[:task_template] = new_task_template
+    new_task_template.frequency.times do |variable|
+      params_nurse_task[:slot] = [8, 12].sample
+      new_nurse_task = NurseTask.new(params_nurse_task)
+      if new_nurse_task.save
+        puts "Created nurse task #{new_nurse_task.id}"
+      else
+        puts new_nurse_task.errors.messages
+      end
     end
   end
 end
-puts "Finished creating nurse tasks"
+puts "Finished creating task templates and nurse tasks"
