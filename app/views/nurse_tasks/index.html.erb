@@ -2,13 +2,23 @@
 <hr>
 <hr>
 <hr>
-<div id="nurse-tasks" class="list-group" data-url="<%= sort_nurse_tasks_path(format: :json) %>">
-  <%= @nurse_tasks.count %> vs <%= NurseTask.all.count %>
-  <% @nurse_tasks.each do |nurse_task| %>
-
-    <div class="list-item" data-id=<%= nurse_task.id %>>
-      <%=  nurse_task.task_template.task.description%>
-      <%=  nurse_task.task_template.patient.name%>
+<div class="main-container">
+  <div class="row">
+    <div class="col-6">
+    <p>Morning</p>
+      <div id="nurse-tasks-8" data-url="<%= sort_nurse_tasks_path(format: :json) %>">
+          <% @nurse_tasks.where(slot: 8).each do |nurse_task| %>
+            <%= render 'shared/task_cards', patient: nurse_task.task_template.patient, nurse_task: nurse_task %>
+          <% end %>
+      </div>
     </div>
-  <% end %>
+    <div class="col-6">
+      <p>Afternoon</p>
+      <div id="nurse-tasks-12" data-url="<%= sort_nurse_tasks_path(format: :json) %>">
+          <% @nurse_tasks.where(slot: 12).each do |nurse_task| %>
+            <%= render 'shared/task_cards', patient: nurse_task.task_template.patient, nurse_task: nurse_task %>
+          <% end %>
+      </div>
+    </div>
+  </div>
 </div>

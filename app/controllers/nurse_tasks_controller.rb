@@ -6,8 +6,14 @@ class NurseTasksController < ApplicationController
   end
 
   def sort
-    params[:nurse_tasks].each_with_index do |id, index|
-      NurseTask.where(id: id).update_all(position: index + 1)
+    # params[:nurse_tasks].each_with_index do |id, index|
+    #   NurseTask.where(id: id).update_all(position: index + 1)
+    # end
+    params[:nurse_tasks_8].each_with_index do |id, index|
+      NurseTask.where(id: id).update_all(slot: 8, position: index + 1)
+    end
+    params[:nurse_tasks_12].each_with_index do |id, index|
+      NurseTask.where(id: id).update_all(slot: 12, position: index + 1)
     end
 
     head :ok

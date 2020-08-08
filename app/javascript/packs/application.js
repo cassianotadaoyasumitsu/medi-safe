@@ -32,40 +32,40 @@ import Sortable from 'sortablejs';
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
-  var el = document.getElementById('nurse-tasks');
-  if (!el) {
+  var el8 = document.getElementById('nurse-tasks-8');
+  var el12 = document.getElementById('nurse-tasks-12');
+  if (!el8 && !el12) {
     return
   }
-  var sortable = new Sortable(el, {
+  var sortable8 = new Sortable(el8, {
+    group: 'shared',
     onUpdate: function(e,ui){
-      fetch(el.dataset.url, {
+      fetch(el8.dataset.url, {
         method: 'PATCH',
         headers: {
           "Content-type": "application/json; charset=UTF-8"
         },
-        body: JSON.stringify({ nurse_tasks: sortable.toArray()})
+        body: JSON.stringify({
+          "nurse_tasks_8": sortable8.toArray(),
+          "nurse_tasks_12": sortable12.toArray(),
+        })
+      });
+    }
+  });
+
+  var sortable12 = new Sortable(el12, {
+    group: 'shared',
+    onUpdate: function(e,ui){
+      fetch(el12.dataset.url, {
+        method: 'PATCH',
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        },
+        body: JSON.stringify({
+          "nurse_tasks_8": sortable8.toArray(),
+          "nurse_tasks_12": sortable12.toArray(),
+        })
       });
     }
   });
 });
-
-
-// One group per column (multiple sortable elements)
-// Each sortable group should be a string that matches the group attribute(ex: time group in DB, "Matin", "Midi", "Soir")
-// OnUpdate
-// JSON.stringify({
-//   "nurse_tasks_morning": sortableMorning.toArray(),
-//   "nurse_tasks_noon": sortableNoon.toArray(),
-//   "nurse_tasks_evening": sortableEvening.toArray(),
-// })
-// And will need to update the group in the nurse_tasks_controller
-// params[:nurse_tasks_morning].each_with_index do |id, index|
-//   NurseTask.where(id: id).update_all(time_group: "morning", position: index + 1)
-// end
-// params[:nurse_tasks_noon].each_with_index do |id, index|
-//   NurseTask.where(id: id).update_all(time_group: "morning", position: index + 1)
-// end
-// params[:nurse_tasks_evening].each_with_index do |id, index|
-//   NurseTask.where(id: id).update_all(time_group: "morning", position: index + 1)
-// end
-// And need to do also for the other groups

@@ -309,6 +309,7 @@ TaskTemplate.all.each do |task_template|
   params[:user] = User.where.not(leader_id: nil).sample
   params[:task_template] = task_template
   params[:completed] = false
+  params[:slot] = [8, 12].sample
   task_template.frequency.times do
     new_nurse_task = NurseTask.new(params)
     if new_nurse_task.save
