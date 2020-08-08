@@ -25,6 +25,30 @@
               <p>Phone: <%= @doctor.contact %></p>
             </div>
             <br>
+
+            <div class="shadow d-flex bg-light mb-1" style="width:518px">
+              <div>BS</div>
+              <div>
+                <ul>
+                 <li>BS < 60 OD 1pack of glucose</li>
+                 <li> BS > 160 1U insulin</li>
+                 <li> BS > 180 2U inslin</li>
+                 <li> BS > 200 Call Dr</li>
+               </ul>
+              </div>
+            </div>
+
+            <div class="shadow d-flex bg-light mb-1" style="width: 518px">
+              <div>HR</div>
+              <div>
+                <ul>
+                    <li>HR < 40 Call Dr</li>
+                    <li>HR > 160 IV 2ml/h</li>
+                  </ul>
+              </div>
+            </div>
+
+            <br>
             <div>
               <% @tasktemplates.each do |template| %>
               <div class="task-template-card shadow">
