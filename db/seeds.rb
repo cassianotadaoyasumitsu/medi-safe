@@ -41,14 +41,14 @@ EMERGENCY = ['Low Care', 'Medium Care', 'High Care']
 puts "Creating patients"
 30.times do
   params = {}
-  params[:name] = Faker::Name.name
+  params[:name] = "#{Faker::Name.first_name} #{Faker::Name.last_name}"
   params[:gender] = GENDERS.sample
   params[:age] = rand(15..80)
   params[:room] = "#{rand(1..7)}#{rand(0..1)}#{rand(1..9)}"
   params[:bed] = "0#{rand(1..8)}"
   params[:severity] = EMERGENCY.sample
   params[:doctor] = Doctor.all.sample
-  params[:emr_id] = Faker::Number.number(digits: 8)
+  params[:emr_id] = Faker::Number.number(digits: 4)
   new_patient = Patient.new(params)
   puts "Created patient #{new_patient.id}" if new_patient.save
 end
