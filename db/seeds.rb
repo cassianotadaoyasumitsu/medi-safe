@@ -288,7 +288,7 @@ puts "Users created"
 
 puts "Creating task templates"
 Patient.all.each do |patient|
-  8.times do
+  Array(4..8).sample.times do
     params = {}
     params[:frequency] = [1,1,1,1,1,1,2,2,3].sample
     params[:patient] = patient
