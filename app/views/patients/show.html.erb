@@ -1,6 +1,6 @@
 
 <div>
-  <div>
+  <div class="patient-room-info">
     <p>Room:<%= @patient.room %></p>
     <p>Bed:<%= @patient.bed %></p>
   </div>
@@ -18,9 +18,9 @@
 
 <div>
   <% @tasktemplates.each do |template| %>
-    <%= template.task.description %>
-    <%= template.task.duration %>
-    <%= template.frequency  %>
+    <h5><%= template.task.description %></h5>
+    <%=  pluralize template.task.duration, "min" %>
+    <%=  pluralize template.frequency, "time" %>
   <% end %>
 </div>
 
