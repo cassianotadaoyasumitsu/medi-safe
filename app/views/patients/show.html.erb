@@ -16,4 +16,11 @@
   <%= @patient.severity %>
 </div>
 
+<div>
+  <% @tasktemplates.each do |template| %>
+    <%= template.task.description %>
+    <%= template.task.duration %>
+    <%= template.frequency  %>
+  <% end %>
+</div>
 
