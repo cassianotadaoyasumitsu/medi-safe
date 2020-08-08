@@ -19,7 +19,7 @@
                 <%= link_to patient_path(patient) do %>
                   <h2><%= patient.name %></h2>
                 <% end %>
-                <p class="pl-3 align-self-end mb-3">(234156)</p>
+                <p class="pl-3 align-self-end mb-3">(<%= patient.emr_id %>)</p>
               </div>
               <div class="patient-info-body">
                 <div class="d-flex">
