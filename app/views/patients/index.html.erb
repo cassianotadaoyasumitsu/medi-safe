@@ -11,24 +11,24 @@
           <% elsif patient.severity == 'High Care' %>
             <div class="patient-room-info high-care col-3">
           <% end %>
-              <h5 class="pt-5 pl-2"> Room: <small><%= patient.room %></small></h5>
-              <h5 class="pl-2"> Bed: <small><%= patient.bed %></small></h5>
+              <h5 class="pt-5 pl-2"><i class="fa fa-university" aria-hidden="true"> <small><%= patient.room %></small></i></h5>
+              <h5 class="pl-2"><i class="fa fa-bed" aria-hidden="true"> <small><%= patient.bed %></small></i></h5>
             </div>
             <div class="patient-info col-9">
               <div class="patient-info-header justify-content-center">
                 <%= link_to patient_path(patient) do %>
                   <h2><%= patient.name %></h2>
                 <% end %>
-                <p class="pl-3 align-self-end mb-3">(<%= patient.emr_id %>)</p>
+                <p class="pl-3 align-self-end mb-3">(ID:<%= patient.emr_id %>)</p>
               </div>
               <div class="patient-info-body">
                 <div class="d-flex">
                   <p class="col-5 pl-1 pr-2 mb-1">Gender: <%= patient.gender %></p>
-                  <p class="col-7 pl-1 mb-1 pl-0">Dr. <%= patient.doctor.name %></p>
+                  <p class="col-7 pl-1 mb-1 pl-0"><i class="fa fa-user-md" aria-hidden="true"></i> Dr. <%= patient.doctor.name %></p>
                 </div>
                 <div class="d-flex">
                   <p class="col-5 pl-1 pr-1 mb-1">Age: <%= patient.age %></p>
-                  <p class="col-7 pl-1 pr-1 mb-1">Contact: <%= patient.doctor.contact %></p>
+                  <p class="col-7 pl-1 pr-1 mb-1"><i class="fa fa-mobile" aria-hidden="true"></i> <%= patient.doctor.contact %></p>
                 </div>
               </div>
               <div class="patient-info-footer pt-2">
