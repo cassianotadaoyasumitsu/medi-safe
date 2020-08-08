@@ -5,32 +5,42 @@
     <div class="col-6">
 
       <div class="patient-cards">
-        <div class="patient-card">
-          <div class="patient-room-info">
-            <p>Room:<%= @patient.room %></p>
-            <p>Bed:<%= @patient.bed %></p>
-          </div>
-        <div class="patient-info">
-          <h2><%= @patient.name %></h2>
-          <p>(ID:<%= @patient.id %>)</p>
+        <div class="patient-card col-xl-5-lg-12-md-12-s-12 m-3 shadow">
+          <div class="row">
+            <% if @patient.severity == 'Low Care' %>
+              <div class="patient-room-info low-care col-3">
+            <% elsif @patient.severity == 'Medium Care' %>
+              <div class="patient-room-info medium-care col-3">
+            <% elsif @patient.severity == 'High Care' %>
+              <div class="patient-room-info high-care col-3">
+            <% end %>
+            <h5 class="mt-4 pl-2"> Room: <small><%= @patient.room %></small></h5>
+            <h5 class="pl-2"> Bed: <small><%= @patient.bed %></small></h5>
         </div>
-      </div>
-      </div>
+            <div class="patient-info mt-4 ml-4">
+              <h2><%= @patient.name %></h2>
+              <p>(ID:<%= @patient.id %>)</p>
+            </div>
+          </div>
+          </div>
 
 
-      <div>
-        <h4><%= @doctor.name %></h4>
-        <%= @doctor.contact %>
-        <%= @patient.severity %>
-      </div>
+        <div class="doctor-card shadow mb-1">
+          <h4>Dr: <%= @doctor.name %></h4>
+          <p>Phone: <%= @doctor.contact %></p>
+        </div>
+<br>
 
 
       <div>
         <% @tasktemplates.each do |template| %>
+        <div class="task-template-card shadow">
           <h5><%= template.task.description %></h5>
           <p><%=  pluralize template.frequency, "time" %> (<%=  pluralize template.task.duration, "min" %>)</p>
+         </div>
         <% end %>
       </div>
+    </div>
 
     </div>
     <div class="task-cards-col col-6">
