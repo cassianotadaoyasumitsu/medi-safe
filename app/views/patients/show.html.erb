@@ -1,36 +1,97 @@
 <div class="main-container">
-  <div class="row">
-    <div class="col-6">
-      <div>
-        <div>
-          <p>Room:<%= @patient.room %></p>
-          <p>Bed:<%= @patient.bed %></p>
-        </div>
-        <div>
-          <h2>Name:<%= @patient.name %></h2>
-          <p>(ID:<%= @patient.id %>)</p>
-        </div>
-      </div>
 
-      <div>
-        <h4><%= @doctor.name %></h4>
-        <%= @doctor.contact %>
-        <%= @patient.severity %>
-      </div>
+  <div class="row">
+
+    <div class="col-6">
+
+      <div class="patient-cards">
+        <div class="patient-card col-xl-5-lg-12-md-12-s-12 m-3 shadow">
+          <div class="row">
+            <% if @patient.severity == 'Low Care' %>
+              <div class="patient-room-info low-care col-3">
+            <% elsif @patient.severity == 'Medium Care' %>
+              <div class="patient-room-info medium-care col-3">
+            <% elsif @patient.severity == 'High Care' %>
+              <div class="patient-room-info high-care col-3">
+            <% end %>
+            <h5 class="mt-4 pl-2"> Room: <small><%= @patient.room %></small></h5>
+            <h5 class="pl-2"> Bed: <small><%= @patient.bed %></small></h5>
+        </div>
+            <div class="patient-info mt-4 ml-4">
+              <h2><%= @patient.name %></h2>
+              <p>(ID:<%= @patient.id %>)</p>
+            </div>
+          </div>
+          </div>
+
+
+        <div class="doctor-card shadow mb-1">
+          <h4>Dr: <%= @doctor.name %></h4>
+          <p>Phone: <%= @doctor.contact %></p>
+        </div>
+<br>
+
 
       <div>
         <% @tasktemplates.each do |template| %>
-          <%= template.task.description %>
-          <%= template.task.duration %>
-          <%= template.frequency  %>
+        <div class="task-template-card shadow">
+          <h5><%= template.task.description %></h5>
+          <p><%=  pluralize template.frequency, "time" %> (<%=  pluralize template.task.duration, "min" %>)</p>
+         </div>
         <% end %>
       </div>
+    </div>
+
+
     </div>
     <div class="task-cards-col col-6">
       <% @patient.nurse_tasks.each do |task| %>
       <%= render 'shared/task_cards', patient: @patient, nurse_task: task %>
       <% end %>
+
+    <div class="col-6">
+
+      <ul class="nav nav-tabs pt-3" id="myTab" role="tablist">
+
+        <li class="nav-item">
+          <a class="nav-link active" id="current-tasks" data-toggle="tab" href="#current" role="tab" aria-controls="home" aria-selected="true">Today's Tasks</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" id="old-tasks" data-toggle="tab" href="#old" role="tab" aria-controls="profile" aria-selected="false">Previous Tasks</a>
+        </li>
+
+      </ul>
+
+      <div class="tab-content" id="myTabContent">
+
+        <div class="tab-pane fade show active" id="current" role="tabpanel" aria-labelledby="current-tasks-tab">
+          <div class="task-cards-col">
+            <% @current_tasks.each do |task| %>
+              <div class="ml-3">
+                <%= render 'shared/task_cards', patient: @patient, nurse_task: task  %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="old" role="tabpanel" aria-labelledby="old-tasks-tab">
+          <div class="task-cards-col">
+            <% @yesterdays_tasks.each do |task| %>
+              <div class="ml-3">
+                <%= render 'shared/task_cards', patient: @patient, nurse_task: task %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+      </div>
+
+
     </div>
+
   </div>
 </div>
+
+
 

@@ -1,0 +1,19 @@
+#myTab {
+  border: none;
+  .active {
+    background-color: $light-gray;
+    border: none;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+  }
+}
+
+.nav-tabs .nav-link {
+  border: none;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  color: rgba(50, 50, 50, 0.8);
+  &:hover {
+    color: rgb(50, 50, 50) !important;
+  }
+}
