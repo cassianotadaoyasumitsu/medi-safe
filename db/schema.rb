@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(version: 2020_08_08_020801) do
     t.bigint "helper_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "position"
+    t.integer "slot"
     t.index ["helper_id"], name: "index_nurse_tasks_on_helper_id"
     t.index ["task_template_id"], name: "index_nurse_tasks_on_task_template_id"
     t.index ["user_id"], name: "index_nurse_tasks_on_user_id"
