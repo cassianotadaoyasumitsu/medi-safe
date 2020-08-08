@@ -1,0 +1,36 @@
+<div class="main-container">
+  <div class="row">
+    <div class="col-6">
+      <div>
+        <div>
+          <p>Room:<%= @patient.room %></p>
+          <p>Bed:<%= @patient.bed %></p>
+        </div>
+        <div>
+          <h2>Name:<%= @patient.name %></h2>
+          <p>(ID:<%= @patient.id %>)</p>
+        </div>
+      </div>
+
+      <div>
+        <h4><%= @doctor.name %></h4>
+        <%= @doctor.contact %>
+        <%= @patient.severity %>
+      </div>
+
+      <div>
+        <% @tasktemplates.each do |template| %>
+          <%= template.task.description %>
+          <%= template.task.duration %>
+          <%= template.frequency  %>
+        <% end %>
+      </div>
+    </div>
+    <div class="task-cards-col col-6">
+      <% @patient.nurse_tasks.each do |task| %>
+      <%= render 'shared/task_cards', patient: @patient, nurse_task: task %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
