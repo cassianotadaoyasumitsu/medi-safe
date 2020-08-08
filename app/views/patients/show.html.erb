@@ -8,22 +8,46 @@
             <div class="patient-room-info low-care col-3">
               <% elsif @patient.severity == 'Medium Care' %>
               <div class="patient-room-info medium-care col-3">
-                <% elsif @patient.severity == 'High Care' %>
-                <div class="patient-room-info high-care col-3">
-                  <% end %>
-                  <h5 class="mt-4 pl-2"> Room: <small><%= @patient.room %></small></h5>
-                  <h5 class="pl-2"> Bed: <small><%= @patient.bed %></small></h5>
-                </div>
-                <div class="patient-info mt-4 ml-4">
-                  <h2><%= @patient.name %></h2>
-                  <p>(ID:<%= @patient.emr_id %>)</p>
-                </div>
-              </div>
+            <% elsif @patient.severity == 'High Care' %>
+              <div class="patient-room-info high-care col-3">
+            <% end %>
+            <h5 class="mt-4 pl-2"> Room: <small><%= @patient.room %></small></h5>
+            <h5 class="pl-2"> Bed: <small><%= @patient.bed %></small></h5>
+        </div>
+            <div class="patient-info mt-4 ml-4">
+              <h2><%= @patient.name %></h2>
+              <p>(ID:<%= @patient.emr_id %>)</p>
             </div>
+          </div>
+        </div>
             <div class="doctor-card shadow mb-1">
               <h4>Dr: <%= @doctor.name %></h4>
               <p>Phone: <%= @doctor.contact %></p>
             </div>
+            <br>
+
+            <div class="shadow d-flex bg-light mb-1" style="width:518px">
+              <div>BS</div>
+              <div>
+                <ul>
+                 <li>BS < 60 OD 1pack of glucose</li>
+                 <li> BS > 160 1U insulin</li>
+                 <li> BS > 180 2U inslin</li>
+                 <li> BS > 200 Call Dr</li>
+               </ul>
+              </div>
+            </div>
+
+            <div class="shadow d-flex bg-light mb-1" style="width: 518px">
+              <div>HR</div>
+              <div>
+                <ul>
+                    <li>HR < 40 Call Dr</li>
+                    <li>HR > 160 IV 2ml/h</li>
+                  </ul>
+              </div>
+            </div>
+
             <br>
             <div>
               <% @tasktemplates.each do |template| %>
