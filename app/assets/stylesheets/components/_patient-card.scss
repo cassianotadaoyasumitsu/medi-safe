@@ -11,7 +11,7 @@
       // padding: 40px 20px;
       // width: 140px;
       // height: 140px;
-      background-color: $peach
+      // background-color: $light-gray;
     }
     .patient-info {
       // width: 360px;
@@ -24,6 +24,13 @@
       }
       .patient-info-header {
         display: flex;
+        a {
+          text-decoration: none;
+          color: black;
+          &:hover {
+            color: rgb(100, 100, 100);
+          }
+        }
         h2 {
           max-width: 300px;
           max-height: 40px;
@@ -36,3 +43,12 @@
   }
 }
 
+.high-care {
+  background-color: #DC8478;
+}
+.medium-care {
+  background-color: #ecc06c;
+}
+.low-care {
+  background-color: #b8cab8;
+}
