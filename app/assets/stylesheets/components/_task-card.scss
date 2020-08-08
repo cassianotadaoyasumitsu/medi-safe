@@ -10,7 +10,12 @@
       width: 160px;
       height: 140px;
       margin: 0 auto;
-      background-color: $purple
+      background-color: $purple;
+      h5 {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
     }
     .task-info {
       width: 340px;

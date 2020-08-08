@@ -1,15 +1,15 @@
 <div class="task-card row shadow" data-id=<%= nurse_task.id %> data-slot=<%= nurse_task.slot %> data-position=<%= nurse_task.position %>>
   <div class="task-patient-info">
     <h5><%= patient.name %></h5>
-    <p class="mb-2"> Room: <small><%= patient.room %></small></p>
-    <p class="mb-2"> Bed: <small><%= patient.bed %></small></p>
+    <h5 class="pt-1 pl-2"><i class="fa fa-university" aria-hidden="true"> <small><%= patient.room %></small></i></h5>
+    <h5 class="pl-2"><i class="fa fa-bed" aria-hidden="true"> <small><%= patient.bed %></small></i></h5>
   </div>
   <div class="task-info d-flex">
     <div class="task-info-description col-8 px-1">
       <p><%= nurse_task.task_template.task.description %></p>
     </div>
     <div class="task-info-duration col-4 px-1">
-      <p><%= nurse_task.task_template.task.duration %></p>
+      <p><%= nurse_task.task_template.task.duration %> mins</p>
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal<%= nurse_task.id %>">
         Complete
       </button>
