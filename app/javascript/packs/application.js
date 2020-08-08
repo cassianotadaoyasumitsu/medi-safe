@@ -40,7 +40,6 @@ document.addEventListener('turbolinks:load', () => {
   var sortable8 = new Sortable(el8, {
     group: 'shared',
     onAdd: function(e,ui){
-      console.log("Add8")
       fetch(el8.dataset.url, {
         method: 'PATCH',
         headers: {
@@ -53,7 +52,6 @@ document.addEventListener('turbolinks:load', () => {
       });
     },
     onUpdate: function(e,ui){
-      console.log("Update8")
       fetch(el8.dataset.url, {
         method: 'PATCH',
         headers: {
@@ -70,7 +68,6 @@ document.addEventListener('turbolinks:load', () => {
   var sortable12 = new Sortable(el12, {
     group: 'shared',
     onAdd: function(e,ui){
-      console.log("Add12")
       fetch(el12.dataset.url, {
         method: 'PATCH',
         headers: {
@@ -83,7 +80,6 @@ document.addEventListener('turbolinks:load', () => {
       });
     },
     onUpdate: function(e,ui){
-      console.log("Update12")
       fetch(el12.dataset.url, {
         method: 'PATCH',
         headers: {

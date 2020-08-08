@@ -18,4 +18,11 @@ class NurseTasksController < ApplicationController
 
     head :ok
   end
+
+  def complete
+    @nurse_task = NurseTask.find(params[:format])
+    @nurse_task.completed = true
+    @nurse_task.save
+    redirect_to nurse_tasks_path
+  end
 end

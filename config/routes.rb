@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :nurse_tasks, only: [:index] do
     collection do
-      patch :sort
+      patch :sort, :complete
     end
   end
   resources :patients, only: [:index, :show]
