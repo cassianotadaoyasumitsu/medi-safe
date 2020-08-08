@@ -24,6 +24,7 @@ require("channels")
 
 // External imports
 import "bootstrap";
+import Sortable from 'sortablejs';
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -31,4 +32,64 @@ import "bootstrap";
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+  var el8 = document.getElementById('nurse-tasks-8');
+  var el12 = document.getElementById('nurse-tasks-12');
+  if (!el8 && !el12) {
+    return
+  }
+  var sortable8 = new Sortable(el8, {
+    group: 'shared',
+    onAdd: function(e,ui){
+      fetch(el8.dataset.url, {
+        method: 'PATCH',
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        },
+        body: JSON.stringify({
+          "nurse_tasks_8": sortable8.toArray(),
+          "nurse_tasks_12": sortable12.toArray(),
+        })
+      });
+    },
+    onUpdate: function(e,ui){
+      fetch(el8.dataset.url, {
+        method: 'PATCH',
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        },
+        body: JSON.stringify({
+          "nurse_tasks_8": sortable8.toArray(),
+          "nurse_tasks_12": sortable12.toArray(),
+        })
+      });
+    }
+  });
+
+  var sortable12 = new Sortable(el12, {
+    group: 'shared',
+    onAdd: function(e,ui){
+      fetch(el12.dataset.url, {
+        method: 'PATCH',
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        },
+        body: JSON.stringify({
+          "nurse_tasks_8": sortable8.toArray(),
+          "nurse_tasks_12": sortable12.toArray(),
+        })
+      });
+    },
+    onUpdate: function(e,ui){
+      fetch(el12.dataset.url, {
+        method: 'PATCH',
+        headers: {
+          "Content-type": "application/json; charset=UTF-8"
+        },
+        body: JSON.stringify({
+          "nurse_tasks_8": sortable8.toArray(),
+          "nurse_tasks_12": sortable12.toArray(),
+        })
+      });
+    }
+  });
 });

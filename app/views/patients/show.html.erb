@@ -8,7 +8,6 @@
             <div class="patient-room-info low-care col-3">
               <% elsif @patient.severity == 'Medium Care' %>
               <div class="patient-room-info medium-care col-3">
-
             <% elsif @patient.severity == 'High Care' %>
               <div class="patient-room-info high-care col-3">
             <% end %>
@@ -18,8 +17,9 @@
             <div class="patient-info mt-4 ml-4">
               <h2><%= @patient.name %></h2>
               <p>(ID:<%= @patient.emr_id %>)</p>
-
             </div>
+          </div>
+        </div>
             <div class="doctor-card shadow mb-1">
               <h4>Dr: <%= @doctor.name %></h4>
               <p>Phone: <%= @doctor.contact %></p>

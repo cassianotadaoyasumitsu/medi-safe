@@ -63,3 +63,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Faker for DB seed
 gem 'faker'
+
+# Make NurseTask a sortable list
+gem 'acts_as_list'
