@@ -41,20 +41,20 @@
               <h5 class="pl-2 text-center"><i class="fa fa-bed" aria-hidden="true"> <%= patient.bed %></i></h5>
             </div>
             <div class="patient-info col-9">
-              <div class="patient-info-header justify-content-center">
+              <div class="patient-info-header ml-n3 justify-content-center">
                 <%= link_to patient_path(patient) do %>
-                  <h3 class="pl-1"><%= patient.name %></h3>
+                  <h3><%= patient.name %></h3>
                 <% end %>
               </div>
               <div class="patient-info-body">
                 <div class="d-flex">
-                  <p class="col-7 pl-1 mb-1 pl-0"><i class="fa fa-user-md" aria-hidden="true"></i><small> Dr. <%= patient.doctor.name %></small></p>
+                  <p class="col-7 pl-1 mb-1"><i class="fa fa-user-md" aria-hidden="true"></i><small> Dr. <%= patient.doctor.name %></small></p>
                   <p class="col-5 pl-1 pr-1 mb-1"><i class="fa fa-mobile" aria-hidden="true"></i><small> <%= patient.doctor.contact %></small> </p>
                 </div>
               </div>
-              <div class="patient-info-footer pt-2">
-                <div class="col-10 offset-1">
-                  <h6 class="mb-0">Tasks not completed: <%= patient.nurse_tasks.where(completed: false).count %></h6>
+              <div class="patient-info-footer py-1">
+                <div class="col-10 text-center">
+                  <h6 class="mb-0"><%= patient.nurse_tasks.where(completed: false).count %> tasks left</h6>
                 </div>
               </div>
             </div>
