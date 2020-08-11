@@ -44,7 +44,7 @@ puts "Creating patients"
   params[:name] = "#{Faker::Name.first_name} #{Faker::Name.last_name}"
   params[:gender] = GENDERS.sample
   params[:age] = rand(15..80)
-  params[:room] = "#{rand(1..7)}#{rand(0..1)}#{rand(1..9)}"
+  params[:room] = [304,305,306].sample
   params[:bed] = "0#{rand(1..8)}"
   params[:severity] = EMERGENCY.sample
   params[:doctor] = Doctor.all.sample
@@ -200,17 +200,17 @@ linlu = User.new(params)
 linlu.save
 puts "Created user #{linlu.id}"
 
-params = {}
-params[:name] = "Hayato Clarke"
-params[:email] = "hayato@medisafe.com"
-params[:password] = "password"
-hayato = User.new(params)
-hayato.save
-puts "Created user #{hayato.id}"
+# params = {}
+# params[:name] = "Hayato Clarke"
+# params[:email] = "hayato@medisafe.com"
+# params[:password] = "password"
+# hayato = User.new(params)
+# hayato.save
+# puts "Created user #{hayato.id}"
 
 params = {}
 params[:name] = "Davide Zanetto"
-params[:leader] = hayato
+params[:leader] = linlu
 params[:email] = "davide@medisafe.com"
 params[:password] = "password"
 new_user = User.new(params)
@@ -219,7 +219,7 @@ puts "Created user #{new_user.id}"
 
 params = {}
 params[:name] = "Cassiano Yasumitsu"
-params[:leader] = hayato
+params[:leader] = linlu
 params[:email] = "cassiano@medisafe.com"
 params[:password] = "password"
 new_user = User.new(params)
@@ -228,48 +228,48 @@ puts "Created user #{new_user.id}"
 
 params = {}
 params[:name] = "Liam Baker"
-params[:leader] = hayato
+params[:leader] = linlu
 params[:email] = 'liam@medisafe.com'
 params[:password] = 'password'
 new_user = User.new(params)
 new_user.save
 puts "Created user #{new_user.id}"
 
-params = {}
-params[:name] = "Yurie Shiotani"
-params[:leader] = hayato
-params[:email] = "yurie@medisafe.com"
-params[:password] = "password"
-new_user = User.new(params)
-new_user.save
-puts "Created user #{new_user.id}"
+# params = {}
+# params[:name] = "Yurie Shiotani"
+# params[:leader] = hayato
+# params[:email] = "yurie@medisafe.com"
+# params[:password] = "password"
+# new_user = User.new(params)
+# new_user.save
+# puts "Created user #{new_user.id}"
 
-params = {}
-params[:name] = "Wanying Kwok"
-params[:leader] = linlu
-params[:email] = "farrah@medisafe.com"
-params[:password] = "password"
-new_user = User.new(params)
-new_user.save
-puts "Created user #{new_user.id}"
+# params = {}
+# params[:name] = "Wanying Kwok"
+# params[:leader] = linlu
+# params[:email] = "farrah@medisafe.com"
+# params[:password] = "password"
+# new_user = User.new(params)
+# new_user.save
+# puts "Created user #{new_user.id}"
 
-params = {}
-params[:name] = "Shinya Tawata"
-params[:leader] = linlu
-params[:email] = "shinya@medisafe.com"
-params[:password] = "password"
-new_user = User.new(params)
-new_user.save
-puts "Created user #{new_user.id}"
+# params = {}
+# params[:name] = "Shinya Tawata"
+# params[:leader] = linlu
+# params[:email] = "shinya@medisafe.com"
+# params[:password] = "password"
+# new_user = User.new(params)
+# new_user.save
+# puts "Created user #{new_user.id}"
 
-params = {}
-params[:name] = "Aki"
-params[:leader] = linlu
-params[:email] = "aki@medisafe.com"
-params[:password] = "password"
-new_user = User.new(params)
-new_user.save
-puts "Created user #{new_user.id}"
+# params = {}
+# params[:name] = "Aki"
+# params[:leader] = linlu
+# params[:email] = "aki@medisafe.com"
+# params[:password] = "password"
+# new_user = User.new(params)
+# new_user.save
+# puts "Created user #{new_user.id}"
 
 params = {}
 params[:name] = "Ayako Amano"
@@ -294,7 +294,7 @@ Patient.all.each do |patient|
   params_nurse_task[:slot] = [8, 12].sample
   Array(4..8).sample.times do
     params = {}
-    params[:frequency] = [1,1,1,1,1,1,2,2,3].sample
+    params[:frequency] = [1,1,1,1,1,1,2,2].sample
     params[:patient] = patient
     params[:active] = true
     params[:task] = Task.all.sample
