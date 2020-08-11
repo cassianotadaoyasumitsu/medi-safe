@@ -9,5 +9,8 @@ class PatientsController < ApplicationController
 
   def index
     @patients = current_user.patients.uniq
+    @high_care_patients = current_user.patients.where(severity: 'High Care').uniq
+    @medium_care_patients = current_user.patients.where(severity: 'Medium Care').uniq
+    @low_care_patients = current_user.patients.where(severity: 'Low Care').uniq
   end
 end
