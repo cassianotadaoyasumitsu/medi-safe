@@ -1,0 +1,17 @@
+<div class="list-group nurse-task-cards row" data-id=<%= nurse_task.id %> data-slot=<%= nurse_task.slot %> data-position=<%= nurse_task.position %>>
+  <div class="list-group-item nurse-task-card text-justify">
+    <div class="nurse-task-patient-name">
+      <%= patient.name %>
+    </div>
+    <div class="nurse-task-patient-info">
+      <i class="fa fa-university" aria-hidden="true"> <%= patient.room %></i>
+      <i class="fa fa-bed" aria-hidden="true"> <%= patient.bed %></i>
+    </div>
+    <div class="nurse-task-info-description">
+      <%= nurse_task.task_template.task.description %>
+    </div>
+    <div class="nurse-task-info-duration">
+      <%= nurse_task.task_template.task.duration %> mins
+    </div>
+  </div>
+</div>

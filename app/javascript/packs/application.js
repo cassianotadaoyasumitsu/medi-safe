@@ -39,6 +39,7 @@ document.addEventListener('turbolinks:load', () => {
   }
   var sortable_morning = new Sortable(el_morning, {
     group: 'shared',
+    animation: 150,
     onAdd: function(e,ui){
       fetch(el_morning.dataset.url, {
         method: 'PATCH',
@@ -67,6 +68,7 @@ document.addEventListener('turbolinks:load', () => {
 
   var sortable_afternoon = new Sortable(el_afternoon, {
     group: 'shared',
+    animation: 150,
     onAdd: function(e,ui){
       fetch(el_afternoon.dataset.url, {
         method: 'PATCH',
