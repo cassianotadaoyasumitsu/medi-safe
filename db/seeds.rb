@@ -291,6 +291,7 @@ Patient.all.each do |patient|
   params_nurse_task = {}
   params_nurse_task[:user] = User.where.not(leader_id: nil).sample
   params_nurse_task[:completed] = false
+  params_nurse_task[:slot] = [8, 12].sample
   Array(4..8).sample.times do
     params = {}
     params[:frequency] = [1,1,1,1,1,1,2,2,3].sample
@@ -301,7 +302,6 @@ Patient.all.each do |patient|
     puts "Created task template #{new_task_template.id}" if new_task_template.save
     params_nurse_task[:task_template] = new_task_template
     new_task_template.frequency.times do |variable|
-      params_nurse_task[:slot] = 8
       new_nurse_task = NurseTask.new(params_nurse_task)
       if new_nurse_task.save
         puts "Created nurse task #{new_nurse_task.id}"
