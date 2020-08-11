@@ -1,0 +1,13 @@
+.patient-overview {
+  background-color: $light-gray;
+  border-radius: 20px;
+  .nurse-tasks-uncompleted {
+    border-radius: 25%;
+  }
+  .nurse-patient-info {
+    border-radius: 25%;
+    .nurse-patient-number h5 {
+      font-size: 30px
+    }
+  }
+}

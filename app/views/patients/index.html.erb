@@ -1,17 +1,34 @@
 <div class="main-container">
-  <div class="container">
-    <div class="row">
+  <div class="container-fluid">
+    <div class="patient-overview shadow row">
       <div class="col">
-        <h5><%= current_user.nurse_tasks.where(completed: false).count %></h5>
-        <h5><%= @patients.count %></h5>
-        <h5><%= @high_care_patients.count %></h5>
-        <h5><%= @medium_care_patients.count %></h5>
-        <h5><%= @low_care_patients.count %></h5>
+        <div class="row pt-3 pl-3">
+          <div class="col">
+            <h2> Hi, <%= current_user.name %>! <br>
+            Here's a quick look at your day!</h2>
+          </div>
+          <div class="col d-flex">
+            <div class="col-2 nurse-tasks-uncompleted p-3 mx-3 mb-3 shadow">
+              <h5><%= current_user.nurse_tasks.where(completed: true).count %> / <%= current_user.nurse_tasks.count %></h5>
+              <h5><%= ((current_user.nurse_tasks.where(completed: true).count.to_f / current_user.nurse_tasks.count) * 100).round %> %</h5>
+            </div>
+            <div class="col-2 offset-1 nurse-patient-info p-3 mx-3 mb-3 shadow">
+              <div class="nurse-patient-number">
+                <h5><i class="fa fa-users" aria-hidden="true"></i><%= @patients.count %></h5>
+              </div>
+              <div class="nurse-patient-severity d-flex">
+                <h5 class="high-care"><%= @high_care_patients.count %></h5>
+                <h5 class="medium-care"><%= @medium_care_patients.count %></h5>
+                <h5 class="low-care"><%= @low_care_patients.count %></h5>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="patient-cards row">
+    <div class="patient-cards row pl-5">
       <% @patients.each do |patient| %>
-        <div class="patient-card col-xl-5-lg-12-md-12-s-12 m-3 shadow">
+        <div class="patient-card col-xl-4-lg-12-md-12-s-12 mx-3 mt-3 shadow">
           <div class="row">
           <% if patient.severity == 'Low Care' %>
             <div class="patient-room-info low-care col-3">
@@ -20,25 +37,24 @@
           <% elsif patient.severity == 'High Care' %>
             <div class="patient-room-info high-care col-3">
           <% end %>
-              <h5 class="pt-4 pl-2 text-center"><i class="fa fa-university" aria-hidden="true"> <small><%= patient.room %></small></i></h5>
-              <h5 class="pl-2 text-center"><i class="fa fa-bed" aria-hidden="true"> <small><%= patient.bed %></small></i></h5>
+              <h5 class="pt-4 pl-2 text-center"><i class="fa fa-university" aria-hidden="true"> <%= patient.room %></i></h5>
+              <h5 class="pl-2 text-center"><i class="fa fa-bed" aria-hidden="true"> <%= patient.bed %></i></h5>
             </div>
             <div class="patient-info col-9">
               <div class="patient-info-header justify-content-center">
                 <%= link_to patient_path(patient) do %>
-                  <h2><%= patient.name %></h2>
+                  <h3 class="pl-1"><%= patient.name %></h3>
                 <% end %>
-                <p class="pl-3 align-self-end mb-3">(ID:<%= patient.emr_id %>)</p>
               </div>
               <div class="patient-info-body">
                 <div class="d-flex">
-                  <p class="col-6 pl-1 mb-1 pl-0"><i class="fa fa-user-md" aria-hidden="true"></i> Dr. <%= patient.doctor.name %></p>
-                  <p class="col-6 pl-1 pr-1 mb-1"><i class="fa fa-mobile" aria-hidden="true"></i> <%= patient.doctor.contact %></p>
+                  <p class="col-7 pl-1 mb-1 pl-0"><i class="fa fa-user-md" aria-hidden="true"></i><small> Dr. <%= patient.doctor.name %></small></p>
+                  <p class="col-5 pl-1 pr-1 mb-1"><i class="fa fa-mobile" aria-hidden="true"></i><small> <%= patient.doctor.contact %></small> </p>
                 </div>
               </div>
               <div class="patient-info-footer pt-2">
-                <div class="col-8 offset-2">
-                  <h5 class="mb-0">Tasks not completed: <%= patient.nurse_tasks.where(completed: false).count %></h5>
+                <div class="col-10 offset-1">
+                  <h6 class="mb-0">Tasks not completed: <%= patient.nurse_tasks.where(completed: false).count %></h6>
                 </div>
               </div>
             </div>

@@ -2,12 +2,15 @@
   // display: grid;
   // grid-template-columns: 1fr 1fr;
   // grid-gap: 16px;
+  margin: 0 auto;
   .patient-card {
     // width: 550px;
     // height: 140px;
-    min-width: 500px;
+    // min-width: 400px;
     background-color: $light-gray;
+    border-radius: 20px;
     .patient-room-info {
+      border-radius: 10%;
       // padding: 40px 20px;
       // width: 140px;
       // height: 140px;
@@ -33,11 +36,15 @@
           }
         }
         h2 {
-          max-width: 300px;
-          max-height: 40px;
+          max-width: 98%;
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
+        }
+      }
+      .patient-info-footer {
+        h6 {
+          font-size: 1.1rem
         }
       }
     }
