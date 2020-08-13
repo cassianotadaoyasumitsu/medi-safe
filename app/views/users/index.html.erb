@@ -2,7 +2,7 @@
 
 <div class="row justify-content-around">
   <% @users.each do |user| %>
-  <div class="lider-card">
+  <div class="leader-card">
     <%= image_tag "avatar.png", class: "avatar-large" %>
     <p><%= user.name %></p>
     <% user.patients.uniq.each do |patient| %>
