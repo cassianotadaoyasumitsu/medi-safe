@@ -103,6 +103,7 @@ document.addEventListener('turbolinks:load', () => {
   document.addEventListener("click", (event) => {
     active_item = document.querySelector('.active');
     active_item.classList.remove("active");
-    event.target.closest(".list-group-item").classList.add("active");
+    const new_active_item = event.target.closest(".list-group-item")
+    new_active_item.classList.add("active");
   })
 });

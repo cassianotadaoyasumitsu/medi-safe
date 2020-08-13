@@ -3,6 +3,8 @@ class NurseTasksController < ApplicationController
 
   def index
     @nurse_tasks = NurseTask.where(user: current_user).order(:position)
+    @active_task = NurseTask.where(user: current_user, active: true)[0]
+    @active_task = @nurse_tasks.where(slot: 8).first if @active_task.nil?
   end
 
   def sort
@@ -22,6 +24,18 @@ class NurseTasksController < ApplicationController
   def complete
     @nurse_task = NurseTask.find(params[:format])
     @nurse_task.completed = true
+    @nurse_task.save
+    redirect_to nurse_tasks_path
+  end
+
+  def make_active
+    previous_task = NurseTask.where(user: current_user, active: true)[0]
+    unless previous_task.nil?
+      previous_task.active = false
+      previous_task.save
+    end
+    @nurse_task = NurseTask.find(params[:id])
+    @nurse_task.active = true
     @nurse_task.save
     redirect_to nurse_tasks_path
   end
