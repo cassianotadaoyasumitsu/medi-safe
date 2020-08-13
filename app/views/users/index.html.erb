@@ -1,21 +1,39 @@
+<div class="main-container">
+  <div class="row justify-content-around">
+    <% @nurses.each_with_index do |nurse, index| %>
+      <div class="leader-card">
+        <%= image_tag "avatar.png", class: "avatar-large" %>
+        <p><%= nurse.name %></p>
+        <p>Total patients: <%= nurse.patients.uniq.count %></p>
+        <p>Total tasks: <%= nurse.nurse_tasks.count %></p>
 
-
-<div class="row justify-content-around">
-  <% @users.each do |user| %>
-  <div class="leader-card">
-    <%= image_tag "avatar.png", class: "avatar-large" %>
-    <p><%= user.name %></p>
-    <% user.patients.uniq.each do |patient| %>
-      <%= patient.name %>
-      <hr>
+        <div class="accordion" id="accordionExample">
+          <div class="card">
+            <div class="card-header" id="headingOne">
+              <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse<%= index %>" aria-expanded="true" aria-controls="collapseOne">
+                  Patients:
+                </button>
+              </h2>
+            </div>
+            <div id="collapse<%= index %>" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+              <div class="card-body">
+              <% nurse.patients.uniq.each do |patient| %>
+                <ul>
+                  <li>
+                    <p>
+                      <%= patient.name %>
+                      <%= patient.nurse_tasks.where(user: nurse).count %>
+                    </p>
+                  </li>
+                </ul>
+              <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     <% end %>
   </div>
-  <% end %>
 </div>
-
-<h1><%= current_user.nurses.count %></h1>
-
-
-
-
-
+    <h1><%= current_user.nurses.count %></h1>
