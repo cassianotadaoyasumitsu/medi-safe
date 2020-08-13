@@ -1,31 +1,30 @@
-<div class="main-container">
-  <div class="container-fluid">
-    <div class="patient-overview shadow row">
-      <div class="col">
-        <div class="row pt-3 pl-3">
-          <div class="col">
-            <h2> Hi, <%= current_user.name %>! <br>
-            Here's a quick look at your day!</h2>
+<div class="container-fluid mt-5 mb-n5 pt-3">
+  <div class="patient-overview shadow row">
+    <div class="col">
+      <div class="row pt-3 pl-3">
+        <div class="col">
+          <h2> Hi <%= current_user.name %>, here's a quick look at your day!</h2>
+        </div>
+        <div class="col d-flex">
+          <div class="col-2 text-center nurse-tasks-uncompleted p-3 mx-3 mb-3 shadow">
+            <h5>Tasks</h5>
+            <div id="task-progress" data-tasks="<%= ((current_user.nurse_tasks.where(completed: true).count.to_f / current_user.nurse_tasks.count))%>"></div>
           </div>
-          <div class="col d-flex">
-            <div class="col-2 nurse-tasks-uncompleted p-3 mx-3 mb-3 shadow">
-              <h5><%= current_user.nurse_tasks.where(completed: true).count %> / <%= current_user.nurse_tasks.count %></h5>
-              <h5><%= ((current_user.nurse_tasks.where(completed: true).count.to_f / current_user.nurse_tasks.count) * 100).round %> %</h5>
-            </div>
-            <div class="col-2 offset-1 nurse-patient-info p-3 mx-3 mb-3 shadow">
-              <div class="nurse-patient-number">
-                <h5><i class="fa fa-users" aria-hidden="true"></i><%= @patients.count %></h5>
-              </div>
-              <div class="nurse-patient-severity d-flex">
-                <h5 class="high-care"><%= @high_care_patients.count %></h5>
-                <h5 class="medium-care"><%= @medium_care_patients.count %></h5>
-                <h5 class="low-care"><%= @low_care_patients.count %></h5>
-              </div>
+          <div class="col-2 offset-1 text-center nurse-patient-info p-3 mx-3 mb-3 shadow">
+            <h5>Patients</h5>
+            <div class="nurse-patient-severity d-flex">
+              <h5 class="high-care"><%= @high_care_patients.count %></h5>
+              <h5 class="medium-care"><%= @medium_care_patients.count %></h5>
+              <h5 class="low-care"><%= @low_care_patients.count %></h5>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
+<div class="main-container">
+  <div class="container-fluid">
     <div class="patient-cards row pl-5">
       <% @patients.each do |patient| %>
         <div class="patient-card col-xl-4-lg-12-md-12-s-12 mx-3 mt-3 shadow">

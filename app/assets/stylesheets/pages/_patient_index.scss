@@ -1,13 +1,28 @@
 .patient-overview {
-  background-color: $light-gray;
-  border-radius: 20px;
+  background: linear-gradient(135deg,
+              rgba(0, 0, 0, 0.4) 0%,
+              rgba(0, 0, 0, 0.2) 50%),
+              url(banner-3.jpg);
+  background-size: cover;
+  background-position: center;
+  h2 {
+    color: $light-gray;
+  }
   .nurse-tasks-uncompleted {
+    background-color: $light-gray;
     border-radius: 25%;
   }
   .nurse-patient-info {
+    background-color: $light-gray;
     border-radius: 25%;
     .nurse-patient-number h5 {
       font-size: 30px
     }
   }
+}
+
+#task-progress {
+  position: relative;
+  width: 80px;
+  height: 80px;
 }

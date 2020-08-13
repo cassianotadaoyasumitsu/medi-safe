@@ -26,6 +26,7 @@ require("channels")
 import "bootstrap";
 import Sortable from 'sortablejs';
 import { bar } from '../components/progress_bar'
+var ProgressBar = require('progressbar.js')
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -33,6 +34,12 @@ import { bar } from '../components/progress_bar'
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+  const tasks_ratio = document.getElementById('task-progress');
+  console.log(tasks_ratio.dataset.tasks);
+  bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
+  bar.text.style.fontSize = '2rem';
+  bar.animate(tasks_ratio.dataset.tasks);
+
   var el8 = document.getElementById('nurse-tasks-8');
   var el12 = document.getElementById('nurse-tasks-12');
   if (!el8 && !el12) {

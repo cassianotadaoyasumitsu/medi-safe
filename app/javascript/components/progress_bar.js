@@ -1,16 +1,21 @@
-var bar = new ProgressBar.Circle(container, {
+var ProgressBar = require('progressbar.js')
+const value = document.getElementById('task-progress')
+console.log(value.dataset.tasks);
+
+
+var bar = new ProgressBar.Circle('#task-progress', {
   color: '#aaa',
   // This has to be the same size as the maximum width to
   // prevent clipping
-  strokeWidth: 4,
-  trailWidth: 1,
+  strokeWidth: 8,
+  trailWidth: 4,
   easing: 'bounce',
   duration: 2400,
   text: {
     autoStyleContainer: false
   },
-  from: { color: '#aaa', width: 1 },
-  to: { color: '#333', width: 4 },
+  from: { color: '#aaa', width: 4 },
+  to: { color: '#333', width: 8 },
   // Set default step function for all animate calls
   step: function(state, circle) {
     circle.path.setAttribute('stroke', state.color);
@@ -20,7 +25,7 @@ var bar = new ProgressBar.Circle(container, {
     if (value === 0) {
       circle.setText('');
     } else {
-      circle.setText(finished);
+      circle.setText(`${value}%`);
     }
 
   }
