@@ -8,4 +8,5 @@ Rails.application.routes.draw do
     end
   end
   resources :patients, only: [:index, :show]
+  resources :users, path: :nurses, only: [:index]
 end
