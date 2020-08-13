@@ -94,4 +94,15 @@ document.addEventListener('turbolinks:load', () => {
       });
     }
   });
+
+  var active_item = document.querySelector('.active');
+  if(el_morning && !active_item){
+    document.querySelector(".list-group-item").classList.add("active");
+  };
+
+  document.addEventListener("click", (event) => {
+    active_item = document.querySelector('.active');
+    active_item.classList.remove("active");
+    event.target.closest(".list-group-item").classList.add("active");
+  })
 });
