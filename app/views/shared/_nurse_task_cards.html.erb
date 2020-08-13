@@ -1,5 +1,5 @@
 <div class="list-group nurse-task-cards row" data-id=<%= nurse_task.id %> data-slot=<%= nurse_task.slot %> data-position=<%= nurse_task.position %>>
-  <div class="list-group-item nurse-task-card text-justify">
+  <div class="list-group-item nurse-task-card text-justify <%= "active" if nurse_task.active %>">
     <div class="nurse-task-patient-name">
       <%= patient.name %>
     </div>

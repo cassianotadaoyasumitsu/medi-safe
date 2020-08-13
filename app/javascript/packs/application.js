@@ -97,7 +97,7 @@ document.addEventListener('turbolinks:load', () => {
 
   var active_item = document.querySelector('.active');
   if(el_morning && !active_item){
-    document.querySelector(".list-group-item").classList.add("active");
+    return
   };
 
   document.addEventListener("click", (event) => {

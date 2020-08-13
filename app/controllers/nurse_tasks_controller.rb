@@ -37,6 +37,7 @@ class NurseTasksController < ApplicationController
     @nurse_task = NurseTask.find(params[:id])
     @nurse_task.active = true
     @nurse_task.save
+    byebug
     redirect_to nurse_tasks_path
   end
 end
