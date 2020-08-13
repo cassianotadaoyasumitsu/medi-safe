@@ -5,6 +5,7 @@ class User < ApplicationRecord
   :recoverable, :rememberable, :validatable
 
   belongs_to :leader, required: false, class_name: 'User'
+  has_many :nurses, class_name: 'User', foreign_key: 'leader_id'
   validates :name, presence: true
   validates :email, uniqueness: true
   has_many :nurse_tasks, dependent: :destroy

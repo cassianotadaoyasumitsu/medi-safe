@@ -4,3 +4,4 @@ class AddNameLeaderToUsers < ActiveRecord::Migration[6.0]
     add_reference :users, :leader, foreign_key: { to_table: :users }
   end
 end
+
