@@ -1,0 +1,12 @@
+<div class="main-container">
+  <%= form_tag(create_patient_assignment_path, remote: false) do %>
+    <%= select_tag( "user_id", options_from_collection_for_select(@nurses, "id", "name") )%>
+      <% @patients.each do |patient| %>
+       <%= patient.name %>
+       <%= check_box_tag "patient_ids[]", patient.id %>
+      <% end %>
+      <%= submit_tag %>
+    <% end %>
+</div>
+
+

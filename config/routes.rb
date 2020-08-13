@@ -8,4 +8,8 @@ Rails.application.routes.draw do
     end
   end
   resources :patients, only: [:index, :show]
+  get 'patient_assignment', to: 'patients#patient_assignment'
+  post 'create_patient_assignment', to: 'patients#create_patient_assignment'
+
+
 end
