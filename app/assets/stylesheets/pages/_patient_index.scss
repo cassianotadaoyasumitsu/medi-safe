@@ -11,10 +11,12 @@
   .nurse-tasks-uncompleted {
     background-color: $light-gray;
     border-radius: 25%;
+    width: 144px;
   }
   .nurse-patient-info {
     background-color: $light-gray;
     border-radius: 25%;
+    width: 144px;
     .nurse-patient-number h5 {
       font-size: 30px
     }
@@ -25,4 +27,6 @@
   position: relative;
   width: 80px;
   height: 80px;
+
 }
+

@@ -9,6 +9,8 @@ require("@rails/activestorage").start()
 require("channels")
 
 
+
+
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.
@@ -35,7 +37,6 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   const tasks_ratio = document.getElementById('task-progress');
-  console.log(tasks_ratio.dataset.tasks);
   bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
   bar.text.style.fontSize = '2rem';
   bar.animate(tasks_ratio.dataset.tasks);

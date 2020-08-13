@@ -1,6 +1,5 @@
 var ProgressBar = require('progressbar.js')
 const value = document.getElementById('task-progress')
-console.log(value.dataset.tasks);
 
 
 var bar = new ProgressBar.Circle('#task-progress', {

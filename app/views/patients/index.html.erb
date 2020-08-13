@@ -1,25 +1,25 @@
-<div class="container-fluid mt-5 mb-n5 pt-3">
-  <div class="patient-overview shadow row">
+<div class="container-fluid mt-5 mb-n5">
+  <div class="patient-overview mt-5 pt-5 shadow row">
     <div class="col">
-      <div class="row pt-3 pl-3">
-        <div class="col">
+      <!-- <div class="row pt-3 pl-3"> -->
+        <div class="col text-center">
           <h2> Hi <%= current_user.name %>, here's a quick look at your day!</h2>
         </div>
-        <div class="col d-flex">
-          <div class="col-2 text-center nurse-tasks-uncompleted p-3 mx-3 mb-3 shadow">
-            <h5>Tasks</h5>
-            <div id="task-progress" data-tasks="<%= ((current_user.nurse_tasks.where(completed: true).count.to_f / current_user.nurse_tasks.count))%>"></div>
+        <div class="col d-flex justify-content-center">
+          <div class=" text-center nurse-tasks-uncompleted p-3 mx-3 mb-3 shadow">
+            <h5>Tasks: <%= current_user.nurse_tasks.count %></h5>
+            <div class="row justify-content-center">
+              <div id="task-progress" data-tasks="<%= ((current_user.nurse_tasks.where(completed: true).count.to_f / current_user.nurse_tasks.count))%>"></div>
+            </div>
           </div>
-          <div class="col-2 offset-1 text-center nurse-patient-info p-3 mx-3 mb-3 shadow">
-            <h5>Patients</h5>
+          <div class=" offset-1 text-center nurse-patient-info p-3 mx-3 mb-3 shadow">
+            <h5>Patients: <%= @patients.count %></h5>
             <div class="nurse-patient-severity d-flex">
-              <h5 class="high-care"><%= @high_care_patients.count %></h5>
-              <h5 class="medium-care"><%= @medium_care_patients.count %></h5>
-              <h5 class="low-care"><%= @low_care_patients.count %></h5>
+              <%= pie_chart [["High Care", @high_care_patients], ["Medium Care", @medium_care_patients], ["Low Care", @low_care_patients]], height: "80px", colors: ["#DC8478", "#ecc06c", "#b8cab8"], legend: false %>
             </div>
           </div>
         </div>
-      </div>
+      <!-- </div> -->
     </div>
   </div>
 </div>
