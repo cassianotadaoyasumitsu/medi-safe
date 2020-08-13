@@ -25,6 +25,7 @@ require("channels")
 // External imports
 import "bootstrap";
 import Sortable from 'sortablejs';
+import { bar } from '../components/progress_bar'
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
