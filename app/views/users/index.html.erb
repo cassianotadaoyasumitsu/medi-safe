@@ -1,4 +1,21 @@
-<% @users.each do |user| %>
-  <p>Name <%= user.name %></p>
-<% end %>
+
+
+<div class="row justify-content-around">
+  <% @users.each do |user| %>
+  <div class="lider-card">
+    <%= image_tag "avatar.png", class: "avatar-large" %>
+    <p><%= user.name %></p>
+    <% user.patients.uniq.each do |patient| %>
+      <%= patient.name %>
+      <hr>
+    <% end %>
+  </div>
+  <% end %>
+</div>
+
+<h1><%= current_user.nurses.count %></h1>
+
+
+
+
 
