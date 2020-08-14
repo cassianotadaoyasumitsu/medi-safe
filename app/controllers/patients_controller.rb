@@ -8,6 +8,6 @@ class PatientsController < ApplicationController
   end
 
   def index
-    @patients = current_user.nurse.patients.uniq
+    @patients = current_user.patients.uniq
   end
 end
