@@ -1,0 +1,21 @@
+
+<div class="main-container">
+
+  <h1><%= @user.name %></h1>
+
+
+
+  <% @nurse.patients.uniq.each do |patient| %>
+  <ul>
+    <li>
+      <p>
+        <%= patient.name %>
+
+      </p>
+    </li>
+  </ul>
+  <% end %>
+
+
+
+</div>
