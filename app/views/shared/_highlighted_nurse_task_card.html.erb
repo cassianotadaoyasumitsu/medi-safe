@@ -1,10 +1,8 @@
-<div class="highlighted-task d-flex p-3">
+<div class="highlighted-task d-flex p-3 justify-content-around align-items-center">
   <div class="nurse-task-patient-name">
-    <%= patient.name %>
-  </div>
-  <div class="nurse-task-patient-info">
-    <i class="fa fa-university" aria-hidden="true"> <%= patient.room %></i>
-    <i class="fa fa-bed" aria-hidden="true"> <%= patient.bed %></i>
+    <p> <%= patient.name %> </p>
+    <p> <i class="fa fa-university" aria-hidden="true"> <%= patient.room %></i> </p>
+    <p> <i class="fa fa-bed" aria-hidden="true"> <%= patient.bed %></i> </p>
   </div>
   <div class="nurse-task-info-description">
     <%= nurse_task.task_template.task.description %>
@@ -13,11 +11,11 @@
     <%= nurse_task.task_template.task.duration %> mins
   </div>
   <%= simple_form_for nurse_task do |f| %>
-    <%= f.input :note %>
-    <%= f.button :submit %>
+    <%= f.input :note, label: false, input_html: {rows: 5}  %>
+    <%= f.button :submit, "Update note", class: 'btn btn-primary' %>
   <% end %>
   <% if nurse_task.completed == false %>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal<%= nurse_task.id %>">
+        <button type="button" class="btn btn-lg btn-success" data-toggle="modal" data-target="#exampleModal<%= nurse_task.id %>">
           Complete
         </button>
       <% end %>
