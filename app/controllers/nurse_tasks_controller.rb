@@ -24,7 +24,13 @@ class NurseTasksController < ApplicationController
   def complete
     @nurse_task = NurseTask.find(params[:format])
     @nurse_task.completed = true
+    @nurse_task.active = false
     @nurse_task.save
+    new_active_task =
+      NurseTask.where(user: current_user, slot: 8, completed: false).order(:position)[0] ||
+      NurseTask.where(user: current_user, slot: 12, completed: false).order(:position)[0]
+    new_active_task.active = true
+    new_active_task.save
     redirect_to nurse_tasks_path
   end
 
@@ -38,5 +44,17 @@ class NurseTasksController < ApplicationController
     @nurse_task.active = true
     @nurse_task.save
     redirect_to nurse_tasks_path
+  end
+
+  def update
+    nurse_task = NurseTask.find(params[:id])
+    nurse_task.update(nurse_task_params)
+    redirect_to nurse_tasks_path
+  end
+
+  private
+
+  def nurse_task_params
+    params.require(:nurse_task).permit(:note)
   end
 end
