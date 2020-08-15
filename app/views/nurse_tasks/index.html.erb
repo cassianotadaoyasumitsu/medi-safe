@@ -1,40 +1,60 @@
 <%= render 'shared/highlighted_nurse_task_card', patient: @active_task.task_template.patient, nurse_task: @active_task %>
 <div class="container">
-  <div class="row nurse-task-cards mt-3">
-    <div class="col-6">
-    <p class="text-center">Morning</p>
-      <div id="nurse-tasks-morning" class="nurse-tasks" data-url="<%= sort_nurse_tasks_path(format: :json) %>">
-        <% @nurse_tasks.where(slot: 8, completed: false).each do |nurse_task| %>
-          <%= render 'shared/nurse_task_cards', patient: nurse_task.task_template.patient, nurse_task: nurse_task %>
-        <% end %>
-      </div>
-    </div>
-    <div class="col-6">
-      <p class="text-center">Afternoon</p>
-      <div id="nurse-tasks-afternoon" class="nurse-tasks" data-url="<%= sort_nurse_tasks_path(format: :json) %>">
-        <% @nurse_tasks.where(slot: 12, completed: false).each do |nurse_task| %>
-          <%= render 'shared/nurse_task_cards', patient: nurse_task.task_template.patient, nurse_task: nurse_task %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  <hr>
-  <p>Completed tasks</p>
-  <div class="row nurse-task-cards" id="completedTasks">
-    <div class="col-6">
-    <p>Morning</p>
-      <div id="nurse-tasks-morning" data-url="<%= sort_nurse_tasks_path(format: :json) %>">
-          <% @nurse_tasks.where(slot: 8, completed: true).each do |nurse_task| %>
+  <ul class="nav nav-pills mb-3 d-flex justify-content-center" id="pills-tab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">To do</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Completed</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+      <div class="row nurse-task-cards mt-3">
+        <div class="col-6 text-center">
+        <p>Morning - Time needed: <%= @incomplete_morning_tasks.map{|nurse_task| nurse_task.task_template.task.duration}.reduce(:+) || 0 %> min
+          <%= link_to nurse_tasks_path do %>
+            <i class="fas fa-sync-alt"></i>
+          <% end %>
+        </p>
+        <div id="nurse-tasks-morning" class="nurse-tasks" data-url="<%= sort_nurse_tasks_path(format: :json) %>">
+          <% @incomplete_morning_tasks.each do |nurse_task| %>
             <%= render 'shared/nurse_task_cards', patient: nurse_task.task_template.patient, nurse_task: nurse_task %>
           <% end %>
+        </div>
+        </div>
+        <div class="col-6 text-center">
+          <p>Afternoon - Time needed: <%= @incomplete_afternoon_tasks.map{|nurse_task| nurse_task.task_template.task.duration}.reduce(:+) || 0 %> min
+            <%= link_to nurse_tasks_path do %>
+              <i class="fas fa-sync-alt"></i>
+            <% end %>
+          </p>
+          <div id="nurse-tasks-afternoon" class="nurse-tasks" data-url="<%= sort_nurse_tasks_path(format: :json) %>">
+            <% @incomplete_afternoon_tasks.each do |nurse_task| %>
+              <%= render 'shared/nurse_task_cards', patient: nurse_task.task_template.patient, nurse_task: nurse_task %>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="col-6">
-      <p>Afternoon</p>
-      <div id="nurse-tasks-afternoon" data-url="<%= sort_nurse_tasks_path(format: :json) %>">
-          <% @nurse_tasks.where(slot: 12, completed: true).each do |nurse_task| %>
-            <%= render 'shared/nurse_task_cards', patient: nurse_task.task_template.patient, nurse_task: nurse_task %>
-          <% end %>
+      <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+      <div class="row nurse-task-cards" id="completedTasks">
+        <div class="col-6">
+        <p>Morning</p>
+          <div id="nurse-tasks-morning" data-url="<%= sort_nurse_tasks_path(format: :json) %>">
+              <% @completed_morning_tasks.each do |nurse_task| %>
+                <%= render 'shared/nurse_task_cards', patient: nurse_task.task_template.patient, nurse_task: nurse_task %>
+              <% end %>
+          </div>
+        </div>
+        <div class="col-6">
+          <p>Afternoon</p>
+          <div id="nurse-tasks-afternoon" data-url="<%= sort_nurse_tasks_path(format: :json) %>">
+              <% @completed_afternoon_tasks.each do |nurse_task| %>
+                <%= render 'shared/nurse_task_cards', patient: nurse_task.task_template.patient, nurse_task: nurse_task %>
+              <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div>

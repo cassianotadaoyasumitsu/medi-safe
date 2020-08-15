@@ -5,12 +5,13 @@ class NurseTasksController < ApplicationController
     @nurse_tasks = NurseTask.where(user: current_user).order(:position)
     @active_task = NurseTask.where(user: current_user, active: true)[0]
     @active_task = @nurse_tasks.where(slot: 8).first if @active_task.nil?
+    @incomplete_morning_tasks = @nurse_tasks.where(slot: 8, completed: false)
+    @incomplete_afternoon_tasks = @nurse_tasks.where(slot: 12, completed: false)
+    @completed_morning_tasks = @nurse_tasks.where(slot: 8, completed: true)
+    @completed_afternoon_tasks = @nurse_tasks.where(slot: 12, completed: true)
   end
 
   def sort
-    # params[:nurse_tasks].each_with_index do |id, index|
-    #   NurseTask.where(id: id).update_all(position: index + 1)
-    # end
     params[:nurse_tasks_morning].each_with_index do |id, index|
       NurseTask.where(id: id).update_all(slot: 8, position: index + 1)
     end

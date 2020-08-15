@@ -104,7 +104,7 @@
 }
 
 .nurse-task-card.active{
-  opacity: 0.5;
+  background-color: $blue;
   color: white;
   .nurse-task-patient-name {
     color: white;
