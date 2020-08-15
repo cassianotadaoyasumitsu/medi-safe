@@ -1,7 +1,9 @@
 .patient-cards {
-  // display: grid;
-  // grid-template-columns: 1fr 1fr;
-  // grid-gap: 16px;
+  // display: flex;
+  // flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 16px;
   margin: 0 auto;
   .patient-card {
     // width: 550px;
@@ -39,6 +41,7 @@
       // width: 360px;
       .patient-info-body {
         p {
+          max-width: 95%;
           color: $gray;
           overflow: hidden;
           white-space: nowrap;
@@ -55,7 +58,7 @@
           }
         }
         h2 {
-          max-width: 98%;
+          max-width: 95%;
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
@@ -79,4 +82,34 @@
 }
 .low-care {
   background-color: #b8cab8;
+}
+
+@media (min-width: 100px) and (max-width: 575px) {
+  .patient-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 576px) {
+  .patient-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 768px) {
+  .patient-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 992px) {
+  .patient-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1200px) {
+  .patient-cards {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
