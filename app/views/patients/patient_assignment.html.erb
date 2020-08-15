@@ -1,31 +1,65 @@
+<div class="container-fluid mt-5 mb-n5">
+  <div class="patient-overview mt-5 pt-5 shadow row">
+    <div class="col">
+      <div class="col text-center">
+        <h2> Hi <%=current_user.name %>, here's a quick look at your day!</h2> <br>
+         <h3 ><%= @nurses.count %>Nurses : <%= @patients.count %>Patients</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="main-container">
-  <div>
-    <%= form_tag(create_patient_assignment_path, remote: false) do %>
-      <%= select_tag( "user_id", options_from_collection_for_select(@nurses, "id", "name") )%>
+
+  <div class="grip">
+    <div class="justify-content-around text-center">
+      <%= form_tag(create_patient_assignment_path, remote: false) do %>
+        <h5>Select Nurse</h5>
+        <%= select_tag( "user_id", options_from_collection_for_select(@nurses, "id", "name") )%>
+        <%= submit_tag "Assign", class: "btn btn-primary"%>
+        <h5 class="mt-2">Select Patients</h5>
+    </div>
+    <div class="justify-content-around">
+      <ul class="list-group">
+        <div class="row">
         <% @patients.each do |patient| %>
-         <%= patient.name %>
+        <li class="list-group-item lists">
          <%= check_box_tag "patient_ids[]", patient.id %>
+         <%= patient.name %>
+        </li>
         <% end %>
-        <%= submit_tag %>
+        </div>
       <% end %>
+      </ul>
+    </div>
   </div>
 
-  <div>
+  <hr>
+
+
+  <div class="row justify-content-around">
     <% @nurses.each do |nurse| %>
-        <%= nurse.name %>
+    <div class="nurse-card shadow col-2">
+      <div class="mt-2 text-center">
         <% names = Patient.joins(:task_templates).joins(task_templates: :nurse_tasks)
                    .where(task_templates: { nurse_tasks: { user: nurse } })
                    .pluck(:name).uniq %>
-        <ul>
-          <% names.each do |name| %>
-            <li><%= name %></li>
-          <% end %>
-        </ul>
+        <h5><%= nurse.name %></h5>
+        <%= image_tag "avatar.png", class: "avatar-super-large" %>
 
+        <p><span style="font-size: 16px;"> patients:<%= names.count %></span> </p>
+        </div>
+        <% if names.count > 0 %>
+          <ul class="nurse-list border border-secondary rounded mt-0">
+            <% names.each do |name| %>
+              <li class="text-left" style="font-size: 12px;">・<%= name %></li>
+            <% end %>
+          </ul>
+        <% end %>
+
+    </div>
     <% end %>
   </div>
-
-
 </div>
 
 
