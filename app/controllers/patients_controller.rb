@@ -1,4 +1,5 @@
 class PatientsController < ApplicationController
+  before_action :leader?, only: :index
   def show
     @patient = Patient.find(params[:id])
     @doctor = @patient.doctor
@@ -28,5 +29,11 @@ class PatientsController < ApplicationController
       end
     end
     redirect_to patient_assignment_path
+  end
+
+  private
+
+  def leader?
+    redirect_to users_path if current_user.nurses.count > 1
   end
 end
