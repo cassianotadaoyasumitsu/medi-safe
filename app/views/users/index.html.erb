@@ -3,8 +3,9 @@
     <% @nurses.each_with_index do |nurse| %>
     <div class="leader-card">
       <%= image_tag "avatar.png", class: "avatar-large" %>
-      <%= link_to 'nurse' , user_path(nurse)  %>
+      <%= link_to user_path(nurse) do %>
       <p><%= nurse.name %></p>
+      <% end %>
       <p>Total patients: <%= nurse.patients.uniq.count %></p>
       <p>Total tasks: <%= nurse.nurse_tasks.count %></p>
     </div>
