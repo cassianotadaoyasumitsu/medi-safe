@@ -17,7 +17,7 @@ class PatientsController < ApplicationController
 
   def patient_assignment
     @patients = Patient.all
-    @nurses = User.all
+    @nurses = User.where(leader_id: current_user.id)
   end
 
   def create_patient_assignment
