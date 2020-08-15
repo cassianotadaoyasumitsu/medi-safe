@@ -25,7 +25,7 @@ class PatientsController < ApplicationController
     @patients = Patient.where(id: params[:patient_ids])
     @patients.each do |patient|
       patient.task_templates.each do |task_template|
-        task_template.nurse_tasks.create(user_id: @user.id, slot: 8, completed: false)
+        task_template.nurse_tasks.create(user_id: @user.id, slot: [8,12].sample, completed: false)
       end
     end
     redirect_to patient_assignment_path
