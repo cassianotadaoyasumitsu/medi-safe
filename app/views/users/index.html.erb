@@ -1,6 +1,5 @@
 <%= render 'shared/banner', user: current_user, patients: @patients.uniq, nurses: current_user.nurses   %>
 <div class="main-container">
-  <h1>Nurses: <%= current_user.nurses.count %></h1>
   <div class="row justify-content-around">
     <% @nurses.each_with_index do |nurse| %>
       <% if nurse.nurse_tasks.count <= 15 %>

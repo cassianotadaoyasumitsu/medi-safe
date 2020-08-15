@@ -27,20 +27,19 @@ require("channels")
 // External imports
 import "bootstrap";
 import Sortable from 'sortablejs';
-import { make_pie_chart } from '../components/progress_bar'
+import { draw_pie_chart } from '../components/progress_bar'
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
+const tasks_ratio = document.querySelectorAll('#task-progress');
+
+
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
-  const tasks_ratio = document.getElementById('task-progress');
   if (tasks_ratio) {
-    var bar = make_pie_chart();
-    bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
-    bar.text.style.fontSize = '2rem';
-    bar.animate(tasks_ratio.dataset.tasks);
+    draw_pie_chart();
   }
 
   var el_morning = document.getElementById('nurse-tasks-morning');
