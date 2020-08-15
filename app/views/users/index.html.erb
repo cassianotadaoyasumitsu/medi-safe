@@ -1,24 +1,22 @@
 <div class="main-container">
+  <h1>Nurses: <%= current_user.nurses.count %></h1>
   <div class="row justify-content-around">
     <% @nurses.each_with_index do |nurse| %>
-    <div class="leader-card">
-      <%= image_tag "avatar.png", class: "avatar-large" %>
-      <%= link_to 'nurse' , user_path(nurse)  %>
-      <p><%= nurse.name %></p>
+      <% if nurse.nurse_tasks.count <= 15 %>
+    <div class="leader-card low-busy">
+      <% elsif nurse.nurse_tasks.count > 15 && nurse.nurse_tasks.count <= 30  %>
+      <div class="leader-card medium-busy">
+        <% elsif nurse.nurse_tasks.count > 30 %>
+        <div class="leader-card high-busy">
+      <% end %>
+      <%= image_tag "avatar.png", class: "avatar-super-large" %>
+      <%= link_to user_path(nurse) do %>
+      <p class=" mt-2"><%= nurse.name %></p>
+      <% end %>
       <p>Total patients: <%= nurse.patients.uniq.count %></p>
       <p>Total tasks: <%= nurse.nurse_tasks.count %></p>
-      <% nurse.patients.uniq.each do |patient| %>
-      <ul>
-        <li>
-          <p>
-            <%= patient.name %>
-            <%= patient.nurse_tasks.where(user: nurse).count %>
-          </p>
-        </li>
-      </ul>
-      <% end %>
     </div>
     <% end %>
   </div>
 </div>
-<h1><%= current_user.nurses.count %></h1>
+

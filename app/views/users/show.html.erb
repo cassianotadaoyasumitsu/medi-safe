@@ -10,7 +10,7 @@
     <li>
       <p>
         <%= patient.name %>
-
+        <%= patient.nurse_tasks.where(user: @user).count %>
       </p>
     </li>
   </ul>
