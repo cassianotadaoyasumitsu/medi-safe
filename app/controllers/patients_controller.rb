@@ -34,6 +34,6 @@ class PatientsController < ApplicationController
   private
 
   def leader?
-    redirect_to users_path if current_user.nurses.count > 1
+    redirect_to patient_assignment_path if current_user.nurses.count > 1
   end
 end

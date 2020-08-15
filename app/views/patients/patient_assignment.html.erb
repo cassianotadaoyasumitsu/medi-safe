@@ -16,7 +16,7 @@
       <%= form_tag(create_patient_assignment_path, remote: false) do %>
         <h5>Select Nurse</h5>
         <%= select_tag( "user_id", options_from_collection_for_select(@nurses, "id", "name") )%>
-        <%= submit_tag "Assign" %>
+        <%= submit_tag "Assign", class: "btn btn-primary"%>
         <h5 class="mt-2">Select Patients</h5>
     </div>
     <div class="justify-content-around">
