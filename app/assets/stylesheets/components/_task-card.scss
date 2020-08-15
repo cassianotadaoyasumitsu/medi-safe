@@ -106,3 +106,12 @@
 .nurse-task-card.active{
   color: black;
 }
+
+.highlighted-task{
+  background-image: url("banner-3.jpg");
+  background-size: cover;
+  height: 25vh;
+  .nurse-task-patient-name{
+    font-size: 24px;
+  }
+}
