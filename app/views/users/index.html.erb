@@ -1,4 +1,5 @@
 <div class="main-container">
+  <h1>Nurses: <%= current_user.nurses.count %></h1>
   <div class="row justify-content-around">
     <% @nurses.each_with_index do |nurse| %>
     <div class="leader-card">
@@ -12,4 +13,4 @@
     <% end %>
   </div>
 </div>
-<h1><%= current_user.nurses.count %></h1>
+

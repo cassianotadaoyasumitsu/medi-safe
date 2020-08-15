@@ -1,12 +1,14 @@
 .leader-card{
   padding: 24px;
   border: 1px solid black;
-  width: 300px;
+  width: 210px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   border-radius: 20px;
+  background-color: $light-gray;
+  margin: 24px;
 
   ul{
     margin: 0;
