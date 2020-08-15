@@ -2,9 +2,18 @@ class NurseTasksController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    @nurse_tasks = NurseTask.where(user: current_user).order(:position)
+    @nurse_tasks = NurseTask.where(user: current_user)
+    if @nurse_tasks.first.position
+      @nurse_tasks = @nurse_tasks.order(:position)
+    else
+      @nurse_tasks = @nurse_tasks.order(:id)
+    end
     @active_task = NurseTask.where(user: current_user, active: true)[0]
-    @active_task = @nurse_tasks.where(slot: 8).first if @active_task.nil?
+    if @active_task.nil?
+      @active_task = @nurse_tasks.where(slot: 8).first
+      @active_task.active = true
+      @active_task.save
+    end
     @incomplete_morning_tasks = @nurse_tasks.where(slot: 8, completed: false)
     @incomplete_afternoon_tasks = @nurse_tasks.where(slot: 12, completed: false)
     @completed_morning_tasks = @nurse_tasks.where(slot: 8, completed: true)
