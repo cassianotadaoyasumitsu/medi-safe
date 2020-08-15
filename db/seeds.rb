@@ -39,7 +39,7 @@ puts "Finished creating doctors"
 GENDERS = %w( male female )
 EMERGENCY = ['Low Care', 'Medium Care', 'High Care']
 puts "Creating patients"
-30.times do
+20.times do
   params = {}
   params[:name] = "#{Faker::Name.first_name} #{Faker::Name.last_name}"
   params[:gender] = GENDERS.sample
