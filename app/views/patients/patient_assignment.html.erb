@@ -1,0 +1,34 @@
+<div class="main-container">
+  <div>
+    <%= form_tag(create_patient_assignment_path, remote: false) do %>
+    <h5>Select nurse</h5>
+      <%= select_tag( "user_id", options_from_collection_for_select(@nurses, "id", "name") )%>
+      <h6>Patients</h6>
+        <% @patients.each do |patient| %>
+         <%= patient.name %>
+         <%= check_box_tag "patient_ids[]", patient.id %>
+        <% end %>
+        <%= submit_tag %>
+      <% end %>
+  </div>
+
+  <div>
+    <% @nurses.each do |nurse| %>
+        <%= nurse.name %>
+        <% names = Patient.joins(:task_templates).joins(task_templates: :nurse_tasks)
+                   .where(task_templates: { nurse_tasks: { user: nurse } })
+                   .pluck(:name).uniq %>
+        <ul>
+          <% names.each do |name| %>
+            <li><%= name %></li>
+          <% end %>
+        </ul>
+
+    <% end %>
+  </div>
+
+
+</div>
+
+
+
