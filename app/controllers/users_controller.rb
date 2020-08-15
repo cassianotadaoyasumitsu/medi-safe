@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
   def index
-    @users = current_user.nurses.includes(:patients)
+    @nurses = current_user.nurses.includes(:patients, :nurse_tasks)
+  end
+
+  def show
+    @user = User.find(params[:id])
   end
 end
