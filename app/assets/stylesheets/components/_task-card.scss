@@ -80,6 +80,9 @@
 
 // Cards in nurse_tasks page
 .nurse-task-cards {
+  a {
+    text-decoration: none;
+  }
   .nurse-task-card {
     margin-right: 1em;
     display: flex;

@@ -1,4 +1,11 @@
-<div class="list-group nurse-task-cards row" data-id=<%= nurse_task.id %> data-slot=<%= nurse_task.slot %> data-position=<%= nurse_task.position %>>
+<%= link_to make_active_nurse_task_path(nurse_task),
+  method: "patch",
+  class: "list-group nurse-task-cards row",
+  data: {
+    id: nurse_task.id,
+    slot: nurse_task.slot,
+    position: nurse_task.position
+  } do %>
   <div class="list-group-item nurse-task-card text-justify <%= "active" if nurse_task.active %>">
     <div class="nurse-task-patient-name">
       <%= patient.name %>
@@ -14,4 +21,4 @@
       <%= nurse_task.task_template.task.duration %> mins
     </div>
   </div>
-</div>
+<% end %>

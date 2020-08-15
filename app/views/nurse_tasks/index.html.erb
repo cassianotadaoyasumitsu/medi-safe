@@ -7,20 +7,16 @@
     <p>Morning</p>
       <div id="nurse-tasks-morning" class="nurse-tasks" data-url="<%= sort_nurse_tasks_path(format: :json) %>">
         <% @nurse_tasks.where(slot: 8, completed: false).each do |nurse_task| %>
-          <%= link_to make_active_nurse_task_path(nurse_task), method: "patch" do %>
-            <%= render 'shared/nurse_task_cards', patient: nurse_task.task_template.patient, nurse_task: nurse_task %>
-          <% end %>
+          <%= render 'shared/nurse_task_cards', patient: nurse_task.task_template.patient, nurse_task: nurse_task %>
         <% end %>
       </div>
     </div>
     <div class="col-6">
       <p>Afternoon</p>
       <div id="nurse-tasks-afternoon" class="nurse-tasks" data-url="<%= sort_nurse_tasks_path(format: :json) %>">
-          <% @nurse_tasks.where(slot: 12, completed: false).each do |nurse_task| %>
-            <%= link_to make_active_nurse_task_path(nurse_task), method: "patch" do %>
-              <%= render 'shared/nurse_task_cards', patient: nurse_task.task_template.patient, nurse_task: nurse_task %>
-            <% end %>
-          <% end %>
+        <% @nurse_tasks.where(slot: 12, completed: false).each do |nurse_task| %>
+          <%= render 'shared/nurse_task_cards', patient: nurse_task.task_template.patient, nurse_task: nurse_task %>
+        <% end %>
       </div>
     </div>
   </div>
