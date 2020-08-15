@@ -7,16 +7,6 @@
       <p><%= nurse.name %></p>
       <p>Total patients: <%= nurse.patients.uniq.count %></p>
       <p>Total tasks: <%= nurse.nurse_tasks.count %></p>
-      <% nurse.patients.uniq.each do |patient| %>
-      <ul>
-        <li>
-          <p>
-            <%= patient.name %>
-            <%= patient.nurse_tasks.where(user: nurse).count %>
-          </p>
-        </li>
-      </ul>
-      <% end %>
     </div>
     <% end %>
   </div>
