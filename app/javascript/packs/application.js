@@ -27,8 +27,7 @@ require("channels")
 // External imports
 import "bootstrap";
 import Sortable from 'sortablejs';
-import { bar } from '../components/progress_bar'
-var ProgressBar = require('progressbar.js')
+import { make_pie_chart } from '../components/progress_bar'
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -37,12 +36,14 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   const tasks_ratio = document.getElementById('task-progress');
-  bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
-  bar.text.style.fontSize = '2rem';
-  bar.animate(tasks_ratio.dataset.tasks);
-  
+  if (tasks_ratio) {
+    var bar = make_pie_chart();
+    bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
+    bar.text.style.fontSize = '2rem';
+    bar.animate(tasks_ratio.dataset.tasks);
+  }
+
   var el_morning = document.getElementById('nurse-tasks-morning');
-  console.log(el_morning);
   var el_afternoon = document.getElementById('nurse-tasks-afternoon');
   if (!el_morning && !el_afternoon) {
     return
