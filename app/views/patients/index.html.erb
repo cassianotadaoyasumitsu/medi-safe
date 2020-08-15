@@ -1,4 +1,4 @@
-<%= render 'shared/banner', user: current_user, patients: @patients %>
+<%= render 'shared/banner', user: current_user, patients: @patients, nurses: [current_user] %>
 <div class="main-container">
   <div class="container-fluid">
     <div class="patient-cards row pl-5">

@@ -5,12 +5,14 @@
         <h2> Hi <%= user.name %>, here's a quick look at your day!</h2>
       </div>
       <div class="col d-flex justify-content-center">
-        <div class=" text-center nurse-tasks-uncompleted p-3 mx-3 mb-3 shadow">
-          <h5>Tasks: <%= user.nurse_tasks.count %></h5>
-          <div class="row justify-content-center">
-            <div id="task-progress" data-tasks="<%= ((user.nurse_tasks.where(completed: true).count.to_f / user.nurse_tasks.count))%>"></div>
+        <% nurses.each do |nurse| %>
+          <div class=" text-center nurse-tasks-uncompleted p-3 mx-3 mb-3 shadow">
+            <h5>Tasks: <%= nurse.nurse_tasks.count %></h5>
+            <div class="row justify-content-center">
+              <div id="task-progress" data-tasks="<%= ((nurse.nurse_tasks.where(completed: true).count.to_f / nurse.nurse_tasks.count))%>"></div>
+            </div>
           </div>
-        </div>
+          <% end %>
         <div class=" offset-1 text-center nurse-patient-info p-3 mx-3 mb-3 shadow">
           <h5>Patients: <%= patients.count %></h5>
           <div class="nurse-patient-severity d-flex">
