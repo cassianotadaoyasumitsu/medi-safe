@@ -9,13 +9,9 @@ Rails.application.routes.draw do
   end
   patch 'nurse_tasks/make_active/:id', to: "nurse_tasks#make_active", as: "make_active_nurse_task"
   resources :patients, only: [:index, :show]
-<<<<<<< HEAD
   get 'patient_assignment', to: 'patients#patient_assignment'
   post 'create_patient_assignment', to: 'patients#create_patient_assignment'
 
-
-=======
   resources :users, path: :nurses, only: [:index, :show]
->>>>>>> 53f2956956c2874589821b0bd4efeac3e5c4b885
 end
 
