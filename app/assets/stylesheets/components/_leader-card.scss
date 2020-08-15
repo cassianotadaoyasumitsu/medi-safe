@@ -1,12 +1,14 @@
 .leader-card{
   padding: 24px;
   border: 1px solid black;
-  width: 300px;
+  width: 210px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   border-radius: 20px;
+  background-color: $light-gray;
+  margin: 24px;
 
   ul{
     margin: 0;
@@ -17,3 +19,12 @@
   }
 }
 
+.high-busy {
+  background-color: #DC8478;
+}
+.medium-busy {
+  background-color: #ecc06c;
+}
+.low-busy {
+  background-color: #b8cab8;
+}
