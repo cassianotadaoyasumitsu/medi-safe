@@ -3,11 +3,11 @@
   <div class="row justify-content-around">
     <% @nurses.each_with_index do |nurse| %>
       <% if nurse.nurse_tasks.count <= 15 %>
-    <div class="leader-card low-busy">
+    <div class="leader-card shadow low-busy">
       <% elsif nurse.nurse_tasks.count > 15 && nurse.nurse_tasks.count <= 30  %>
-      <div class="leader-card medium-busy">
+      <div class="leader-card shadow medium-busy">
         <% elsif nurse.nurse_tasks.count > 30 %>
-        <div class="leader-card high-busy">
+        <div class="leader-card shadow high-busy">
       <% end %>
       <%= image_tag "avatar.png", class: "avatar-super-large" %>
       <%= link_to user_path(nurse) do %>
