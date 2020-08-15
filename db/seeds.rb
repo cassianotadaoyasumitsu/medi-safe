@@ -218,7 +218,7 @@ new_user.save
 puts "Created user #{new_user.id}"
 
 params = {}
-params[:name] = "Cassiano Yasumitsu"
+params[:name] = "Tadao Yasumitsu"
 params[:leader] = linlu
 params[:email] = "cassiano@medisafe.com"
 params[:password] = "password"
