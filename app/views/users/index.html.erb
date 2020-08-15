@@ -1,0 +1,24 @@
+<div class="main-container">
+  <div class="row justify-content-around">
+    <% @nurses.each_with_index do |nurse| %>
+    <div class="leader-card">
+      <%= image_tag "avatar.png", class: "avatar-large" %>
+      <%= link_to 'nurse' , user_path(nurse)  %>
+      <p><%= nurse.name %></p>
+      <p>Total patients: <%= nurse.patients.uniq.count %></p>
+      <p>Total tasks: <%= nurse.nurse_tasks.count %></p>
+      <% nurse.patients.uniq.each do |patient| %>
+      <ul>
+        <li>
+          <p>
+            <%= patient.name %>
+            <%= patient.nurse_tasks.where(user: nurse).count %>
+          </p>
+        </li>
+      </ul>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+</div>
+<h1><%= current_user.nurses.count %></h1>
