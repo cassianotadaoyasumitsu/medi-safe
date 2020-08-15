@@ -2,12 +2,34 @@
   // display: grid;
   // grid-template-columns: 1fr 1fr;
   // grid-gap: 16px;
+  margin: 0 auto;
   .patient-card {
     // width: 550px;
     // height: 140px;
-    min-width: 500px;
+    // min-width: 400px;
     background-color: $light-gray;
+    border-radius: 20px;
+    &::after {
+      position: absolute;
+      border-radius: 20px;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transition: opacity 2s cubic-bezier(.165, .84, .44, 1);
+      box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .15);
+      content: '';
+      opacity: 0;
+      z-index: -1;
+    }
+    &:hover {
+      transform: scale3d(1.006, 1.006, 1);
+      &::after {
+        opacity: 1;
+      }
+    }
     .patient-room-info {
+      border-radius: 10%;
       // padding: 40px 20px;
       // width: 140px;
       // height: 140px;
@@ -17,6 +39,7 @@
       // width: 360px;
       .patient-info-body {
         p {
+          color: $gray;
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
@@ -32,11 +55,16 @@
           }
         }
         h2 {
-          max-width: 300px;
-          max-height: 40px;
+          max-width: 98%;
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
+        }
+      }
+      .patient-info-footer {
+        h6 {
+          font-size: 1.1rem;
+          color: rgb(80, 80, 80);
         }
       }
     }
