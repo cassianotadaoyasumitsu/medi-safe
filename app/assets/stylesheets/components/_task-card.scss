@@ -78,33 +78,31 @@
   }
 }
 
+// Cards in nurse_tasks page
 .nurse-task-cards {
-  .task-card {
-    width: 500px;
-    height: 140px;
-    margin-bottom: 8px;
-    .task-patient-info {
-      padding: 25px 15px;
-      width: 160px;
-      height: 140px;
-      margin: 0 auto;
-      background-color: $purple
+  a {
+    text-decoration: none;
+  }
+  .nurse-task-card {
+    margin-right: 1em;
+    display: flex;
+    color: gray;
+    .nurse-task-patient-name {
+      margin-right: 1em;
+      color: $blue;
     }
-    .task-info {
-      width: 340px;
-      padding: 16px;
-      background-color: $light-gray;
-      .task-info-duration {
-        margin: auto;
-        text-align: center;
-      }
-      .task-info-description {
-        margin: auto;
-      }
+    .nurse-task-patient-info {
+      margin-right: 1em;
+    }
+    .nurse-task-info-description {
+      flex-grow: 1;
+    }
+    .nurse-task-info-duration {
+      margin-left: 1em;
     }
   }
 }
 
-.nurse-tasks {
-  min-height: 140px;
+.nurse-task-card.active{
+  color: black;
 }

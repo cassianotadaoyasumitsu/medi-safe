@@ -40,63 +40,66 @@ document.addEventListener('turbolinks:load', () => {
   bar.text.style.fontFamily = '"Raleway", Helvetica, sans-serif';
   bar.text.style.fontSize = '2rem';
   bar.animate(tasks_ratio.dataset.tasks);
-
-  var el8 = document.getElementById('nurse-tasks-8');
-  var el12 = document.getElementById('nurse-tasks-12');
-  if (!el8 && !el12) {
+  
+  var el_morning = document.getElementById('nurse-tasks-morning');
+  console.log(el_morning);
+  var el_afternoon = document.getElementById('nurse-tasks-afternoon');
+  if (!el_morning && !el_afternoon) {
     return
   }
-  var sortable8 = new Sortable(el8, {
+  var sortable_morning = new Sortable(el_morning, {
     group: 'shared',
+    animation: 150,
     onAdd: function(e,ui){
-      fetch(el8.dataset.url, {
+      fetch(el_morning.dataset.url, {
         method: 'PATCH',
         headers: {
           "Content-type": "application/json; charset=UTF-8"
         },
         body: JSON.stringify({
-          "nurse_tasks_8": sortable8.toArray(),
-          "nurse_tasks_12": sortable12.toArray(),
+          "nurse_tasks_morning": sortable_morning.toArray(),
+          "nurse_tasks_afternoon": sortable_afternoon.toArray(),
         })
       });
     },
     onUpdate: function(e,ui){
-      fetch(el8.dataset.url, {
+      fetch(el_morning.dataset.url, {
         method: 'PATCH',
         headers: {
           "Content-type": "application/json; charset=UTF-8"
         },
         body: JSON.stringify({
-          "nurse_tasks_8": sortable8.toArray(),
-          "nurse_tasks_12": sortable12.toArray(),
+          "nurse_tasks_morning": sortable_morning.toArray(),
+          "nurse_tasks_afternoon": sortable_afternoon.toArray(),
         })
       });
     }
   });
 
-  var sortable12 = new Sortable(el12, {
+  var sortable_afternoon = new Sortable(el_afternoon, {
     group: 'shared',
+    animation: 150,
     onAdd: function(e,ui){
-      fetch(el12.dataset.url, {
+      fetch(el_afternoon.dataset.url, {
         method: 'PATCH',
         headers: {
           "Content-type": "application/json; charset=UTF-8"
         },
         body: JSON.stringify({
-          "nurse_tasks_8": sortable8.toArray(),
-          "nurse_tasks_12": sortable12.toArray(),
+          "nurse_tasks_morning": sortable_morning.toArray(),
+          "nurse_tasks_afternoon": sortable_afternoon.toArray(),
         })
       });
     },
     onUpdate: function(e,ui){
-      fetch(el12.dataset.url, {
+      fetch(el_afternoon.dataset.url, {
         method: 'PATCH',
         headers: {
           "Content-type": "application/json; charset=UTF-8"
         },
         body: JSON.stringify({
-          "nurse_tasks_8": sortable8.toArray(),
-          "nurse_tasks_12": sortable12.toArray(),
+          "nurse_tasks_morning": sortable_morning.toArray(),
+          "nurse_tasks_afternoon": sortable_afternoon.toArray(),
         })
       });
     }

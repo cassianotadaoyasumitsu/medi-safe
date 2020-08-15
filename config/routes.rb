@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       patch :sort, :complete
     end
   end
+  patch 'nurse_tasks/make_active/:id', to: "nurse_tasks#make_active", as: "make_active_nurse_task"
   resources :patients, only: [:index, :show]
   resources :users, path: :nurses, only: [:index, :show]
 end
