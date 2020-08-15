@@ -30,8 +30,8 @@
         <div class="patient-card col-xl-4-lg-12-md-12-s-12 mx-3 mt-3 shadow">
           <div class="row">
           <% if patient.severity == 'Low Care' %>
-            <div class="patient-room-info low-care col-3">
-          <% elsif patient.severity == 'Medium Care' %>
+          <div class="patient-room-info low-care col-3">
+            <% elsif patient.severity == 'Medium Care' %>
             <div class="patient-room-info medium-care col-3">
           <% elsif patient.severity == 'High Care' %>
             <div class="patient-room-info high-care col-3">
@@ -58,8 +58,7 @@
               </div>
             </div>
           </div>
+          <% end %>
         </div>
-      <% end %>
+      </div>
     </div>
-  </div>
-</div>
