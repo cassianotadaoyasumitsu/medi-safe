@@ -14,7 +14,7 @@
   <div class="grip">
     <div class="justify-content-around text-center">
       <%= form_tag(create_patient_assignment_path, remote: false) do %>
-        <h5>Select Nurse</h5>
+        <!-- <h5>Select Nurse</h5> -->
         <%= select_tag( "user_id", options_from_collection_for_select(@nurses, "id", "name") )%>
         <%= submit_tag "Assign", class: "btn btn-primary"%>
         <h5 class="mt-2">Select Patients</h5>
@@ -45,9 +45,9 @@
                    .where(task_templates: { nurse_tasks: { user: nurse } })
                    .pluck(:name).uniq %>
         <h5><%= nurse.name %></h5>
-        <%= image_tag "avatar.png", class: "avatar-super-large" %>
+        <%= image_tag "avatar.png", class: "avatar-super-large my-3" %>
 
-        <p><span style="font-size: 16px;"> patients:<%= names.count %></span> </p>
+        <!-- <p><span style="font-size: 16px;"> patients:<%= names.count %></span> </p> -->
         </div>
         <% if names.count > 0 %>
           <ul class="nurse-list border border-secondary rounded mt-0">
