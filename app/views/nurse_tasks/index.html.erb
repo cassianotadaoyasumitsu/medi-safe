@@ -1,8 +1,8 @@
 <%= render 'shared/highlighted_nurse_task_card', patient: @active_task.task_template.patient, nurse_task: @active_task %>
-<div class="main-container">
-  <div class="row nurse-task-cards">
+<div class="container">
+  <div class="row nurse-task-cards mt-3">
     <div class="col-6">
-    <p>Morning</p>
+    <p class="text-center">Morning</p>
       <div id="nurse-tasks-morning" class="nurse-tasks" data-url="<%= sort_nurse_tasks_path(format: :json) %>">
         <% @nurse_tasks.where(slot: 8, completed: false).each do |nurse_task| %>
           <%= render 'shared/nurse_task_cards', patient: nurse_task.task_template.patient, nurse_task: nurse_task %>
@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="col-6">
-      <p>Afternoon</p>
+      <p class="text-center">Afternoon</p>
       <div id="nurse-tasks-afternoon" class="nurse-tasks" data-url="<%= sort_nurse_tasks_path(format: :json) %>">
         <% @nurse_tasks.where(slot: 12, completed: false).each do |nurse_task| %>
           <%= render 'shared/nurse_task_cards', patient: nurse_task.task_template.patient, nurse_task: nurse_task %>
