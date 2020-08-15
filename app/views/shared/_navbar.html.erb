@@ -1,5 +1,5 @@
 <div class="navbar navbar-expand-sm fixed-top navbar-lewagon">
-  <%= link_to root_path, class: "navbar-brand" do %>
+  <%= link_to '#', class: "navbar-brand" do %>
     <h2>MEDI-SAFE</h2>
   <% end %>
 
@@ -10,20 +10,25 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
-        <li class="nav-item">
-          <%= link_to "Patients", root_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Tasks", nurse_tasks_path, class: "nav-link"  %>
-        </li>
-        <li class="nav-item nav-link name-color">Hello, <%= current_user.name %></li>
-        <li class="nav-item dropdown">
-            <%= image_tag "avatar.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-          </div>
-        </li>
-      </ul>
+        <% if current_user.nurses.count > 1 %>
+           <li class="nav-item">
+            <%= link_to "Nurses", users_path, class: "nav-link" %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Patients", root_path, class: "nav-link" %>
+          </li>
+        <% end %>
+          <li class="nav-item">
+            <%= link_to "Tasks", nurse_tasks_path, class: "nav-link"  %>
+          </li>
+          <li class="nav-item dropdown">
+              <%= image_tag "avatar.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            </div>
+          </li>
+        </ul>
       <% else %>
         <li class="nav-item">
           <%= link_to "Register", new_user_registration_path, class: "nav-link" %>
