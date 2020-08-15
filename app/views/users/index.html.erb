@@ -1,22 +1,23 @@
+<%= render 'shared/banner', user: current_user, patients: @patients.uniq, nurses: current_user.nurses   %>
 <div class="main-container">
-  <h1>Nurses: <%= current_user.nurses.count %></h1>
-  <div class="row justify-content-around">
+  <div class="leader-cards">
     <% @nurses.each_with_index do |nurse| %>
-      <% if nurse.nurse_tasks.count <= 15 %>
-    <div class="leader-card low-busy">
-      <% elsif nurse.nurse_tasks.count > 15 && nurse.nurse_tasks.count <= 30  %>
-      <div class="leader-card medium-busy">
+      <div class="grid-item">
+        <% if nurse.nurse_tasks.count <= 15 %>
+          <div class="leader-card shadow low-busy">
+        <% elsif nurse.nurse_tasks.count > 15 && nurse.nurse_tasks.count <= 30  %>
+          <div class="leader-card shadow medium-busy">
         <% elsif nurse.nurse_tasks.count > 30 %>
-        <div class="leader-card high-busy">
-      <% end %>
-      <%= image_tag "avatar.png", class: "avatar-super-large" %>
-      <%= link_to user_path(nurse) do %>
-      <p class=" mt-2"><%= nurse.name %></p>
-      <% end %>
-      <p>Total patients: <%= nurse.patients.uniq.count %></p>
-      <p>Total tasks: <%= nurse.nurse_tasks.count %></p>
-    </div>
+          <div class="leader-card shadow high-busy">
+        <% end %>
+        <%= image_tag "avatar.png", class: "avatar-super-large" %>
+        <%= link_to user_path(nurse) do %>
+          <p class=" mt-2"><%= nurse.name %></p>
+        <% end %>
+        <p>Total patients: <%= nurse.patients.uniq.count %></p>
+        <p>Total tasks: <%= nurse.nurse_tasks.count %></p>
+      </div>
+      </div>
     <% end %>
   </div>
 </div>
-

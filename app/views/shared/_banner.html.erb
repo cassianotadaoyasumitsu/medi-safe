@@ -9,7 +9,7 @@
           <div class=" text-center nurse-tasks-uncompleted p-3 mx-3 mb-3 shadow">
             <h5>Tasks: <%= nurse.nurse_tasks.count %></h5>
             <div class="row justify-content-center">
-              <div id="task-progress" data-tasks="<%= ((nurse.nurse_tasks.where(completed: true).count.to_f / nurse.nurse_tasks.count))%>"></div>
+              <div id="task-progress" data-id="<%= nurse.id %>" data-tasks="<%= ((nurse.nurse_tasks.where(completed: true).count.to_f / nurse.nurse_tasks.count))%>"></div>
             </div>
           </div>
           <% end %>
