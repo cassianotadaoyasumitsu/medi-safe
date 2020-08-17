@@ -84,6 +84,94 @@
   background-color: #b8cab8;
 }
 
+.patient-card-test {
+  background-color: $light-gray;
+  border-radius: 20px;
+  max-width: 320px;
+  &::after {
+    position: absolute;
+    border-radius: 20px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 2s cubic-bezier(.165, .84, .44, 1);
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .15);
+    content: '';
+    opacity: 0;
+    z-index: -1;
+  }
+  &:hover {
+    transform: scale3d(1.006, 1.006, 1);
+    &::after {
+      opacity: 1;
+    }
+  }
+  .patient-room-info {
+    border-radius: 10%;
+    padding: 8px;
+    margin: 0 auto;
+    p {
+      padding: 4px;
+      margin: 0 auto;
+      font-size: 12px;
+    }
+    // padding: 40px 20px;
+    // width: 140px;
+    // height: 140px;
+    // background-color: $light-gray;
+  }
+  .patient-info {
+    // width: 360px;
+    .patient-info-body {
+      p {
+        max-width: 95%;
+        color: $gray;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+    .patient-info-header {
+      a {
+        text-decoration: none;
+        color: black;
+        &:hover {
+          color: rgb(100, 100, 100);
+        }
+      }
+      h3 {
+        max-width: 95%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+    .patient-info-footer {
+      h6 {
+        font-size: 1.1rem;
+        color: rgb(80, 80, 80);
+      }
+    }
+  }
+}
+
+.high-care-test {
+  border: 2px solid  #DC8478;
+  border-radius: 10px;
+  color: #DC8478
+}
+.medium-care-test {
+  border: 2px solid  #ecc06c;
+  border-radius: 10px;
+  color: #ecc06c;
+}
+.low-care-test {
+  border: 2px solid  #b8cab8;
+  border-radius: 10px;
+  color:  #b8cab8;
+}
+
 @media (min-width: 100px) and (max-width: 575px) {
   .patient-cards {
     grid-template-columns: 1fr;
