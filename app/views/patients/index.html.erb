@@ -37,26 +37,30 @@
         </div>
       <% end %>
     </div>
-    <div class="row pt-3">
+    <div class="patient-cards-test pt-3">
       <% @patients.each do |patient| %>
-        <div class="patient-card-test col-xl-2-lg-3-md-4-s-12 shadow m-1">
+        <div class="patient-card-test p-3 col shadow m-1">
           <div class="patient-info col">
-            <div class="patient-info-header p-3 row">
+            <div class="patient-info-header row">
               <div class="col">
-                <div class="row">
-                  <%= link_to patient_path(patient), class: 'col-9' do %>
+                <div class="row justify-conten-between">
+                  <%= link_to patient_path(patient), class: 'col-9 text-center' do %>
                     <h3><%= patient.name %></h3>
                   <% end %>
-                <% if patient.severity == 'Low Care' %>
-                  <div class="patient-room-info low-care-test col-3">
-                    <p>Low</p>
-                <% elsif patient.severity == 'Medium Care' %>
-                  <div class="patient-room-info medium-care-test col-3">
-                    <p>Medium</p>
-                <% elsif patient.severity == 'High Care' %>
-                  <div class="patient-room-info high-care-test col-3">
-                    <p>High</p>
-                <% end %>
+                  <div class="col-3">
+                    <div class="row px-2">
+                      <% if patient.severity == 'Low Care' %>
+                        <div class="patient-room-info p-1 low-care-test text-center col">
+                          <p>Low</p>
+                      <% elsif patient.severity == 'Medium Care' %>
+                        <div class="patient-room-info p-1 medium-care-test text-center col">
+                          <p>Medium</p>
+                      <% elsif patient.severity == 'High Care' %>
+                        <div class="patient-room-info p-1 high-care-test text-center col">
+                          <p>High</p>
+                      <% end %>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <div class="row justify-content-center">
@@ -66,13 +70,13 @@
               </div>
             </div>
 
-            <div class="patient-info-body p-3">
+            <div class="patient-info-body">
               <div class="row justify-content-center">
-                <div id="task-progress" data-tasks="<%= ((nurse.nurse_tasks.where(completed: true).count.to_f / nurse.nurse_tasks.count))%>"></div>
+                <div id="task-progress" data-tasks="<%= ((patient.nurse_tasks.where(completed: true).count.to_f / patient.nurse_tasks.count))%>"></div>
               </div>
               <div class="row">
-                <p class="col-7 pl-1 mb-1"><i class="fa fa-user-md" aria-hidden="true"></i><small> Dr. <%= patient.doctor.name %></small></p>
-                <p class="col-5 pl-1 pr-1 mb-1"><i class="fa fa-mobile" aria-hidden="true"></i><small> <%= patient.doctor.contact %></small> </p>
+                <p class="col-7 mb-1"><i class="fa fa-user-md" aria-hidden="true"></i><small> Dr. <%= patient.doctor.name %></small></p>
+                <p class="col-5 pl-1 mb-1"><i class="fa fa-mobile" aria-hidden="true"></i><small> <%= patient.doctor.contact %></small> </p>
               </div>
           </div>
 
