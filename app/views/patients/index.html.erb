@@ -1,7 +1,7 @@
 <%= render 'shared/banner', user: current_user, patients: @patients, nurses: [current_user] %>
 <div class="main-container">
   <div class="container-fluid">
-    <div class="patient-cards">
+    <!-- <div class="patient-cards">
       <% @patients.each do |patient| %>
         <div class="patient-card col-xl-4-lg-4-md-6-s-6 shadow">
           <div class="d-flex">
@@ -36,7 +36,7 @@
           </div>
         </div>
       <% end %>
-    </div>
+    </div> -->
     <div class="patient-cards-test pt-3">
       <% @patients.each do |patient| %>
         <div class="patient-card-test p-3 col shadow m-1">
@@ -76,7 +76,7 @@
                 <div id="task-progress" data-tasks="<%= ((patient.nurse_tasks.where(completed: true).count.to_f / patient.nurse_tasks.count))%>"></div>
               </div>
               <div class="row justify-content-center">
-                <p class="col-12 text-center pt-3"><i class="fa fa-user-md" aria-hidden="true"></i><small> Dr. <%= patient.doctor.name %></small></p>
+                <p class="col-12 text-center mb-1 pt-3"><i class="fa fa-user-md" aria-hidden="true"></i><small> Dr. <%= patient.doctor.name %></small></p>
                 <p class="col-12 text-center"><i class="fa fa-mobile" aria-hidden="true"></i><small> <%= patient.doctor.contact %></small> </p>
               </div>
           </div>

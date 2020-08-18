@@ -193,31 +193,43 @@
 }
 
 @media (min-width: 100px) and (max-width: 575px) {
-  .patient-cards {
+  .patient-cards-test {
     grid-template-columns: 1fr;
   }
 }
 
 @media (min-width: 576px) {
-  .patient-cards {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (min-width: 768px) {
-  .patient-cards {
+  .patient-cards-test {
     grid-template-columns: 1fr 1fr;
   }
 }
 
-@media (min-width: 992px) {
-  .patient-cards {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (min-width: 1200px) {
-  .patient-cards {
+@media (min-width: 876px) {
+  .patient-cards-test {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
+
+@media (min-width: 1100px) {
+  .patient-cards-test {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+
+@media (min-width: 1350px) {
+  .patient-cards-test {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
