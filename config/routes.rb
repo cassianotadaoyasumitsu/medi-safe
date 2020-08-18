@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :patients, only: [:index, :show]
   get 'patient_assignment', to: 'patients#patient_assignment'
   post 'create_patient_assignment', to: 'patients#create_patient_assignment'
+  post 'update_patient_assignment', to: 'patients#create_patient_assignment'
 
   resources :users, path: :nurses, only: [:index, :show]
 end
