@@ -1,24 +1,3 @@
-<%= link_to make_active_nurse_task_path(nurse_task),
-  method: "patch",
-  class: "list-group nurse-task-cards row",
-  data: {
-    id: nurse_task.id,
-    slot: nurse_task.slot,
-    position: nurse_task.position
-  } do %>
-  <div class="list-group-item nurse-task-card text-justify <%= "active" if nurse_task.active %>">
-    <div class="nurse-task-patient-name">
-      <%= patient.name %>
-    </div>
-    <div class="nurse-task-patient-info">
-      <i class="fa fa-university" aria-hidden="true"> <%= patient.room %></i>
-      <i class="fa fa-bed" aria-hidden="true"> <%= patient.bed %></i>
-    </div>
-    <div class="nurse-task-info-description">
-      <%= nurse_task.task_template.task.description %>
-    </div>
-    <div class="nurse-task-info-duration">
-      <%= nurse_task.task_template.task.duration %> mins
-    </div>
-  </div>
+<% nurse_tasks.each do |nurse_task| %>
+  <%= render 'shared/nurse_task_card', patient: nurse_task.task_template.patient, nurse_task: nurse_task %>
 <% end %>
