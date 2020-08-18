@@ -4,13 +4,13 @@ function draw_pie_chart () {
     tasks_ratio.forEach((task) => {
       var ProgressBar = require('progressbar.js');
       var bar = new ProgressBar.Circle(task, {
-        color: '#aaa',
+        color: '#333',
         // This has to be the same size as the maximum width to
         // prevent clipping
         strokeWidth: 8,
         trailWidth: 4,
         easing: 'bounce',
-        duration: 2400,
+        duration: 2000,
         text: {
           autoStyleContainer: false
         },
@@ -23,7 +23,7 @@ function draw_pie_chart () {
 
           var value = Math.round(circle.value() * 100);
           if (value === 0) {
-            circle.setText('');
+            circle.setText('0%');
           } else {
             circle.setText(`${value}%`);
           }

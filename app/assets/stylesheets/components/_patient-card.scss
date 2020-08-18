@@ -1,87 +1,100 @@
 .patient-cards {
-  // display: flex;
-  // flex-wrap: wrap;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 16px;
-  margin: 0 auto;
-}
-.patient-card {
-  // width: 550px;
-  // height: 140px;
-  // min-width: 400px;
-  background-color: $light-gray;
-  border-radius: 20px;
-  &::after {
-    position: absolute;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 8px;
+  .patient-card {
+    background-image: radial-gradient(circle at 69% 75%, hsla(65,0%,95%,0.05) 0%, hsla(65,0%,95%,0.05) 38%,transparent 38%, transparent 69%,transparent 69%, transparent 100%),radial-gradient(circle at 41% 58%, hsla(65,0%,95%,0.05) 0%, hsla(65,0%,95%,0.05) 3%,transparent 3%, transparent 75%,transparent 75%, transparent 100%),radial-gradient(circle at 94% 91%, hsla(65,0%,95%,0.05) 0%, hsla(65,0%,95%,0.05) 48%,transparent 48%, transparent 55%,transparent 55%, transparent 100%),radial-gradient(circle at 68% 38%, hsla(65,0%,95%,0.05) 0%, hsla(65,0%,95%,0.05) 34%,transparent 34%, transparent 36%,transparent 36%, transparent 100%),radial-gradient(circle at 81% 20%, hsla(65,0%,95%,0.05) 0%, hsla(65,0%,95%,0.05) 40%,transparent 40%, transparent 61%,transparent 61%, transparent 100%),radial-gradient(circle at 46% 37%, hsla(65,0%,95%,0.05) 0%, hsla(65,0%,95%,0.05) 37%,transparent 37%, transparent 76%,transparent 76%, transparent 100%),radial-gradient(circle at 49% 5%, hsla(65,0%,95%,0.05) 0%, hsla(65,0%,95%,0.05) 43%,transparent 43%, transparent 67%,transparent 67%, transparent 100%),radial-gradient(circle at 18% 58%, hsla(65,0%,95%,0.05) 0%, hsla(65,0%,95%,0.05) 4%,transparent 4%, transparent 20%,transparent 20%, transparent 100%),radial-gradient(circle at 43% 68%, hsla(65,0%,95%,0.05) 0%, hsla(65,0%,95%,0.05) 10%,transparent 10%, transparent 36%,transparent 36%, transparent 100%),linear-gradient(135deg, rgb(85, 133, 238),rgb(177, 145, 214));
     border-radius: 20px;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    transition: opacity 2s cubic-bezier(.165, .84, .44, 1);
-    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .15);
-    content: '';
-    opacity: 0;
-    z-index: -1;
-  }
-  &:hover {
-    transform: scale3d(1.006, 1.006, 1);
+    min-width: 240px;
     &::after {
-      opacity: 1;
+      position: absolute;
+      border-radius: 20px;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transition: opacity 2s cubic-bezier(.165, .84, .44, 1);
+      box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .15);
+      content: '';
+      opacity: 0;
+      z-index: -1;
     }
-  }
-  .patient-room-info {
-    border-radius: 10%;
-    // padding: 40px 20px;
-    // width: 140px;
-    // height: 140px;
-    // background-color: $light-gray;
-  }
-  .patient-info {
-    // width: 360px;
-    .patient-info-body {
-      p {
-        max-width: 95%;
-        color: $gray;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+    &:hover {
+      transform: scale3d(1.006, 1.006, 1);
+      &::after {
+        opacity: 1;
       }
     }
-    .patient-info-header {
-      display: flex;
-      a {
-        text-decoration: none;
-        color: black;
-        &:hover {
-          color: rgb(100, 100, 100);
+    .patient-room-info {
+      border-radius: 10%;
+      padding: 8px;
+      margin: 0 auto;
+      p {
+        padding: 0px;
+        margin: 0 auto;
+        font-size: 12px;
+        color: $light-gray;
+      }
+      h5 {
+        font-size: 16px;
+        color: $light-gray;
+
+      }
+    }
+    .patient-info {
+      .patient-info-body {
+        p {
+          max-width: 95%;
+          color: $light-gray;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
         }
       }
-      h2 {
-        max-width: 95%;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+      .patient-info-header {
+        a {
+          text-decoration: none;
+          color: $light-gray;
+          &:hover {
+            color: rgb(200, 200, 200);
+          }
+        }
+        h4 {
+          max-width: 95%;
+          color: $light-gray;
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+        }
+        h5 {
+          color: $light-gray;
+          font-size: 16px;
+        }
       }
-    }
-    .patient-info-footer {
-      h6 {
-        font-size: 1.1rem;
-        color: rgb(80, 80, 80);
+      .patient-info-footer {
+        h6 {
+          font-size: 1.1rem;
+          color: rgb(80, 80, 80);
+        }
       }
     }
   }
 }
 
 .high-care {
-  background-color: #DC8478;
+  background-color: #dd8478;
+  border: 2px solid  #f4bdb6;
+  border-radius: 10px;
 }
 .medium-care {
-  background-color: #ecc06c;
+  background-color: #e4a62f;
+  border: 2px solid  #ecc06c;
+  border-radius: 10px;
 }
 .low-care {
-  background-color: #b8cab8;
+  background-color: #8ca98c;
+  border: 2px solid  #b8cab8;
+  border-radius: 10px;
 }
 
 @media (min-width: 100px) and (max-width: 575px) {
@@ -92,24 +105,24 @@
 
 @media (min-width: 576px) {
   .patient-cards {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (min-width: 768px) {
-  .patient-cards {
     grid-template-columns: 1fr 1fr;
   }
 }
 
-@media (min-width: 992px) {
-  .patient-cards {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (min-width: 1200px) {
+@media (min-width: 876px) {
   .patient-cards {
     grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (min-width: 1100px) {
+  .patient-cards {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+@media (min-width: 1350px) {
+  .patient-cards {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }
 }
