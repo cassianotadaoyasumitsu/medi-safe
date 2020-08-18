@@ -13,5 +13,11 @@ Rails.application.routes.draw do
   post 'create_patient_assignment', to: 'patients#create_patient_assignment'
 
   resources :users, path: :nurses, only: [:index, :show]
+
+  resources :notifications do
+    collection do
+      post :mark_as_read
+    end
+  end
 end
 
