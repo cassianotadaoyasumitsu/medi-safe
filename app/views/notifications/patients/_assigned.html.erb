@@ -1,4 +1,4 @@
-<%= link_to patients_path(notification.notifiable), class: "dropdown-item #{"unread" if !notification.read_at?}" do %>
+<%= link_to patient_path(notification.notifiable.id), class: "dropdown-item #{"unread" if !notification.read_at?}" do %>
   <%= notification.actor.name %>
   <%= notification.action %>
   a <%= notification.notifiable_type.underscore.humanize.downcase %>
