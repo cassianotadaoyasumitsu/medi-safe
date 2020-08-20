@@ -24,6 +24,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @active_task = @user.nurse_tasks.find_by(active: true)
     @patients = @user.patients.uniq
     @high_care_patients = @user.patients.where(severity: 'High Care').uniq.count
     @medium_care_patients = @user.patients.where(severity: 'Medium Care').uniq.count
