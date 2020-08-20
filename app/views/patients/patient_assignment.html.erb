@@ -18,24 +18,5 @@
       <% end %>
     </div>
   </div>
-
-  <div class="row justify-content-around">
-    <% @nurses.each do |nurse| %>
-    <div class="nurse-card shadow col-2">
-      <div class="mt-2 text-center">
-        <% name_severitys = Patient.joins(:task_templates).joins(task_templates: :nurse_tasks).where(task_templates: { nurse_tasks: { user: nurse } }).pluck(:name, :severity).uniq%>
-        <h5><%= nurse.name %></h5>
-        <%= image_tag "avatar.png", class: "avatar-super-large my-3" %>
-      </div>
-      <% if name_severitys.count > 0 %>
-        <ul class="assignment-list mt-0">
-          <% name_severitys.each do |name_severity| %>
-            <li class="text-left <%= name_severity[1].downcase.tr(" ", "-") %> " style="font-size: 12px;">・<%= name_severity[0] %></li>
-          <% end %>
-        </ul>
-      <% end %>
-    </div>
-    <% end %>
-  </div>
 </div>
 
