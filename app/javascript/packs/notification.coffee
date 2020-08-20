@@ -22,7 +22,7 @@ class Notifications
     $.ajax(
       url: "/notifications/mark_as_read"
       dataType: "JSON"
-      method: "POST"
+      method: "PATCH"
       success: ->
         $("[data-behavior='unread-count']").text(0)
     )
