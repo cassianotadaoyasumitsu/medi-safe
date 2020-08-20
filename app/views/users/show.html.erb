@@ -2,27 +2,16 @@
 <div class="main-container">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-6">
-        <div class="nurse-details">
-          <div class="row">
-            <div class="nurse-image col">
-              <%= image_tag "avatar.png", class: "avatar-mega-large" %>
-            </div>
-            <div class="nurse-name col">
-              <h3><%= @user.name %></h3>
-            </div>
-          </div>
-          <div class="row">
-            <%= render 'shared/highlighted_nurse_task_card', patient: @active_task.task_template.patient, nurse_task: @active_task %>
-            <%= @active_task.task_template.task.description %>
-          </div>
-
-        </div>
+      <div class="nurse-details col-2">
+        <h3><%= @user.name %></h3>
+        <%= image_tag "avatar.png", class: "avatar-mega-large" %>
       </div>
-      <div class="col-6">
-        <%= render 'shared/patient_cards', patients: @patients %>
+      <div class="col-10 mt-n5">
+        <%= render 'shared/highlighted_nurse_task_card', patient: @active_task.task_template.patient, nurse_task: @active_task %>
       </div>
+    </div>
+    <div class="row">
+      <%= render 'shared/patient_cards', patients: @patients %>
     </div>
   </div>
 </div>
-
