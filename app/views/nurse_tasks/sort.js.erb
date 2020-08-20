@@ -1,0 +1,2 @@
+document.getElementById("nurse-tasks-morning").innerHTML = "<%= j(render 'shared/nurse_task_cards', nurse_tasks: @incomplete_morning_tasks) %>";
+document.getElementById("nurse-tasks-afternoon").innerHTML = "<%= j(render 'shared/nurse_task_cards', nurse_tasks: @incomplete_afternoon_tasks) %>";
