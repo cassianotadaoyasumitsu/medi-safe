@@ -1,9 +1,9 @@
 <%= render 'shared/banner', user: current_user, patients: @patients.uniq, nurses: current_user.nurses   %>
 <div class="main-container">
   <div class="grip">
-    <div class="justify-content-around text-center">
-      <%= form_tag(create_patient_assignment_path, remote: false) do %>
-        <%= submit_tag "Auto-Assign", class: "btn btn-primary"%>
+    <div class="justify-content-around text-center m-3">
+      <%= form_tag(create_patient_assignment_path, remote: true) do %>
+        <%= submit_tag "Start the shift", class: "btn btn-primary"%>
       <% end %>
     </div>
   </div>
