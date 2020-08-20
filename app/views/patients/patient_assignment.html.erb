@@ -1,22 +1,6 @@
-<div class="container-fluid mt-5 mb-n5">
-  <div class="patient-overview mt-5 pt-5 shadow row">
-    <div class="col">
-      <div class="col text-center">
-        <h2> Hi <%=current_user.name %>, here's a quick look at your day!</h2> <br>
-         <h3 ><%= @nurses.count %>Nurses : <%= @patients.count %>Patients</h3>
-      </div>
-    </div>
-  </div>
-</div>
 
 <div class="main-container">
 
-  <div class="grip">
-    <div class="justify-content-around text-center">
-      <%= form_tag(create_patient_assignment_path, remote: false) do %>
-        <%= submit_tag "Auto-Assign", class: "btn btn-primary"%>
-      <% end %>
-    </div>
-  </div>
+
 </div>
 
