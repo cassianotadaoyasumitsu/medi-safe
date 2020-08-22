@@ -63,20 +63,12 @@
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade show active" id="current" role="tabpanel" aria-labelledby="current-tasks-tab">
             <div class="task-cards-col">
-              <% @current_tasks.each do |task| %>
-              <div class="ml-3">
-                <%= render 'shared/task_cards', patient: @patient, nurse_task: task  %>
-              </div>
-              <% end %>
+                <%= render 'shared/nurse_task_cards', patient: @patient, nurse_tasks: @current_tasks.order(:start_time)  %>
             </div>
           </div>
           <div class="tab-pane fade" id="old" role="tabpanel" aria-labelledby="old-tasks-tab">
             <div class="task-cards-col">
-              <% @yesterdays_tasks.each do |task| %>
-              <div class="ml-3">
-                <%= render 'shared/task_cards', patient: @patient, nurse_task: task %>
-              </div>
-              <% end %>
+              <%= render 'shared/nurse_task_cards', patient: @patient, nurse_tasks: @yesterdays_tasks.order(:start_time)  %>
             </div>
           </div>
         </div>
