@@ -24,6 +24,7 @@ class PatientsController < ApplicationController
     @user = User.find(params[:user_id])
     @patients = Patient.where(id: params[:patient_ids])
     @patients.each do |patient|
+      Notification.create(recipient: @user, actor: current_user, action: "assigned", notifiable: patient)
       patient.task_templates.each do |task_template|
         task_template.nurse_tasks.create(user_id: @user.id, slot: [8,12].sample, completed: false)
       end
