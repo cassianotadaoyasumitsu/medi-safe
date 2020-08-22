@@ -21,7 +21,7 @@ puts "Cleaning up done"
 # name contact specialty
 require 'faker'
 
-SPECIALTIES = %w( gastroenterologists pulmonologists gynecologists surgeon )
+SPECIALTIES = %w( gastroenterologists pulmonologists surgeon )
 puts "Creating doctors"
 6.times do
   params = {}
@@ -36,16 +36,95 @@ puts "Finished creating doctors"
 # ---------------------------------------------
 # Patients
 # name gender age severity room bed doctor
-GENDERS = %w( male female )
 EMERGENCY = ['Low Care', 'Medium Care', 'High Care']
 puts "Creating patients"
-20.times do
+PATIENTS = [{name: "Yann Klein",
+              gender: "male",
+              room:"303",
+              bed: "01"},
+            {name: "Trouni Tiet",
+              gender: "male",
+              room:"303",
+              bed: "02"},
+            {name: "Doug Berkley",
+              gender: "male",
+              room:"303",
+              bed: "03"},
+            {name: "Paulo D'Alberti",
+              gender: "male",
+              room:"303",
+              bed: "04"},
+            {name: "Sasha Kaverina",
+              gender: "female",
+              room:"305",
+              bed: "01"},
+            {name: "Yurie Shiotani",
+              gender: "female",
+              room:"305",
+              bed: "02"},
+            {name: "Farrah Kwok",
+              gender: "female",
+              room:"305",
+              bed: "03"},
+            {name: "Yu Ichikawa",
+              gender: "female",
+              room:"305",
+              bed: "04"},
+            {name: "Ugo Bataillard",
+              gender: "male",
+              room:"306",
+              bed: "01"},
+            {name: "Sylvain Pierre",
+              gender: "male",
+              room:"306",
+              bed: "02"},
+            {name: "Florian Bronnimann",
+              gender: "male",
+              room:"306",
+              bed: "03"},
+            {name: "Hayato Clarke",
+              gender: "male",
+              room:"306",
+              bed: "04"},
+            {name: "Aki Aki",
+              gender: "male",
+              room:"307",
+              bed: "01"},
+            {name: "Shinya Tawata",
+              gender: "male",
+              room:"307",
+              bed: "02"},
+            {name: "Andrew Godeke",
+              gender: "male",
+              room:"307",
+              bed: "03"},
+            {name: "Ryuta Mizoguchi",
+              gender: "male",
+              room:"307",
+              bed: "04"},
+            {name: "Maria Kimie",
+              gender: "female",
+              room:"308",
+              bed: "01"},
+            {name: "Markie Choi",
+              gender: "female",
+              room:"308",
+              bed: "02"},
+            {name: "Olivia Mieko",
+              gender: "female",
+              room:"308",
+              bed: "03"},
+            {name: "Carise Stael",
+              gender: "female",
+              room:"308",
+              bed: "04"}]
+PATIENTS.each do |patient|
   params = {}
-  params[:name] = "#{Faker::Name.first_name} #{Faker::Name.last_name}"
-  params[:gender] = GENDERS.sample
+  params[:name] = patient[:name]
+  params[:gender] = patient[:gender]
   params[:age] = rand(15..80)
-  params[:room] = [304,305,306].sample
-  params[:bed] = "0#{rand(1..8)}"
+  params[:room] = patient[:room]
+  params[:bed] = patient[:bed]
   params[:severity] = EMERGENCY.sample
   params[:doctor] = Doctor.all.sample
   params[:emr_id] = Faker::Number.number(digits: 4)
@@ -100,20 +179,6 @@ puts "Created task #{new_task.id}"
 params = {}
 params[:description] = "Lunch"
 params[:duration] = 30
-new_task = Task.new(params)
-new_task.save
-puts "Created task #{new_task.id}"
-
-params = {}
-params[:description] = "Lunch break"
-params[:duration] = 50
-new_task = Task.new(params)
-new_task.save
-puts "Created task #{new_task.id}"
-
-params = {}
-params[:description] = "Meeting"
-params[:duration] = 5
 new_task = Task.new(params)
 new_task.save
 puts "Created task #{new_task.id}"
@@ -193,24 +258,25 @@ puts "Tasks created"
 
 puts "creating users"
 params = {}
+params[:name] = "Tadao Yasumitsu"
+params[:email] = "cassiano@medisafe.com"
+params[:password] = "password"
+cassiano = User.new(params)
+cassiano.save
+puts "Created user #{cassiano.id}"
+
+params = {}
 params[:name] = "Linlu Liu"
 params[:email] = "linlu@medisafe.com"
 params[:password] = "password"
-linlu = User.new(params)
-linlu.save
-puts "Created user #{linlu.id}"
-
-# params = {}
-# params[:name] = "Hayato Clarke"
-# params[:email] = "hayato@medisafe.com"
-# params[:password] = "password"
-# hayato = User.new(params)
-# hayato.save
-# puts "Created user #{hayato.id}"
+params[:leader] = cassiano
+new_user = User.new(params)
+new_user.save
+puts "Created user #{new_user.id}"
 
 params = {}
 params[:name] = "Davide Zanetto"
-params[:leader] = linlu
+params[:leader] = cassiano
 params[:email] = "davide@medisafe.com"
 params[:password] = "password"
 new_user = User.new(params)
@@ -218,62 +284,17 @@ new_user.save
 puts "Created user #{new_user.id}"
 
 params = {}
-params[:name] = "Tadao Yasumitsu"
-params[:leader] = linlu
-params[:email] = "cassiano@medisafe.com"
-params[:password] = "password"
-new_user = User.new(params)
-new_user.save
-puts "Created user #{new_user.id}"
-
-params = {}
 params[:name] = "Liam Baker"
-params[:leader] = linlu
+params[:leader] = cassiano
 params[:email] = 'liam@medisafe.com'
 params[:password] = 'password'
 new_user = User.new(params)
 new_user.save
 puts "Created user #{new_user.id}"
 
-# params = {}
-# params[:name] = "Yurie Shiotani"
-# params[:leader] = hayato
-# params[:email] = "yurie@medisafe.com"
-# params[:password] = "password"
-# new_user = User.new(params)
-# new_user.save
-# puts "Created user #{new_user.id}"
-
-# params = {}
-# params[:name] = "Wanying Kwok"
-# params[:leader] = linlu
-# params[:email] = "farrah@medisafe.com"
-# params[:password] = "password"
-# new_user = User.new(params)
-# new_user.save
-# puts "Created user #{new_user.id}"
-
-# params = {}
-# params[:name] = "Shinya Tawata"
-# params[:leader] = linlu
-# params[:email] = "shinya@medisafe.com"
-# params[:password] = "password"
-# new_user = User.new(params)
-# new_user.save
-# puts "Created user #{new_user.id}"
-
-# params = {}
-# params[:name] = "Aki"
-# params[:leader] = linlu
-# params[:email] = "aki@medisafe.com"
-# params[:password] = "password"
-# new_user = User.new(params)
-# new_user.save
-# puts "Created user #{new_user.id}"
-
 params = {}
 params[:name] = "Ayako Amano"
-params[:leader] = linlu
+params[:leader] = cassiano
 params[:email] = "ayako@medisafe.com"
 params[:password] = "password"
 new_user = User.new(params)
@@ -288,27 +309,19 @@ puts "Users created"
 
 puts "Creating task templates and nurse tasks"
 Patient.all.each do |patient|
-  params_nurse_task = {}
-  params_nurse_task[:user] = User.where.not(leader_id: nil).sample
-  params_nurse_task[:completed] = false
-  params_nurse_task[:slot] = [8, 12].sample
   Array(4..8).sample.times do
     params = {}
-    params[:frequency] = [1,1,1,1,1,1,2,2].sample
+    params[:task] = Task.all.sample
+    if ["Lunch", "BS check", "Dr.round", "Family conference", "Shower", "Change gown", "Bed bath", "Wound care", "Walk"].include?(params[:task].description)
+      params[:frequency] = 1
+    else
+      params[:frequency] = [1,1,1,1,1,1,2,2].sample
+    end
     params[:patient] = patient
     params[:active] = true
-    params[:task] = Task.all.sample
+
     new_task_template = TaskTemplate.new(params)
     puts "Created task template #{new_task_template.id}" if new_task_template.save
-    params_nurse_task[:task_template] = new_task_template
-    new_task_template.frequency.times do |variable|
-      new_nurse_task = NurseTask.new(params_nurse_task)
-      if new_nurse_task.save
-        puts "Created nurse task #{new_nurse_task.id}"
-      else
-        puts new_nurse_task.errors.messages
-      end
-    end
   end
 end
 puts "Finished creating task templates and nurse tasks"
