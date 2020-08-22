@@ -1,6 +1,6 @@
 <div class="patient-cards">
   <% patients.each do |patient| %>
-    <div class="patient-card p-3 col shadow m-1">
+    <%= link_to patient_path(patient), class: 'patient-card p-3 col shadow m-1' do %>
       <div class="patient-info col">
         <div class="patient-info-header">
           <div class="row">
@@ -25,10 +25,9 @@
             </div>
           </div>
           <div class="row justify-conten-between">
-            <%= link_to patient_path(patient), class: 'col text-center' do %>
+            <div class="col text-center">
               <h4><%= patient.name %></h4>
-            <% end %>
-
+            </div>
           </div>
         </div>
 
@@ -42,6 +41,6 @@
           </div>
       </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 </div>
