@@ -1,22 +1,54 @@
 <%= render 'shared/banner', user: current_user, patients: @patients, nurses: [@user]  %>
 <div class="main-container">
   <div class="container-fluid">
-    <div class="nurse-details p-3 row">
-      <div class="nurse-info col-2 text-center">
-        <h3><%= @user.name %></h3>
-        <%= image_tag "avatar.png", class: "avatar-mega-large" %>
-      </div>
-      <div class="patient-details col-10">
-        <div class="row">
-          <div class="patient-info">
-            <%= @active_task.task_template.patient.name %>
-            <i class="fa fa-university" aria-hidden="true"> <%= @active_task.task_template.patient.room %></i>
-            <i class="fa fa-bed" aria-hidden="true"> <%= @active_task.task_template.patient.bed %></i>
+    <div class="row">
+      <div class="col-8  offset-2 nurse-details">
+        <div class="row px-3 pt-3">
+          <div class="col-4 text-center">
+            <h2><%= @user.name %></h2>
           </div>
-          <div class="task-info">
-            <%= @active_task.task_template.patient.severity %>
-            <%= @active_task.task_template.task.description %>
-            <%= @active_task.task_template.task.duration %> mins
+          <div class="col-8 text-center">
+            <div class="row">
+              <div class="col-10">
+                <h2>Current Task</h2>
+              </div>
+              <div class="col-2">
+                <div class="row">
+                  <% if @active_task.task_template.patient.severity == 'Low Care' %>
+                    <div class="patient-room-info p-1 low-care text-center col">
+                      <p class="mb-0"><small>Low</small></p>
+                  <% elsif @active_task.task_template.patient.severity == 'Medium Care' %>
+                    <div class="patient-room-info p-1 medium-care text-center col">
+                      <p class="mb-0"><small>Medium</small></p>
+                  <% elsif @active_task.task_template.patient.severity == 'High Care' %>
+                    <div class="patient-room-info p-1 high-care text-center col">
+                      <p class="mb-0"><small>High</small></p>
+                  <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="row px-3 pt-2 pb-3">
+          <div class="nurse-info col-4 text-center">
+            <%= image_tag "avatar.png", class: "avatar-mega-large" %>
+          </div>
+          <div class="patient-details col-8">
+            <div class="row pt-3">
+              <div class="patient-info col-10 d-flex justify-content-center">
+                <h4 class="pr-3"><%= @active_task.task_template.patient.name %></h4>
+                <h4 class="pr-3"><i class="fa fa-university" aria-hidden="true"> <%= @active_task.task_template.patient.room %></i></h4>
+                <h4><i class="fa fa-bed" aria-hidden="true"> <%= @active_task.task_template.patient.bed %></i></h4>
+              </div>
+            </div>
+            <div class="row">
+              <div class="task-info col-10 pt-3 d-flex justify-content-center">
+                <h4 class="pr-3"><%= @active_task.task_template.task.description %></h4>
+                <h4><%= @active_task.task_template.task.duration %> mins</h4>
+              </div>
+            </div>
           </div>
         </div>
       </div>
