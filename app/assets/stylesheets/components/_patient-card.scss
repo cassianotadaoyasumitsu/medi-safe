@@ -7,6 +7,7 @@
     border-radius: 20px;
     min-width: 240px;
     text-decoration: none;
+    color: black;
     &::after {
       position: absolute;
       border-radius: 20px;
@@ -34,11 +35,11 @@
         padding: 0px;
         margin: 0 auto;
         font-size: 12px;
-        color: $light-gray;
+        // color: $light-gray;
       }
       h5 {
         font-size: 16px;
-        color: $light-gray;
+        // color: $light-gray;
 
       }
     }
@@ -46,7 +47,7 @@
       .patient-info-body {
         p {
           max-width: 95%;
-          color: $light-gray;
+          // color: $light-gray;
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
@@ -55,20 +56,20 @@
       .patient-info-header {
         a {
           text-decoration: none;
-          color: $light-gray;
+          // color: $light-gray;
           &:hover {
             color: rgb(200, 200, 200);
           }
         }
         h4 {
           max-width: 95%;
-          color: $light-gray;
+          // color: $light-gray;
           overflow: hidden;
           white-space: nowrap;
           text-overflow: ellipsis;
         }
         h5 {
-          color: $light-gray;
+          // color: $light-gray;
           font-size: 16px;
         }
       }
@@ -86,16 +87,24 @@
   background-color: #dd8478;
   border: 2px solid  #f4bdb6;
   border-radius: 10px;
+  color: $light-gray;
 }
 .medium-care {
   background-color: #e4a62f;
   border: 2px solid  #ecc06c;
   border-radius: 10px;
+  color: $light-gray;
 }
 .low-care {
   background-color: #8ca98c;
   border: 2px solid  #b8cab8;
   border-radius: 10px;
+  color: $light-gray;
+}
+
+.overlay {
+  background-color: rgba(228, 244, 252, 0.4);
+  border-radius: 20px;
 }
 
 @media (min-width: 100px) and (max-width: 575px) {
