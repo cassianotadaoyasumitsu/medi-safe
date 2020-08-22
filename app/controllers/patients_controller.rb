@@ -38,7 +38,7 @@ class PatientsController < ApplicationController
     current_user.save
     @nurses.each do |nurse|
       new_tasks = NurseTask.where(user: nurse, position: nil)
-      start_time = Time.parse("17:00")
+      start_time = Time.parse("8:00")
       incomplete_morning_tasks = new_tasks.where(slot: 8)
       incomplete_morning_tasks.each do |nurse_task|
         nurse_task.update(start_time: start_time)
