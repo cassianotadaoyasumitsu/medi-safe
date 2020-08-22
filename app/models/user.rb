@@ -11,4 +11,5 @@ class User < ApplicationRecord
   has_many :nurse_tasks, dependent: :destroy
   has_many :task_templates, through: :nurse_tasks
   has_many :patients, through: :task_templates
+  has_many :notifications, foreign_key: :recipient_id
 end
