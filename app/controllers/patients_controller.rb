@@ -21,20 +21,27 @@ class PatientsController < ApplicationController
   end
 
   def create_patient_assignment
-    @user = User.find(params[:user_id])
-    @patients = Patient.where(id: params[:patient_ids])
-    @patients.each do |patient|
-      Notification.create(recipient: @user, actor: current_user, action: "assigned", notifiable: patient)
-      patient.task_templates.each do |task_template|
-        task_template.nurse_tasks.create(user_id: @user.id, slot: [8,12].sample, completed: false)
+    # Work with patient with High Care
+    @nurses = User.where(leader_id: current_user.id)
+    ["High Care", "Medium Care", "Low Care"].each do |care_level|
+      @patients = Patient.where(severity: care_level)
+      @patients.each_with_index do |patient, index|
+        Notification.create(recipient: @user, actor: current_user, action: "assigned", notifiable: patient)
+        patient.task_templates.each do |task_template|
+            task_template.frequency.times do
+             task_template.nurse_tasks.create(user_id: @nurses[index % @nurses.count].id, slot: [8,12].sample, completed: false)
+          end
+        end
       end
     end
-    redirect_to patient_assignment_path
+    current_user.on_shift = true
+    current_user.save
+    redirect_to users_path
   end
 
   private
 
   def leader?
-    redirect_to patient_assignment_path if current_user.nurses.count > 1
+    redirect_to users_path if current_user.nurses.count > 1
   end
 end

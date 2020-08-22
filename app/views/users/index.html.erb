@@ -1,23 +1,44 @@
 <%= render 'shared/banner', user: current_user, patients: @patients.uniq, nurses: current_user.nurses   %>
 <div class="main-container">
-  <div class="leader-cards">
-    <% @nurses.each_with_index do |nurse| %>
-      <div class="grid-item">
-        <% if nurse.nurse_tasks.count <= 15 %>
-          <div class="leader-card shadow low-busy">
-        <% elsif nurse.nurse_tasks.count > 15 && nurse.nurse_tasks.count <= 30  %>
-          <div class="leader-card shadow medium-busy">
-        <% elsif nurse.nurse_tasks.count > 30 %>
-          <div class="leader-card shadow high-busy">
+  <div class="grip">
+    <div class="justify-content-around text-center m-3">
+      <% unless  current_user.on_shift%>
+        <%= form_tag(create_patient_assignment_path, remote: true) do %>
+          <%= submit_tag "Start the shift", class: "btn btn-primary"%>
         <% end %>
-        <%= link_to user_path(nurse) do %>
-          <p class=" mt-2"><%= nurse.name %></p>
-        <% end %>
-        <%= image_tag "avatar.png", class: "avatar-super-large pb-3" %>
-        <p>Total patients: <%= nurse.patients.uniq.count %></p>
-        <p>Total tasks: <%= nurse.nurse_tasks.count %></p>
-      </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
+    <div class="leader-cards">
+          <% @nurses.each_with_index do |nurse| %>
+                <div class="grid-item">
+                  <% if nurse.nurse_tasks.count <= 15 %>
+                    <div class="leader-card shadow low-busy">
+                  <% elsif nurse.nurse_tasks.count > 15 && nurse.nurse_tasks.count <= 30  %>
+                    <div class="leader-card shadow medium-busy">
+                  <% elsif nurse.nurse_tasks.count > 30 %>
+                    <div class="leader-card shadow high-busy">
+                  <% end %>
+                  <%= link_to user_path(nurse) do %>
+                    <p class=" mt-2"><%= nurse.name %></p>
+                  <% end %>
+                  <%= image_tag "avatar.png", class: "avatar-super-large pb-3" %>
+                  <p>Total patients: <%= nurse.patients.uniq.count %></p>
+                  <p>Total tasks: <%= nurse.nurse_tasks.count %></p>
+                    <div class="mt-2 text-center">
+                      <% name_severitys = Patient.joins(:task_templates).joins(task_templates: :nurse_tasks).where(task_templates: { nurse_tasks: { user: nurse } }).pluck(:name, :severity).uniq%>
+                    </div>
+                  <% if name_severitys.count > 0 %>
+                    <ul class="assignment-list mt-0">
+                      <% name_severitys.each do |name_severity| %>
+                        <li class="text-left <%= name_severity[1].downcase.tr(" ", "-") %> " style="font-size: 12px;">・<%= name_severity[0] %></li>
+                      <% end %>
+                    </ul>
+                  <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
 </div>
