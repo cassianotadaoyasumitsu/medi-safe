@@ -30,4 +30,10 @@ class UsersController < ApplicationController
     @medium_care_patients = @user.patients.where(severity: 'Medium Care').uniq.count
     @low_care_patients = @user.patients.where(severity: 'Low Care').uniq.count
   end
+
+  def help
+    new_help = Help.new
+    new_help.save
+    Notification.create(recipient: current_user.leader, actor: current_user, action: "requested", notifiable: new_help)
+  end
 end
