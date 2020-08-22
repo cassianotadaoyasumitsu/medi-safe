@@ -1,6 +1,9 @@
 class UsersController < ApplicationController
   def index
     @nurses = current_user.nurses.includes(:patients, :nurse_tasks)
+    @task_count_all = @nurses.sum { |nurse| nurse.nurse_tasks.count }
+    task_count_complete = @nurses.sum { |nurse| nurse.nurse_tasks.where(completed: true).count }
+    @task_completed_decimal = task_count_complete.to_f / @task_count_all
     @patients = @nurses.map do |nurse|
       Patient.joins(:task_templates).joins(task_templates: :nurse_tasks)
              .where(task_templates: { nurse_tasks: { user: nurse } }).uniq

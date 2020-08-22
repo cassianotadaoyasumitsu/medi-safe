@@ -5,14 +5,23 @@
         <h2> Hi <%= user.name %>, here's a quick look at your day!</h2>
       </div>
       <div class="col d-flex justify-content-center">
-        <% nurses.each do |nurse| %>
+        <% if nurses %>
+          <% nurses.each do |nurse| %>
+            <div class=" text-center nurse-tasks-uncompleted p-3 mx-3 mb-3 shadow">
+              <h5>Tasks: <%= nurse.nurse_tasks.count %></h5>
+              <div class="row justify-content-center">
+                <div id="task-progress" data-id="<%= nurse.id %>" data-tasks="<%= ((nurse.nurse_tasks.where(completed: true).count.to_f / nurse.nurse_tasks.count))%>"></div>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
           <div class=" text-center nurse-tasks-uncompleted p-3 mx-3 mb-3 shadow">
-            <h5>Tasks: <%= nurse.nurse_tasks.count %></h5>
+            <h5>Tasks: <%= task_count_all %></h5>
             <div class="row justify-content-center">
-              <div id="task-progress" data-id="<%= nurse.id %>" data-tasks="<%= ((nurse.nurse_tasks.where(completed: true).count.to_f / nurse.nurse_tasks.count))%>"></div>
+              <div id="task-progress" data-tasks="<%= task_completed_decimal %>"></div>
             </div>
           </div>
-          <% end %>
+        <% end %>
         <div class=" offset-1 text-center nurse-patient-info p-3 mx-3 mb-3 shadow">
           <h5>Patients: <%= patients.count %></h5>
           <div class="nurse-patient-severity d-flex">
