@@ -36,8 +36,8 @@ function draw_progress_bar () {
       return bar;
     })
   }
-  var bar = make_pie_chart();
+  var bar = make_progress_bar();
 }
 
 
-export { draw_pie_chart };
+export { draw_progress_bar };
