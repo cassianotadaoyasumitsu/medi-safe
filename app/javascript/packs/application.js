@@ -50,58 +50,66 @@ document.addEventListener('turbolinks:load', () => {
   var sortable_morning = new Sortable(el_morning, {
     group: 'shared',
     animation: 150,
-    onAdd: function(e,ui){
-      fetch(el_morning.dataset.url, {
+    onAdd: async function(e,ui){
+      const response = await fetch(el_morning.dataset.url, {
         method: 'PATCH',
         headers: {
-          "Content-type": "application/json; charset=UTF-8"
+          "Content-type": "application/json; charset=UTF-8",
+          "Accept": "text/javascript; charset=UTF-8"
         },
         body: JSON.stringify({
           "nurse_tasks_morning": sortable_morning.toArray(),
           "nurse_tasks_afternoon": sortable_afternoon.toArray(),
         })
       });
+      eval(await response.text());
     },
-    onUpdate: function(e,ui){
-      fetch(el_morning.dataset.url, {
+    onUpdate: async function(e,ui){
+      const response = await fetch(el_morning.dataset.url, {
         method: 'PATCH',
         headers: {
-          "Content-type": "application/json; charset=UTF-8"
+          "Content-type": "application/json; charset=UTF-8",
+          "Accept": "text/javascript; charset=UTF-8"
         },
         body: JSON.stringify({
           "nurse_tasks_morning": sortable_morning.toArray(),
           "nurse_tasks_afternoon": sortable_afternoon.toArray(),
         })
       });
+      eval(await response.text());
     }
   });
 
   var sortable_afternoon = new Sortable(el_afternoon, {
     group: 'shared',
     animation: 150,
-    onAdd: function(e,ui){
-      fetch(el_afternoon.dataset.url, {
+    onAdd: async function(e,ui){
+      const response = await fetch(el_afternoon.dataset.url, {
         method: 'PATCH',
         headers: {
-          "Content-type": "application/json; charset=UTF-8"
+          "Content-type": "application/json; charset=UTF-8",
+          "Accept": "text/javascript; charset=UTF-8"
         },
         body: JSON.stringify({
           "nurse_tasks_morning": sortable_morning.toArray(),
           "nurse_tasks_afternoon": sortable_afternoon.toArray(),
         })
       });
+      eval(await response.text());
     },
-    onUpdate: function(e,ui){
-      fetch(el_afternoon.dataset.url, {
+    onUpdate: async function(e,ui){
+      const response = await fetch(el_afternoon.dataset.url, {
         method: 'PATCH',
         headers: {
-          "Content-type": "application/json; charset=UTF-8"
+          "Content-type": "application/json; charset=UTF-8",
+          "Accept": "text/javascript; charset=UTF-8"
         },
         body: JSON.stringify({
           "nurse_tasks_morning": sortable_morning.toArray(),
           "nurse_tasks_afternoon": sortable_afternoon.toArray(),
         })
       });
+      eval(await response.text());
     }
   });
 });

@@ -2,33 +2,39 @@ class NurseTasksController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    @nurse_tasks = NurseTask.where(user: current_user)
-    if @nurse_tasks.first.position
-      @nurse_tasks = @nurse_tasks.order(:position)
-    else
-      @nurse_tasks = @nurse_tasks.order(:id)
+    set_index_variables!
+    if @nurse_tasks.first.position.nil?
+      start_time = Time.parse("17:00")
+      @incomplete_morning_tasks.each do |nurse_task|
+        nurse_task.update(start_time: start_time)
+        start_time = start_time + (nurse_task.task_template.task.duration * 60)
+      end
+      # consider 1 hour lunch break
+      start_time = start_time + (60 * 60)
+      @incomplete_afternoon_tasks.each do |nurse_task|
+        nurse_task.update(start_time: start_time)
+        start_time = start_time + (nurse_task.task_template.task.duration * 60)
+      end
     end
-    @active_task = NurseTask.where(user: current_user, active: true)[0]
-    if @active_task.nil?
-      @active_task = @nurse_tasks.where(slot: 8).first
-      @active_task.active = true
-      @active_task.save
-    end
-    @incomplete_morning_tasks = @nurse_tasks.where(slot: 8, completed: false)
-    @incomplete_afternoon_tasks = @nurse_tasks.where(slot: 12, completed: false)
-    @completed_morning_tasks = @nurse_tasks.where(slot: 8, completed: true)
-    @completed_afternoon_tasks = @nurse_tasks.where(slot: 12, completed: true)
   end
 
   def sort
+    # Start time should be 8AM + duration of completed tasks (for example)
+    start_time = Time.parse("17:00")
     params[:nurse_tasks_morning].each_with_index do |id, index|
-      NurseTask.where(id: id).update_all(slot: 8, position: index + 1)
+      current_task = NurseTask.find(id)
+      current_task.update(slot: 8, position: index + 1, start_time: start_time)
+      start_time = start_time + (current_task.task_template.task.duration * 60)
     end
+    # consider 1 hour lunch break
+    start_time = start_time + (60 * 60)
     params[:nurse_tasks_afternoon].each_with_index do |id, index|
-      NurseTask.where(id: id).update_all(slot: 12, position: index + 1)
+      current_task = NurseTask.find(id)
+      current_task.update(slot: 12, position: index + 1, start_time: start_time)
+      start_time = start_time + (current_task.task_template.task.duration * 60)
     end
 
-    head :ok
+    set_index_variables!
   end
 
   def complete
@@ -66,5 +72,24 @@ class NurseTasksController < ApplicationController
 
   def nurse_task_params
     params.require(:nurse_task).permit(:note)
+  end
+
+  def set_index_variables!
+    @nurse_tasks = NurseTask.where(user: current_user)
+    if @nurse_tasks.first.position
+      @nurse_tasks = @nurse_tasks.order(:position)
+    else
+      @nurse_tasks = @nurse_tasks.order(:id)
+    end
+    @active_task = NurseTask.where(user: current_user, active: true)[0]
+    if @active_task.nil?
+      @active_task = @nurse_tasks.where(slot: 8).first
+      @active_task.active = true
+      @active_task.save
+    end
+    @incomplete_morning_tasks = @nurse_tasks.where(slot: 8, completed: false)
+    @incomplete_afternoon_tasks = @nurse_tasks.where(slot: 12, completed: false)
+    @completed_morning_tasks = @nurse_tasks.where(slot: 8, completed: true)
+    @completed_afternoon_tasks = @nurse_tasks.where(slot: 12, completed: true)
   end
 end
