@@ -7,7 +7,7 @@ class NurseTasksController < ApplicationController
 
   def sort
     # Start time should be 8AM + duration of completed tasks (for example)
-    start_time = Time.parse("17:00")
+    start_time = Time.parse("8:00")
     params[:nurse_tasks_morning].each_with_index do |id, index|
       current_task = NurseTask.find(id)
       current_task.update(slot: 8, position: index + 1, start_time: start_time)
