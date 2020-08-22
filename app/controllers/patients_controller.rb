@@ -28,14 +28,30 @@ class PatientsController < ApplicationController
       @patients.each_with_index do |patient, index|
         Notification.create(recipient: @user, actor: current_user, action: "assigned", notifiable: patient)
         patient.task_templates.each do |task_template|
-            task_template.frequency.times do
-             task_template.nurse_tasks.create(user_id: @nurses[index % @nurses.count].id, slot: [8,12].sample, completed: false)
+          task_template.frequency.times do
+            task_template.nurse_tasks.create(user_id: @nurses[index % @nurses.count].id, slot: [8,12].sample, completed: false)
           end
         end
       end
     end
     current_user.on_shift = true
     current_user.save
+    @nurses.each do |nurse|
+      new_tasks = NurseTask.where(user: nurse, position: nil)
+      start_time = Time.parse("17:00")
+      incomplete_morning_tasks = new_tasks.where(slot: 8)
+      incomplete_morning_tasks.each do |nurse_task|
+        nurse_task.update(start_time: start_time)
+        start_time = start_time + (nurse_task.task_template.task.duration * 60)
+      end
+      # consider 1 hour lunch break
+      incomplete_afternoon_tasks = new_tasks.where(slot: 12)
+      start_time = start_time + (60 * 60)
+      incomplete_afternoon_tasks.each do |nurse_task|
+        nurse_task.update(start_time: start_time)
+        start_time = start_time + (nurse_task.task_template.task.duration * 60)
+      end
+    end
     redirect_to users_path
   end
 

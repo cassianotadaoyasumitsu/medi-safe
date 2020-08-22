@@ -3,19 +3,6 @@ class NurseTasksController < ApplicationController
 
   def index
     set_index_variables!
-    if @nurse_tasks.first.position.nil?
-      start_time = Time.parse("17:00")
-      @incomplete_morning_tasks.each do |nurse_task|
-        nurse_task.update(start_time: start_time)
-        start_time = start_time + (nurse_task.task_template.task.duration * 60)
-      end
-      # consider 1 hour lunch break
-      start_time = start_time + (60 * 60)
-      @incomplete_afternoon_tasks.each do |nurse_task|
-        nurse_task.update(start_time: start_time)
-        start_time = start_time + (nurse_task.task_template.task.duration * 60)
-      end
-    end
   end
 
   def sort
