@@ -41,5 +41,3 @@ class Notifications
 
 jQuery ->
   new Notifications
-
-console.log 'Hello world from coffeescript'
