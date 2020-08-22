@@ -27,10 +27,14 @@ class PatientsController < ApplicationController
       @patients = Patient.where(severity: care_level)
       @patients.each_with_index do |patient, index|
         patient.task_templates.each do |task_template|
-          task_template.nurse_tasks.create(user_id: @nurses[index % @nurses.count].id, slot: [8,12].sample, completed: false)
+          new_task_template.frequency.times do
+            task_template.nurse_tasks.create(user_id: @nurses[index % @nurses.count].id, slot: [8,12].sample, completed: false)
+          end
         end
       end
     end
+    current_user.on_shift = true
+    current_user.save
     redirect_to users_path
   end
 

@@ -2,8 +2,10 @@
 <div class="main-container">
   <div class="grip">
     <div class="justify-content-around text-center m-3">
-      <%= form_tag(create_patient_assignment_path, remote: true) do %>
-        <%= submit_tag "Start the shift", class: "btn btn-primary"%>
+      <% unless  current_user.on_shift%>
+        <%= form_tag(create_patient_assignment_path, remote: true) do %>
+          <%= submit_tag "Start the shift", class: "btn btn-primary"%>
+        <% end %>
       <% end %>
     </div>
   </div>
