@@ -21,103 +21,157 @@ puts "Cleaning up done"
 # name contact specialty
 require 'faker'
 
-SPECIALTIES = %w( gastroenterologists pulmonologists surgeon )
 puts "Creating doctors"
-6.times do
-  params = {}
-  params[:name] = Faker::Name.name
-  params[:contact] = Faker::PhoneNumber.cell_phone
-  params[:specialty] = SPECIALTIES.sample
-  new_doctor = Doctor.new(params)
-  puts "Created doctor #{new_doctor.id}" if new_doctor.save
-end
+
+params = {}
+params[:name] = "Gregory House"
+params[:contact] = "070-1224-5643"
+params[:specialty] = "gastroenterologists"
+new_doctor = Doctor.new(params)
+puts "Created doctor #{new_doctor.id}" if new_doctor.save
+
+params = {}
+params[:name] = "Jekill Hide"
+params[:contact] = "080-3138-9898"
+params[:specialty] = "pulmonologists"
+new_doctor = Doctor.new(params)
+puts "Created doctor #{new_doctor.id}" if new_doctor.save
+
+params = {}
+params[:name] = "Frank Estain"
+params[:contact] = "080-3445-4498"
+params[:specialty] = "surgeon"
+new_doctor = Doctor.new(params)
+puts "Created doctor #{new_doctor.id}" if new_doctor.save
+
+params = {}
+params[:name] = "Do Little"
+params[:contact] = "070-1644-5643"
+params[:specialty] = "gastroenterologists"
+new_doctor = Doctor.new(params)
+puts "Created doctor #{new_doctor.id}" if new_doctor.save
+
+params = {}
+params[:name] = "Doubt Fire"
+params[:contact] = "080-3138-9898"
+params[:specialty] = "pulmonologists"
+new_doctor = Doctor.new(params)
+puts "Created doctor #{new_doctor.id}" if new_doctor.save
+
+params = {}
+params[:name] = "Truman Show"
+params[:contact] = "080-3445-4498"
+params[:specialty] = "surgeon"
+new_doctor = Doctor.new(params)
+puts "Created doctor #{new_doctor.id}" if new_doctor.save
+
 puts "Finished creating doctors"
 
 # ---------------------------------------------
 # Patients
 # name gender age severity room bed doctor
-EMERGENCY = ['Low Care', 'Medium Care', 'High Care']
 puts "Creating patients"
 PATIENTS = [{name: "Yann Klein",
               gender: "male",
               room:"303",
-              bed: "01"},
+              bed: "01",
+              severity:'High Care'},
             {name: "Trouni Tiet",
               gender: "male",
               room:"303",
-              bed: "02"},
+              bed: "02",
+              severity:'Low Care'},
             {name: "Doug Berkley",
               gender: "male",
               room:"303",
-              bed: "03"},
+              bed: "03",
+              severity:'Low Care'},
             {name: "Paulo D'Alberti",
               gender: "male",
               room:"303",
-              bed: "04"},
+              bed: "04",
+              severity:'Low Care'},
             {name: "Sasha Kaverina",
               gender: "female",
               room:"305",
-              bed: "01"},
+              bed: "01",
+              severity:'Low Care'},
             {name: "Yurie Shiotani",
               gender: "female",
               room:"305",
-              bed: "02"},
+              bed: "02",
+              severity:'Medium Care'},
             {name: "Farrah Kwok",
               gender: "female",
               room:"305",
-              bed: "03"},
+              bed: "03",
+              severity:'High Care'},
             {name: "Yu Ichikawa",
               gender: "female",
               room:"305",
-              bed: "04"},
+              bed: "04",
+              severity:'Medium Care'},
             {name: "Ugo Bataillard",
               gender: "male",
               room:"306",
-              bed: "01"},
+              bed: "01",
+              severity:'Low Care'},
             {name: "Sylvain Pierre",
               gender: "male",
               room:"306",
-              bed: "02"},
+              bed: "02",
+              severity:'High Care'},
             {name: "Florian Bronnimann",
               gender: "male",
               room:"306",
-              bed: "03"},
+              bed: "03",
+              severity:'High Care'},
             {name: "Hayato Clarke",
               gender: "male",
               room:"306",
-              bed: "04"},
+              bed: "04",
+              severity:'Low Care'},
             {name: "Aki Aki",
               gender: "male",
               room:"307",
-              bed: "01"},
+              bed: "01",
+              severity:'Medium Care'},
             {name: "Shinya Tawata",
               gender: "male",
               room:"307",
-              bed: "02"},
+              bed: "02",
+              severity:'Medium Care'},
             {name: "Andrew Godeke",
               gender: "male",
               room:"307",
-              bed: "03"},
+              bed: "03",
+              severity:'Low Care'},
             {name: "Ryuta Mizoguchi",
               gender: "male",
               room:"307",
-              bed: "04"},
+              bed: "04",
+              severity:'Low Care'},
             {name: "Maria Kimie",
               gender: "female",
               room:"308",
-              bed: "01"},
+              bed: "01",
+              severity:'Low Care'},
             {name: "Markie Choi",
               gender: "female",
               room:"308",
-              bed: "02"},
+              bed: "02",
+              severity:'Low Care'},
             {name: "Olivia Mieko",
               gender: "female",
               room:"308",
-              bed: "03"},
+              bed: "03",
+              severity:'Low Care'},
             {name: "Carise Stael",
               gender: "female",
               room:"308",
-              bed: "04"}]
+              bed: "04",
+              severity:'Low Care'}]
+
 PATIENTS.each do |patient|
   params = {}
   params[:name] = patient[:name]
@@ -125,7 +179,7 @@ PATIENTS.each do |patient|
   params[:age] = rand(15..80)
   params[:room] = patient[:room]
   params[:bed] = patient[:bed]
-  params[:severity] = EMERGENCY.sample
+  params[:severity] = patient[:severity]
   params[:doctor] = Doctor.all.sample
   params[:emr_id] = Faker::Number.number(digits: 4)
   new_patient = Patient.new(params)
@@ -177,7 +231,7 @@ new_task.save
 puts "Created task #{new_task.id}"
 
 params = {}
-params[:description] = "Lunch"
+params[:description] = "Feeding"
 params[:duration] = 30
 new_task = Task.new(params)
 new_task.save
@@ -198,15 +252,15 @@ new_task.save
 puts "Created task #{new_task.id}"
 
 params = {}
-params[:description] = "Admission"
-params[:duration] = 30
+params[:description] = "Suction"
+params[:duration] = 5
 new_task = Task.new(params)
 new_task.save
 puts "Created task #{new_task.id}"
 
 params = {}
-params[:description] = "Discharge"
-params[:duration] = 30
+params[:description] = "Catheter"
+params[:duration] = 15
 new_task = Task.new(params)
 new_task.save
 puts "Created task #{new_task.id}"
@@ -249,6 +303,20 @@ puts "Created task #{new_task.id}"
 params = {}
 params[:description] = "Wound care"
 params[:duration] = 20
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] = "Blood draw"
+params[:duration] = 5
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] = "Skin treatment"
+params[:duration] = 10
 new_task = Task.new(params)
 new_task.save
 puts "Created task #{new_task.id}"
@@ -312,10 +380,10 @@ Patient.all.each do |patient|
   Array(4..8).sample.times do
     params = {}
     params[:task] = Task.all.sample
-    if ["Lunch", "BS check", "Dr.round", "Family conference", "Shower", "Change gown", "Bed bath", "Wound care", "Walk"].include?(params[:task].description)
-      params[:frequency] = 1
-    else
+    if ["Urinary volume check", "VS check", "Suction", "Diaper"].include?(params[:task].description)
       params[:frequency] = [1,1,1,1,1,1,2,2].sample
+    else
+      params[:frequency] = 1
     end
     params[:patient] = patient
     params[:active] = true
