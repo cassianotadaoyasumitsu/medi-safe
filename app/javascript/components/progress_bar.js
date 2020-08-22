@@ -1,5 +1,5 @@
-function draw_pie_chart () {
-  function make_pie_chart() {
+function draw_progress_bar () {
+  function make_progress_bar() {
     const tasks_ratio = document.querySelectorAll('#task-progress');
     tasks_ratio.forEach((task) => {
       var ProgressBar = require('progressbar.js');
