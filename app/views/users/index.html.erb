@@ -13,9 +13,9 @@
           <% @nurses.each_with_index do |nurse| %>
             <div class="grid-item">
               <%= link_to user_path(nurse), class: "leader-card shadow" do %>
-                <% if nurse.nurse_tasks.count > 15 && nurse.nurse_tasks.count <= 30  %>
+                <% if nurse.nurse_tasks.where(completed: false).count > 15 && nurse.nurse_tasks.where(completed: false).count <= 30  %>
                   <i class="fas fa-exclamation-triangle"></i>
-                <% elsif nurse.nurse_tasks.count > 30 %>
+                <% elsif nurse.nurse_tasks.where(completed: false).count > 30 %>
                   <div class="d-flex">
                     <i class="fas fa-exclamation-triangle"></i><i class="fas fa-exclamation-triangle"></i>
                   </div>
