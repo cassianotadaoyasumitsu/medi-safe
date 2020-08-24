@@ -2,21 +2,30 @@
   <div class="container">
     <div class="row">
       <div class="col-6">
-        <div class="patient-card mb-3 shadow bg-light d-flex">
-          <% if @patient.severity == 'Low Care' %>
-            <div class="patient-room-info low-care col-3">
-          <% elsif @patient.severity == 'Medium Care' %>
-            <div class="patient-room-info medium-care col-3">
-          <% elsif @patient.severity == 'High Care' %>
-            <div class="patient-room-info high-care col-3">
-          <% end %>
-              <h5 class="mt-4 pl-2"> Room: <small><%= @patient.room %></small></h5>
-              <h5 class="pl-2"> Bed: <small><%= @patient.bed %></small></h5>
+        <div class="patient-card mb-3 shadow bg-light row">
+          <div class="patient-room-info col-3">
+            <h5 class="mt-4 pl-2"><i class="fa fa-university" aria-hidden="true"></i><small> <%= @patient.room %></small></h5>
+            <h5 class="pl-2"><i class="fa fa-bed" aria-hidden="true"></i> <small><%= @patient.bed %></small></h5>
+          </div>
+          <div class="patient-info mt-4 col-6">
+            <h2><%= @patient.name %></h2>
+            <p>(ID:<%= @patient.emr_id %>)</p>
+          </div>
+          <div class="col-3">
+            <div class="row m-3">
+              <% if @patient.severity == 'Low Care' %>
+                <div class="patient-room-info p-1 low-care text-center col">
+                  <p class="mb-0">Low</p>
+              <% elsif @patient.severity == 'Medium Care' %>
+                <div class="patient-room-info p-1 medium-care text-center col">
+                  <p class="mb-0">Medium</p>
+              <% elsif @patient.severity == 'High Care' %>
+                <div class="patient-room-info p-1 high-care text-center col">
+                  <p class="mb-0">High</p>
+              <% end %>
+              </div>
             </div>
-            <div class="patient-info mt-4 ml-4">
-              <h2><%= @patient.name %></h2>
-              <p>(ID:<%= @patient.emr_id %>)</p>
-            </div>
+          </div>
         </div>
         <div class="shadow d-flex bg-light mb-1">
           <div>BS</div>
