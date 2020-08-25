@@ -13,6 +13,7 @@
       <div class="row nurse-task-cards mt-3">
         <div class="col-6 text-center">
         <p>Morning</p>
+        <p>Morning - Time needed: <%= @incomplete_morning_tasks.map{|nurse_task| nurse_task.task_template.task.duration}.reduce(:+) || 0 %> min</p>
         <div id="nurse-tasks-morning" class="nurse-tasks" data-url="<%= sort_nurse_tasks_path(format: :js) %>">
           <%= render 'shared/nurse_task_cards', nurse_tasks: @incomplete_morning_tasks %>
         </div>
