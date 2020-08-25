@@ -13,6 +13,17 @@
           <% @nurses.each_with_index do |nurse| %>
             <div class="grid-item">
               <%= link_to user_path(nurse), class: "leader-card shadow" do %>
+                <% nurse_tasks = NurseTask.where(user: nurse) %>
+                <% incomplete_morning_tasks_min = nurse_tasks.where(slot: 8, completed: false).map{|nurse_task| nurse_task.task_template.task.duration}.reduce(:+) || 0 %>
+                <% incomplete_afternoon_tasks_min = nurse_tasks.where(slot: 12, completed: false).map{|nurse_task| nurse_task.task_template.task.duration}.reduce(:+) || 0 %>
+                <p>Pending
+                  <% unless incomplete_morning_tasks_min == 0 %>
+                    <%= incomplete_morning_tasks_min + incomplete_afternoon_tasks_min + 60 %>min
+                  <% else %>
+                    <%= incomplete_afternoon_tasks_min %>min
+                  <% end %>
+                </p>
+
                 <% if nurse.nurse_tasks.where(completed: false).count > 15 && nurse.nurse_tasks.where(completed: false).count <= 30  %>
                   <i class="fas fa-exclamation-triangle"></i>
                 <% elsif nurse.nurse_tasks.where(completed: false).count > 30 %>
