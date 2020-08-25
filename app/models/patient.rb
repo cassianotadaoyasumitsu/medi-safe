@@ -6,4 +6,9 @@ class Patient < ApplicationRecord
   validates :name, :gender, :age, :room, :bed, presence: true
   validates :doctor_id, presence: true
   validates :severity, :inclusion=> { in: EMERGENCY }
+
+  def priority
+   result = {'Low Care' => 3, 'Medium Care' => 2, 'High Care' => 1}
+   result[self.severity]
+  end
 end
