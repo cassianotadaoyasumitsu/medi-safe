@@ -9,36 +9,45 @@
       <% end %>
     </div>
   </div>
-    <div class="leader-cards">
-          <% @nurses.each_with_index do |nurse| %>
-            <div class="grid-item">
-              <%= link_to user_path(nurse), class: "leader-card shadow" do %>
-                <% if nurse.nurse_tasks.where(completed: false).count > 15 && nurse.nurse_tasks.where(completed: false).count <= 30  %>
-                  <i class="fas fa-exclamation-triangle"></i>
-                <% elsif nurse.nurse_tasks.where(completed: false).count > 30 %>
-                  <div class="d-flex">
-                    <i class="fas fa-exclamation-triangle"></i> <i class="fas fa-exclamation-triangle"></i>
-                  </div>
-                <% end %>
-                <p class=" mt-2"><%= nurse.name %></p>
-                <%= image_tag "avatar.png", class: "avatar-super-large pb-3" %>
-                <div class="row justify-content-center">
-                  <div id="task-progress" data-id="<%= nurse.id %>" data-tasks="<%= ((nurse.nurse_tasks.where(completed: true).count.to_f / nurse.nurse_tasks.count))%>"></div>
-                </div>
-                <div class="mt-2 text-center">
-                  <% name_severitys = Patient.joins(:task_templates).joins(task_templates: :nurse_tasks).where(task_templates: { nurse_tasks: { user: nurse } }).pluck(:name, :severity).uniq%>
-                </div>
-                <% if name_severitys.count > 0 %>
-                  <ul class="assignment-list mt-0">
-                    <% name_severitys.each do |name_severity| %>
-                      <li class="text-left <%= name_severity[1].downcase.tr(" ", "-") %> " style="font-size: 12px;">・<%= name_severity[0] %></li>
-                    <% end %>
-                  </ul>
-                <% end %>
-              <% end %>
+  <div class="leader-cards">
+    <% @nurses.each_with_index do |nurse| %>
+      <div class="grid-item">
+        <%= link_to user_path(nurse), class: "leader-card shadow" do %>
+          <% incomplete_morning_tasks_min = nurse.nurse_tasks.where(slot: 8, completed: false).map{|nurse_task| nurse_task.task_template.task.duration}.reduce(:+) || 0 %>
+          <% incomplete_afternoon_tasks_min = nurse.nurse_tasks.where(slot: 12, completed: false).map{|nurse_task| nurse_task.task_template.task.duration}.reduce(:+) || 0 %>
+          <p>Pending
+            <% unless incomplete_morning_tasks_min == 0 %>
+              <%= total_min = incomplete_morning_tasks_min + incomplete_afternoon_tasks_min + 60 %>min
+            <% else %>
+              <%= total_min = incomplete_afternoon_tasks_min %>min
+            <% end %>
+          </p>
+          <% if (Time.now + (total_min * 60)) > Time.parse("17:30") %>
+            <div class="d-flex">
+              <i class="fas fa-exclamation-triangle"></i> <i class="fas fa-exclamation-triangle"></i>
+            </div>
+          <% elsif (Time.now + (total_min * 60)) > Time.parse("17:00") %>
+            <div class="d-flex">
+              <i class="fas fa-exclamation-triangle"></i>
             </div>
           <% end %>
-        </div>
+          <p class=" mt-2"><%= nurse.name %></p>
+          <%= image_tag "avatar.png", class: "avatar-super-large pb-3" %>
+          <div class="row justify-content-center">
+            <div id="task-progress" data-id="<%= nurse.id %>" data-tasks="<%= ((nurse.nurse_tasks.where(completed: true).count.to_f / nurse.nurse_tasks.count))%>"></div>
+          </div>
+          <div class="mt-2 text-center">
+            <% name_severitys = Patient.joins(:task_templates).joins(task_templates: :nurse_tasks).where(task_templates: { nurse_tasks: { user: nurse } }).pluck(:name, :severity).uniq%>
+          </div>
+          <% if name_severitys.count > 0 %>
+            <ul class="assignment-list mt-0">
+              <% name_severitys.each do |name_severity| %>
+                <li class="text-left <%= name_severity[1].downcase.tr(" ", "-") %> " style="font-size: 12px;">・<%= name_severity[0] %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        <% end %>
       </div>
-    </div>
+    <% end %>
+  </div>
 </div>

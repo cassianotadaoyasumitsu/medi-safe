@@ -67,3 +67,6 @@ gem 'faker'
 
 # Make NurseTask a sortable list
 gem 'acts_as_list'
+
+# Manipulate time for pitch
+gem 'timecop'
