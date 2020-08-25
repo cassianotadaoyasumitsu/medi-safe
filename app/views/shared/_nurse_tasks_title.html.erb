@@ -1,0 +1,1 @@
+<%= time %> - Time needed: <%= incomplete_tasks.map{|nurse_task| nurse_task.task_template.task.duration}.reduce(:+) || 0 %> min
