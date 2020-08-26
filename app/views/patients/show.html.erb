@@ -77,9 +77,13 @@
       </div>
       <div>
         <% @tasktemplates.each do |template| %>
-          <div class="task-template-card shadow">
-            <h5><%= template.task.description %></h5>
-            <p><%=  pluralize template.frequency, "time" %> (<%=  pluralize template.task.duration, "min" %>)</p>
+          <div class="task-template-card row shadow">
+            <div class="col-4">
+              <h5><%= template.task.description %></h5>
+            </div>
+            <div class="offset-4 col-4">
+              <p><%=  pluralize template.frequency, "time" %> (<%=  pluralize template.task.duration, "min" %>)</p>
+            </div>
           </div>
         <% end %>
       </div>
