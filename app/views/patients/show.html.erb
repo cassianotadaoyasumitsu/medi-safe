@@ -2,17 +2,13 @@
   <div class="row">
     <div class="col-6">
       <div class="patient-card p-3 mb-3 shadow bg-light">
-        <div class="row align-items-center">
-          <div class="patient-room-info align-middle col-3">
+        <div class="row px-3 align-items-center">
+          <div class="patient-room-info align-middle col-4">
             <h5 class="mb-0"><i class="fa fa-university" aria-hidden="true"></i><small> <%= @patient.room %></small>
             <i class="fa fa-bed pl-3" aria-hidden="true"></i> <small><%= @patient.bed %></small></h5>
           </div>
-          <div class="patient-info align-items-center col-6 d-flex">
-            <h2 class="align-middle mb-0"><%= @patient.name %></h2>
-            <p class="pl-3 align-middle mb-0"><i>(ID: <%= @patient.emr_id %>)</i></p>
-          </div>
-          <div class="col-3">
-            <div class="row m-3">
+          <div class="offset-6 col-2">
+            <div class="row">
               <% if @patient.severity == 'Low Care' %>
                 <div class="patient-room-info p-1 low-care text-center col">
                   <p class="mb-0">Low</p>
@@ -28,12 +24,27 @@
           </div>
         </div>
         <div class="row">
-          <p><% @patient.age %></p>
-          <p><% @patient.gender %></p>
+          <div class="patient-info align-items-center offset-3 col-6 d-flex">
+            <h2 class="align-middle mb-0"><%= @patient.name %></h2>
+            <p class="pl-3 align-middle mb-0"><i>(ID: <%= @patient.emr_id %>)</i></p>
+          </div>
         </div>
-        <div class="row doctor-info justify-content-center">
-          <h5><i class="fa fa-user-md" aria-hidden="true"></i>  Dr. <%= @doctor.name %></h5>
-          <p><i class="fa fa-mobile" aria-hidden="true"></i> <%= @doctor.contact %></p>
+        <div class="row px-3 pt-3 align-items-center">
+          <div class="col-3 align-middle">
+            <div class="patient-info pl-3">
+              <h5><i class="fas fa-user-clock"></i> <%= @patient.age %></h5>
+              <h5><i class="fas fa-venus-mars"></i> <%= @patient.gender.capitalize %></h5>
+            </div>
+          </div>
+          <div class="col-5 align-middle">
+            <div class="doctor-info pl-3">
+              <h5><i class="fa fa-user-md" aria-hidden="true"></i>  Dr. <%= @doctor.name %></h5>
+              <h5><i class="fa fa-mobile" aria-hidden="true"></i> <%= @doctor.contact %></h5>
+            </div>
+          </div>
+          <div class="col-4 align-middle d-flex justify-content-center">
+            <div id="task-progress" data-tasks="<%= ((@patient.nurse_tasks.where(completed: true).count.to_f / @patient.nurse_tasks.count))%>"></div>
+          </div>
         </div>
       </div>
       <div class="shadow d-flex bg-light mb-1">
