@@ -43,5 +43,6 @@ class UsersController < ApplicationController
     new_help = Help.new
     new_help.save
     Notification.create(recipient: current_user.leader, actor: current_user, action: "requested", notifiable: new_help)
+    redirect_to request.referrer
   end
 end
