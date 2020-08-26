@@ -17,6 +17,10 @@
   color: $light-gray;
 }
 
+.nav-item {
+  font-size: 18px;
+}
+
 .notify {
   color: #dd8478;
   animation: bell 1s ease-out;
@@ -26,7 +30,13 @@
   background-color: #dd8478;
   color: $light-gray;
   width:16px;
+  height: 16px;
+  font-size: 10px;
   border-radius: 50%;
+  position: absolute;
+  top: 0%;
+  right: 30%;
+  text-align: center;
 }
 
 @keyframes bell {
