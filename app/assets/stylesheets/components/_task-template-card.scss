@@ -7,4 +7,8 @@
   justify-content: space-between;
   padding: 10px 24px;
   margin-bottom: 4px;
+  &:last-child {
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
 }

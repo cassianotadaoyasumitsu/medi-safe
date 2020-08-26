@@ -24,7 +24,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="patient-info align-items-center offset-3 col-6 d-flex">
+          <div class="patient-info align-items-center offset-2 justify-content-center col-8 d-flex">
             <h2 class="align-middle mb-0"><%= @patient.name %></h2>
             <p class="pl-3 align-middle mb-0"><i>(ID: <%= @patient.emr_id %>)</i></p>
           </div>
@@ -47,24 +47,32 @@
           </div>
         </div>
       </div>
-      <div class="shadow d-flex bg-light mb-1">
-        <div>BS</div>
-        <div>
-          <ul>
-            <li>BS < 60 OD 1pack of glucose</li>
-            <li> BS > 160 1U insulin</li>
-            <li> BS > 180 2U inslin</li>
-            <li> BS > 200 Call Dr</li>
-          </ul>
+      <div class="shadow doctor-orders p-3 mb-1">
+        <div class="row pb-1 justify-content-center">
+          <h5>Doctor's Orders</h5>
         </div>
-      </div>
-      <div class="shadow d-flex bg-light mb-1">
-        <div>HR</div>
-        <div>
-          <ul>
-            <li>HR < 40 Call Dr</li>
-            <li>HR > 160 IV 2ml/h</li>
-          </ul>
+        <div class="row align-items-center">
+          <p class="align-middle col-3">Blood sugar</p>
+          <div class="bs-orders col-9 d-flex">
+            <ul>
+              <li>BS < 60 OD 1 pack of glucose</li>
+              <li> BS > 160 1U insulin</li>
+            </ul>
+            <ul>
+              <li> BS > 180 2U inslin</li>
+              <li> BS > 200 Call Dr</li>
+            </ul>
+          </div>
+        </div>
+        <hr>
+        <div class="row align-items-center">
+          <p class="align-middle col-3">Heart Rate</p>
+          <div class="col-9">
+            <ul>
+              <li>HR < 40 Call Dr</li>
+              <li>HR > 160 IV 2ml/h</li>
+            </ul>
+          </div>
         </div>
       </div>
       <div>
@@ -75,9 +83,8 @@
           </div>
         <% end %>
       </div>
-      <%= link_to 'Back', :back, class: 'btn btn-primary' %>
     </div>
-    <div class="col-6">
+    <div class="col-6 text-center">
       <ul class="nav nav-tabs pl-5 pb-2 pt-3" id="myTab" role="tablist">
         <li class="nav-item">
           <a class="nav-link active" id="current-tasks" data-toggle="tab" href="#current" role="tab" aria-controls="home" aria-selected="true">Today's Tasks</a>
@@ -97,6 +104,9 @@
             <%= render 'shared/nurse_task_cards', patient: @patient, nurse_tasks: @yesterdays_tasks.order(:start_time)  %>
           </div>
         </div>
+      </div>
+      <div class="row pr-5 justify-content-end">
+        <%= link_to 'Back', :back, class: 'btn btn-primary mt-3' %>
       </div>
     </div>
   </div>
