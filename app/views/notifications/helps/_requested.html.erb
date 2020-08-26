@@ -1,3 +1,4 @@
+<!-- Will list a maximum of 8 notifications but display different colors if read or not read -->
 <% if notification.read_at? %>
   <%= link_to user_path(notification.actor.id), class: "dropdown-item read" do %>
     <%= notification.actor.name %>
