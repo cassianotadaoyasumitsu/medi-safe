@@ -12,7 +12,17 @@
         <p><i class="fa fa-bed" aria-hidden="true"></i> <%= patient.bed %></p>
       </div>
       <div class="nurse-task-info-description">
-        <%= nurse_task.task_template.task.description %>
+        <% important_tasks = ["Family conference",
+                              "Operation",
+                              "Catheter",
+                              "Chemotherapy",
+                              "Endoscopy",
+                              "Colonoscopy"] %>
+        <% current_task = nurse_task.task_template.task.description %>
+        <%= current_task %>
+        <% if  important_tasks.include? current_task %>
+          <i class="fas fa-exclamation"></i>
+        <% end %>
       </div>
       <div class="nurse-task-info-duration">
         <%= nurse_task.task_template.task.duration %> mins
