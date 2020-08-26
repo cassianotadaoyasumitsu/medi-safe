@@ -16,3 +16,26 @@
   border: 2px solid  #f4bdb6;
   color: $light-gray;
 }
+
+.notify {
+  color: #dd8478;
+  animation: bell 1s ease-out;
+}
+
+.notification-count {
+  background-color: #dd8478;
+  color: $light-gray;
+  width:16px;
+  border-radius: 50%;
+}
+
+@keyframes bell {
+  0% {transform: rotate(35deg);}
+  12.5% {transform: rotate(-30deg);}
+  25% {transform: rotate(25deg);}
+  37.5% {transform: rotate(-20deg);}
+  50% {transform: rotate(15deg);}
+  62.5% {transform: rotate(-10deg)}
+  75% {transform: rotate(5deg)}
+  100% {transform: rotate(0);}
+}
