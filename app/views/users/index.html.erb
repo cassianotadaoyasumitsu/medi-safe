@@ -15,23 +15,30 @@
       <%= link_to user_path(nurse), class: "leader-card shadow" do %>
       <% incomplete_morning_tasks_min = nurse.nurse_tasks.where(slot: 8, completed: false).map{|nurse_task| nurse_task.task_template.task.duration}.reduce(:+) || 0 %>
       <% incomplete_afternoon_tasks_min = nurse.nurse_tasks.where(slot: 12, completed: false).map{|nurse_task| nurse_task.task_template.task.duration}.reduce(:+) || 0 %>
-      <p>Pending
-        <% unless incomplete_morning_tasks_min == 0 %>
-        <%= total_min = incomplete_morning_tasks_min + incomplete_afternoon_tasks_min + 60 %>min
-        <% else %>
-        <%= total_min = incomplete_afternoon_tasks_min %>min
-        <% end %>
-      </p>
-      <% if (Time.now + (total_min * 60)) > Time.parse("17:30") %>
-      <div class="d-flex">
-        <i class="fas fa-stopwatch very-late"></i>
+      <div class="row">
+        <div class="col-9">
+          <p class="late-time mb-0">
+            <% unless incomplete_morning_tasks_min == 0 %>
+            <% total_min = incomplete_morning_tasks_min + incomplete_afternoon_tasks_min + 60 %>
+            <% else %>
+            <% total_min = incomplete_afternoon_tasks_min %>
+            <% end %>
+            <%= delay = (Time.parse("17:00") - (Time.now + (total_min * 60))).round / -60  %> mins late
+          </p>
+        </div>
+        <div class="col-3">
+          <% if (Time.now + (total_min * 60)) > Time.parse("17:30") %>
+            <div class="d-flex">
+              <i class="fas fa-stopwatch very-late"></i>
+            </div>
+            <% elsif (Time.now + (total_min * 60)) > Time.parse("17:00") %>
+            <div class="d-flex">
+              <i class="fas fa-exclamation-triangle"></i>
+            </div>
+          <% end %>
+        </div>
       </div>
-      <% elsif (Time.now + (total_min * 60)) > Time.parse("17:00") %>
-      <div class="d-flex">
-        <i class="fas fa-exclamation-triangle"></i>
-      </div>
-      <% end %>
-      <p class=" mt-2"><%= nurse.name %></p>
+      <h5 class="pt-3"><%= nurse.name %></h5>
       <% if nurse.photo.attached? %>
       <%= cl_image_tag nurse.photo.key, class: "avatar-super-large pb-3" %>
       <% else %>
