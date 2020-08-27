@@ -1,6 +1,6 @@
 #assistence{
-  height: 80px;
-  width: 80px;
+  height: 50px;
+  width: 50px;
   border-radius: 50%;
   margin: 0;
   padding: 0;
@@ -14,8 +14,6 @@
   background-image: linear-gradient(-45deg, #e5554e, #db261c, #e5554e, #db261c);
   background-size: 400% 400%;
   animation: change 2s ease-in-out infinite;
-  font-weight: bold;
-  text-shadow: 1px 1px 0 lightgrey;
 }
 
 @keyframes change {
