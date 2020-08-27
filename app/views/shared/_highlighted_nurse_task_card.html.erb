@@ -1,4 +1,4 @@
-<div class="highlighted-task d-flex p-3 justify-content-around align-items-center row">
+<div class="highlighted-task d-flex p-3 justify-content-around align-items-top row">
   <div>
     <p> Current task:</p>
     <div class=" text-center nurse-tasks-uncompleted p-3 mx-3 mb-3 shadow">
@@ -9,16 +9,13 @@
     </div>
   </div>
   <div class="nurse-task-patient">
-    <p class="nurse-task-patient-name"> <%= patient.name %> </p>
-    <p><i class="fa fa-university" aria-hidden="true"></i> <%= patient.room %></p>
-    <p><i class="fa fa-bed" aria-hidden="true"></i> <%= patient.bed %></p>
-  </div>
-  <div class="nurse-task-info-description">
+    <p class="nurse-task-patient-name"> <%= patient.name %>
+    <i class="fa fa-university" aria-hidden="true"></i> <%= patient.room %>
+    <i class="fa fa-bed" aria-hidden="true"></i> <%= patient.bed %></p>
+
     <p><%= nurse_task.task_template.patient.severity %></p>
-    <p><%= nurse_task.task_template.task.description %></p>
-  </div>
-  <div class="nurse-task-info-duration">
-    <%= nurse_task.task_template.task.duration %> mins
+    <p><%= nurse_task.task_template.task.description %>
+    <%= nurse_task.task_template.task.duration %> mins </p>
   </div>
   <%= simple_form_for nurse_task do |f| %>
       <%= f.input :note, label: false, input_html: {rows: 4} %>
