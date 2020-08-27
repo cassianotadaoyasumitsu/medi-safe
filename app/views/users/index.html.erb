@@ -24,7 +24,7 @@
       </p>
       <% if (Time.now + (total_min * 60)) > Time.parse("17:30") %>
       <div class="d-flex">
-        <i class="fas fa-exclamation-triangle"></i> <i class="fas fa-exclamation-triangle"></i>
+        <i class="fas fa-stopwatch very-late"></i>
       </div>
       <% elsif (Time.now + (total_min * 60)) > Time.parse("17:00") %>
       <div class="d-flex">
