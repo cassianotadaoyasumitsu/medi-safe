@@ -27,7 +27,10 @@
     <%= render 'shared/flashes' %>
 
     <%= yield %>
+    <% if current_user && current_user.nurses.size < 1 %>
     <%= render 'shared/nurse_assist' %>
+    <% end %>
+
     <%= render 'shared/footer' %>
   </body>
 </html>
