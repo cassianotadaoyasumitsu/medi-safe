@@ -27,19 +27,22 @@ require("channels")
 // External imports
 import "bootstrap";
 import Sortable from 'sortablejs';
-import { draw_progress_bar } from '../components/progress_bar'
+import { drawProgressBar } from '../components/progress_bar'
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
-const tasks_ratio = document.querySelectorAll('#task-progress');
+const tasksRatio = document.querySelectorAll('#task-progress');
 
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
-  if (tasks_ratio) {
-    draw_progress_bar();
+
+  // This checks if there are any elements with task-progress id
+
+  if (tasksRatio) {
+    drawProgressBar();
   }
 
   var el_morning = document.getElementById('nurse-tasks-morning');
