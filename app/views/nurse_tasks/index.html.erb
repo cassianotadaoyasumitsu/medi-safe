@@ -12,13 +12,13 @@
     <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
       <div class="row nurse-task-cards mt-3">
         <div class="col-6 text-center">
-        <p>Morning</p>
-        <div id="nurse-tasks-morning" class="nurse-tasks" data-url="<%= sort_nurse_tasks_path(format: :js) %>">
-          <%= render 'shared/nurse_task_cards', nurse_tasks: @incomplete_morning_tasks %>
-        </div>
-        </div>
+          <p id="nurse-tasks-morning-title"><%= render 'shared/nurse_tasks_title', time: "Morning", incomplete_tasks: @incomplete_morning_tasks %></p>
+          <div id="nurse-tasks-morning" class="nurse-tasks" data-url="<%= sort_nurse_tasks_path(format: :js) %>">
+            <%= render 'shared/nurse_task_cards', nurse_tasks: @incomplete_morning_tasks %>
+          </div>
+          </div>
         <div class="col-6 text-center">
-          <p>Afternoon</p>
+          <p id="nurse-tasks-afternoon-title"><%= render 'shared/nurse_tasks_title', time: "Afternoon", incomplete_tasks: @incomplete_afternoon_tasks %></p>
           <div id="nurse-tasks-afternoon" class="nurse-tasks" data-url="<%= sort_nurse_tasks_path(format: :js) %>">
             <%= render 'shared/nurse_task_cards', nurse_tasks: @incomplete_afternoon_tasks %>
           </div>

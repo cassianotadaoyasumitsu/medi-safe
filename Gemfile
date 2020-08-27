@@ -29,7 +29,8 @@ gem 'redis', '~> 4.0'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'devise'
-
+gem 'dotenv-rails', groups: [:development, :test]
+gem 'cloudinary', '~> 1.16.0'
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'simple_form'
@@ -67,3 +68,6 @@ gem 'faker'
 
 # Make NurseTask a sortable list
 gem 'acts_as_list'
+
+# Manipulate time for pitch
+gem 'timecop'
