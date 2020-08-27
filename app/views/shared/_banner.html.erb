@@ -1,9 +1,15 @@
 <div class="container-fluid mt-5 mb-n5">
   <div class="patient-overview mt-5 pt-5 shadow row">
     <div class="col">
-      <div class="col text-center">
-        <h2> Hi <%= user.name %>, here's a quick look at your day!</h2>
-      </div>
+      <% if user.nurses.size > 0 && action_name == 'show' %>
+        <div class="col text-center">
+          <h2> Here's a quick look at <%= User.find(params[:id]).name %>'s day!</h2>
+        </div>
+      <% else %>
+        <div class="col text-center">
+          <h2> Hi <%= user.name %>, here's a quick look at your day!</h2>
+        </div>
+      <% end %>
       <div class="col d-flex justify-content-center">
         <% if nurses %>
           <% nurses.each do |nurse| %>
