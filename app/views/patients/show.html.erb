@@ -110,7 +110,14 @@
         </div>
       </div>
       <div class="row pr-5 justify-content-end">
-        <%= link_to 'Back', :back, class: 'btn btn-primary mt-3' %>
+        <%= link_to :back do %>
+          <button class="my-button mt-3">
+            <div class="overlay">
+              <i class="fas fa-long-arrow-alt-left"></i>
+            </div>
+          </button>
+
+        <% end %>
       </div>
     </div>
   </div>
