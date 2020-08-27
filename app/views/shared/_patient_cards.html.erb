@@ -1,5 +1,5 @@
 <div class="patient-cards">
-  <% patients.each do |patient| %>
+  <% patients.sort_by{ |patient| patient.priority }.each do |patient| %>
     <%= link_to patient_path(patient), class: 'patient-card p-1 col shadow m-1' do %>
       <div class="overlay p-2">
         <div class="patient-info col">

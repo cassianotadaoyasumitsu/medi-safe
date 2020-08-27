@@ -210,7 +210,7 @@ new_task.save
 puts "Created task #{new_task.id}"
 
 params = {}
-params[:description] ="Dr.round"
+params[:description] ="Doctors' rounds"
 params[:duration] = 15
 new_task = Task.new(params)
 new_task.save
@@ -226,6 +226,13 @@ puts "Created task #{new_task.id}"
 params = {}
 params[:description] ="Family conference"
 params[:duration] = 30
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] ="Enema"
+params[:duration] = 10
 new_task = Task.new(params)
 new_task.save
 puts "Created task #{new_task.id}"
@@ -252,7 +259,7 @@ new_task.save
 puts "Created task #{new_task.id}"
 
 params = {}
-params[:description] = "Suction"
+params[:description] = "ENT suction"
 params[:duration] = 5
 new_task = Task.new(params)
 new_task.save
@@ -280,7 +287,7 @@ new_task.save
 puts "Created task #{new_task.id}"
 
 params = {}
-params[:description] = "Change gown"
+params[:description] = "Gown change"
 params[:duration] = 10
 new_task = Task.new(params)
 new_task.save
@@ -321,6 +328,47 @@ new_task = Task.new(params)
 new_task.save
 puts "Created task #{new_task.id}"
 
+params = {}
+params[:description] = "Chemotherapy"
+params[:duration] = 50
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] = "X-ray"
+params[:duration] = 25
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] = "MRI scan"
+params[:duration] = 25
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] = "CT scan"
+params[:duration] = 25
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] = "Endoscopy"
+params[:duration] = 25
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] = "Colonoscopy"
+params[:duration] = 25
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
 
 puts "Tasks created"
 
@@ -380,7 +428,7 @@ Patient.all.each do |patient|
   Array(4..8).sample.times do
     params = {}
     params[:task] = Task.all.sample
-    if ["Urinary volume check", "VS check", "Suction", "Diaper"].include?(params[:task].description)
+    if ["Urinary volume check", "VS check", "ENT Suction", "Diaper"].include?(params[:task].description)
       params[:frequency] = [1,1,1,1,1,1,2,2].sample
     else
       params[:frequency] = 1

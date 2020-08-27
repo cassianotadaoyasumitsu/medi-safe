@@ -27,6 +27,7 @@
         <div class=" offset-1 text-center nurse-patient-info p-3 mx-3 mb-3 shadow">
           <h5>Patients: <%= patients.count %></h5>
           <div class="nurse-patient-severity d-flex">
+            <!-- This tag builds the chartkick pie chart and allows custom data inputs with styling -->
             <%= pie_chart [["High Care", @high_care_patients], ["Medium Care", @medium_care_patients], ["Low Care", @low_care_patients]], height: "80px", colors: ["#DC8478", "#ecc06c", "#b8cab8"], legend: false %>
           </div>
         </div>
