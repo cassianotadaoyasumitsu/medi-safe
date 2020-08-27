@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require "open-uri"
+
 puts "Cleaning up start"
 NurseTask.destroy_all
 TaskTemplate.destroy_all
@@ -378,6 +380,8 @@ params[:name] = "Tadao Yasumitsu"
 params[:email] = "cassiano@medisafe.com"
 params[:password] = "password"
 cassiano = User.new(params)
+file = URI.open('https://avatars0.githubusercontent.com/u/42375242?s=460&u=eb9477bf6759426d9863aa10fdbfb550b97dbd0b&v=4')
+cassiano.photo.attach(io: file, filename: 'cassiano.jpg', content_type: 'image/jpg')
 cassiano.save
 puts "Created user #{cassiano.id}"
 
@@ -387,6 +391,8 @@ params[:email] = "linlu@medisafe.com"
 params[:password] = "password"
 params[:leader] = cassiano
 new_user = User.new(params)
+file = URI.open('https://avatars2.githubusercontent.com/u/60726285?s=460&u=c16b83e7ee4a56cbcea5a9f24e44f85d4aada08a&v=4')
+new_user.photo.attach(io: file, filename: 'linlu.jpg', content_type: 'image/jpg')
 new_user.save
 puts "Created user #{new_user.id}"
 
@@ -396,6 +402,8 @@ params[:leader] = cassiano
 params[:email] = "davide@medisafe.com"
 params[:password] = "password"
 new_user = User.new(params)
+file = URI.open('https://avatars1.githubusercontent.com/u/47884470?s=460&u=677d96087d7aef616d840f82db7e329b55ce72f4&v=4')
+new_user.photo.attach(io: file, filename: 'davide.jpg', content_type: 'image/jpg')
 new_user.save
 puts "Created user #{new_user.id}"
 
@@ -405,6 +413,8 @@ params[:leader] = cassiano
 params[:email] = 'liam@medisafe.com'
 params[:password] = 'password'
 new_user = User.new(params)
+file = URI.open('https://avatars0.githubusercontent.com/u/46614913?s=460&u=f15367ebb4bbed86502a170cf34571c48813fedc&v=4')
+new_user.photo.attach(io: file, filename: 'liam.jpg', content_type: 'image/jpg')
 new_user.save
 puts "Created user #{new_user.id}"
 
@@ -414,6 +424,8 @@ params[:leader] = cassiano
 params[:email] = "ayako@medisafe.com"
 params[:password] = "password"
 new_user = User.new(params)
+file = URI.open('https://avatars3.githubusercontent.com/u/60478784?s=460&u=a9239a74629208ad3a3fc4ae515d75ef30a0e698&v=4')
+new_user.photo.attach(io: file, filename: 'ayako.jpg', content_type: 'image/jpg')
 new_user.save
 puts "Created user #{new_user.id}"
 
