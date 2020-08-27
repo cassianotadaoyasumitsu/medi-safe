@@ -84,21 +84,26 @@
     text-decoration: none;
   }
   .nurse-task-card {
-    margin-right: 1em;
     display: flex;
     color: gray;
+    height: 60px;
     .nurse-task-patient-name {
-      margin-right: 1em;
+      margin-right: 0.5em;
       color: $blue;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
     .nurse-task-patient-info {
-      margin-right: 1em;
+      margin-right: 0.5em;
     }
     .nurse-task-info-description {
-      flex-grow: 1;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
     .nurse-task-info-duration {
-      margin-left: 1em;
+      margin-left: 0.5em;
     }
   }
 }
