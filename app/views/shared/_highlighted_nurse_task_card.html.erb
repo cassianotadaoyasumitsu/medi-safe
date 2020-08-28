@@ -10,7 +10,7 @@
         </div>
         <div class="row pt-5 justify-content-center">
           <div class="col-5">
-            <div class=" text-center nurse-tasks-uncompleted p-3 mx-3 mb-3 shadow">
+            <div class=" text-center nurse-tasks-uncompleted p-3 mb-3 shadow">
               <h5>Tasks: <%= current_user.nurse_tasks.count %></h5>
               <div class="row justify-content-center">
                 <!-- This is where the progress bar element is found and then drawn -->
@@ -19,7 +19,7 @@
             </div>
           </div>
           <div class="col-5">
-            <div class=" offset-1 text-center nurse-patient-info p-3 mb-3 shadow">
+            <div class="text-center nurse-patient-info p-3 mb-3 shadow">
               <h5>Patients: <%= patients.count %></h5>
               <div class="nurse-patient-severity d-flex">
                 <!-- This tag builds the chartkick pie chart and allows custom data inputs with styling -->
@@ -67,10 +67,7 @@
                 <div class="row pt-3">
                   <div class="col d-flex">
                     <div class="nurse-task-info-description pr-3">
-                      <h1><%= nurse_task.task_template.task.description %></h1>
-                    </div>
-                    <div class="nurse-task-info-duration">
-                      <h1>(<%= nurse_task.task_template.task.duration %> mins)</h1>
+                      <h1><%= nurse_task.task_template.task.description %> (<%= nurse_task.task_template.task.duration %> mins)</h1>
                     </div>
                   </div>
                 </div>
