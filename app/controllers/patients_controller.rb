@@ -21,15 +21,33 @@ class PatientsController < ApplicationController
   end
 
   def create_patient_assignment
-    # Work with patient with High Care
+    ayako = User.where(name: "Ayako Amano").first
+    yann = Patient.where(name: "Yann Klein").first
+    trouni = Patient.where(name: "Trouni Tiet").first
+    doug = Patient.where(name: "Doug Berkley").first
+    ugo = Patient.where(name: "Ugo Bataillard").first
+    aya_patients = [ugo, yann, trouni, doug]
+    aya_patients.each_with_index do |patient, index|
+      Notification.create(recipient: @user, actor: current_user, action: "assigned", notifiable: patient)
+      slot = 8
+      patient.task_templates.each do |task_template|
+        task_template.frequency.times do
+          task_template.nurse_tasks.create(user_id: ayako.id, slot: slot, completed: false)
+          slot = (slot == 8) ? 12 : 8
+        end
+      end
+    end
     @nurses = User.where(leader_id: current_user.id)
+    @remaining_nurses= @nurses.where.not(name: "Ayako Amano")
     ["High Care", "Medium Care", "Low Care"].each do |care_level|
       @patients = Patient.where(severity: care_level)
       @patients.each_with_index do |patient, index|
-        Notification.create(recipient: @user, actor: current_user, action: "assigned", notifiable: patient)
-        patient.task_templates.each do |task_template|
-          task_template.frequency.times do
-            task_template.nurse_tasks.create(user_id: @nurses[index % @nurses.count].id, slot: [8,12].sample, completed: false)
+        unless aya_patients.include?(patient)
+          Notification.create(recipient: @user, actor: current_user, action: "assigned", notifiable: patient)
+          patient.task_templates.each do |task_template|
+            task_template.frequency.times do
+              task_template.nurse_tasks.create(user_id: @remaining_nurses[index % @remaining_nurses.count].id, slot: [8,12].sample, completed: false)
+            end
           end
         end
       end
