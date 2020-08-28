@@ -23,7 +23,9 @@
             <% else %>
             <% total_min = incomplete_afternoon_tasks_min %>
             <% end %>
-            <%= delay = (Time.parse("17:00") - (Time.now + (total_min * 60))).round / -60  %> mins late
+            <% unless nurse.nurse_tasks.size == 0 %>
+              <%= delay = (Time.parse("17:00") - (Time.now + (total_min * 60))).round / -60  %> mins late
+            <% end %>
           </p>
         </div>
         <div class="col-3">
