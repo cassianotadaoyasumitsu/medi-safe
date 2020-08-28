@@ -1,8 +1,9 @@
 .patient-overview {
-  background: linear-gradient(135deg,
-              rgba(0, 0, 0, 0.4) 0%,
-              rgba(0, 0, 0, 0.2) 50%),
-              url(https://res.cloudinary.com/yasumitsu-io/image/upload/v1597473059/banner-3_braxfz.jpg);
+  //background: linear-gradient(135deg,
+  //  rgba(0, 0, 0, 0.4) 0%,
+  //  rgba(0, 0, 0, 0.2) 50%),
+  // asset-url("banner-2.jpg");
+  background: linear-gradient(164deg, rgba(95, 139, 239, 0.6) 0%, rgba(176, 153, 218, 0.6) 100%), asset-url("banner-2.jpg");
   background-size: cover;
   background-position: center;
   h2 {
