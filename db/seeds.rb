@@ -26,28 +26,28 @@ require 'faker'
 puts "Creating doctors"
 
 params = {}
-params[:name] = "Gregory House"
+params[:name] = "Mark Brown"
 params[:contact] = "070-1224-5643"
 params[:specialty] = "gastroenterologists"
 new_doctor = Doctor.new(params)
 puts "Created doctor #{new_doctor.id}" if new_doctor.save
 
 params = {}
-params[:name] = "Jekill Hide"
+params[:name] = "Sally Owens"
 params[:contact] = "080-3138-9898"
 params[:specialty] = "pulmonologists"
 new_doctor = Doctor.new(params)
 puts "Created doctor #{new_doctor.id}" if new_doctor.save
 
 params = {}
-params[:name] = "Frank Estain"
+params[:name] = "Kyle Reed"
 params[:contact] = "080-3445-4498"
 params[:specialty] = "surgeon"
 new_doctor = Doctor.new(params)
 puts "Created doctor #{new_doctor.id}" if new_doctor.save
 
 params = {}
-params[:name] = "Do Little"
+params[:name] = "Elise Lake"
 params[:contact] = "070-1644-5643"
 params[:specialty] = "gastroenterologists"
 new_doctor = Doctor.new(params)
