@@ -51,12 +51,13 @@
         <div id="task-progress" data-id="<%= nurse.id %>" data-tasks="<%= ((nurse.nurse_tasks.where(completed: true).count.to_f / nurse.nurse_tasks.count))%>"></div>
       </div>
       <div class="mt-2 text-center">
-        <% name_severitys = Patient.joins(:task_templates).joins(task_templates: :nurse_tasks).where(task_templates: { nurse_tasks: { user: nurse } }).pluck(:name, :severity).uniq%>
+        <% patient_severitys = Patient.joins(:task_templates).joins(task_templates: :nurse_tasks).where(task_templates: { nurse_tasks: { user: nurse } }).pluck(:name, :severity).uniq%>
       </div>
-      <% if name_severitys.count > 0 %>
+      <% if patient_severitys.count > 0 %>
       <ul class="assignment-list mt-0">
-        <% name_severitys.each do |name_severity| %>
-        <li class="text-left <%= name_severity[1].downcase.tr(" ", "-") %> " style="font-size: 12px;">・<%= name_severity[0] %></li>
+        <% priority = {'Low Care' => 3, 'Medium Care' => 2, 'High Care' => 1} %>
+        <% patient_severitys.sort_by { |ps| priority[ps[1]] }.each do |patient_severity| %>
+        <li class="text-left <%= patient_severity[1].downcase.tr(" ", "-") %> " style="font-size: 12px;">・<%= patient_severity[0] %></li>
         <% end %>
       </ul>
       <% end %>
