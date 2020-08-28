@@ -35,8 +35,8 @@
         <div class="current-task-card row">
           <div class="col py-4 px-3">
             <div class="row">
-              <div class="nurse-task-info-room pt-3 offset-1 col-5">
-                <div class="nurse-task-patient row">
+              <div class="nurse-task-info-room pt-5 offset-1 col-5">
+                <div class="nurse-task-patient pt-4 row">
                   <%= link_to patient_path(patient), class: "nurse-task-patient-name col-9" do %>
                     <h2><%= patient.name %></h2>
                   <% end %>
@@ -76,16 +76,14 @@
                 <div class="row">
                   <div class="col">
                     <%= simple_form_for nurse_task do |f| %>
-                      <%= f.input :note, label: false, input_html: {rows: 8} %>
-                      <div class="row justify-content-center">
-                        <%= f.button :submit, "Update note", class: 'my-update-button shadow w-50' %>
-                      </div>
+                      <%= f.input :note, label: false, input_html: {rows: 6} %>
+                      <%= f.button :submit, "Update note", class: 'my-update-button shadow w-100' %>
                     <% end %>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col p-3 text-center">
-                    <div class="row">
+                    <div class="row pt-3">
                       <div class="col">
                         <% if nurse_task.completed == false %>
                           <div class="my-complete-button" data-toggle="modal" data-target="#exampleModal<%= nurse_task.id %>">
