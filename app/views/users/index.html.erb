@@ -23,8 +23,9 @@
             <% else %>
             <% total_min = incomplete_afternoon_tasks_min %>
             <% end %>
-            <% unless nurse.nurse_tasks.size == 0 %>
-              <%= delay = (Time.parse("17:00") - (Time.now + (total_min * 60))).round / -60  %> mins late
+            <% delay = (Time.parse("17:00") - (Time.now + (total_min * 60))).round / -60  %>
+            <% unless nurse.nurse_tasks.size == 0 || delay < 0 %>
+              <%= delay %> mins late
             <% end %>
           </p>
         </div>
@@ -35,7 +36,7 @@
             </div>
             <% elsif (Time.now + (total_min * 60)) > Time.parse("17:00") %>
             <div class="d-flex">
-              <i class="fas fa-exclamation-triangle"></i>
+              <i class="fas fa-stopwatch"></i>
             </div>
           <% end %>
         </div>
