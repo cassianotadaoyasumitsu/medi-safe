@@ -3,6 +3,10 @@ class NurseTasksController < ApplicationController
 
   def index
     set_index_variables!
+    @patients = current_user.patients.uniq
+    @high_care_patients = current_user.patients.where(severity: 'High Care').uniq.count
+    @medium_care_patients = current_user.patients.where(severity: 'Medium Care').uniq.count
+    @low_care_patients = current_user.patients.where(severity: 'Low Care').uniq.count
   end
 
   def sort

@@ -1,51 +1,127 @@
-<div class="highlighted-task d-flex p-3 justify-content-around align-items-center row">
-  <div>
-    <p> Current task:</p>
-    <div class=" text-center nurse-tasks-uncompleted p-3 mx-3 mb-3 shadow">
-      <h5>Tasks: <%= current_user.nurse_tasks.count %></h5>
-      <div class="row justify-content-center">
-        <div id="task-progress" data-tasks="<%= ((current_user.nurse_tasks.where(completed: true).count.to_f / current_user.nurse_tasks.count))%>"></div>
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-4">
+      <div class="highlighted-task shadow">
+        <div class="row pt-5">
+          <div class="col text-center pb-3">
+            <h2> Today's outlook:</h2>
+          </div>
+        </div>
+        <div class="row pt-5 justify-content-center">
+          <div class="col-5">
+            <div class=" text-center nurse-tasks-uncompleted p-3 mb-3 shadow">
+              <h5>Tasks: <%= current_user.nurse_tasks.count %></h5>
+              <div class="row justify-content-center">
+                <!-- This is where the progress bar element is found and then drawn -->
+                <div id="task-progress" data-tasks="<%= ((current_user.nurse_tasks.where(completed: true).count.to_f / current_user.nurse_tasks.count)) %>"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-5">
+            <div class="text-center nurse-patient-info p-3 mb-3 shadow">
+              <h5>Patients: <%= patients.count %></h5>
+              <div class="nurse-patient-severity d-flex">
+                <!-- This tag builds the chartkick pie chart and allows custom data inputs with styling -->
+                <%= pie_chart [["High Care", high_care], ["Medium Care", medium_care], ["Low Care", low_care]], height: "80px", colors: ["#DC8478", "#ecc06c", "#b8cab8"], legend: false %>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="nurse-task-patient">
-    <p class="nurse-task-patient-name"> <%= patient.name %> </p>
-    <p><i class="fas fa-door-closed"></i> <%= patient.room %></p>
-    <p><i class="fa fa-bed" aria-hidden="true"></i> <%= patient.bed %></p>
-  </div>
-  <div class="nurse-task-info-description">
-    <p><%= nurse_task.task_template.patient.severity %></p>
-    <p><%= nurse_task.task_template.task.description %></p>
-  </div>
-  <div class="nurse-task-info-duration">
-    <%= nurse_task.task_template.task.duration %> mins
-  </div>
-  <%= simple_form_for nurse_task do |f| %>
-      <%= f.input :note, label: false, input_html: {rows: 4} %>
-      <%= f.button :submit, "Update note", class: 'btn btn-dark btn-block' %>
-  <% end %>
-  <% if nurse_task.completed == false %>
-    <button type="button" style="height:50%" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal<%= nurse_task.id %>">
-      Complete
-    </button>
-  <% end %>
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal<%= nurse_task.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Complete task</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+    <div class=" col-8">
+      <div class='highlighted-task-actual shadow'>
+        <div class="current-task-card row">
+          <div class="col py-4 px-3">
+            <div class="row">
+              <div class="nurse-task-info-room pt-3 offset-1 col-5">
+                <div class="nurse-task-patient row">
+                  <%= link_to patient_path(patient), class: "nurse-task-patient-name col-9" do %>
+                    <h2><%= patient.name %></h2>
+                  <% end %>
+                  <div class="col-3">
+                    <div class="row">
+                      <% if @active_task.task_template.patient.severity == 'Low Care' %>
+                      <div class="patient-room-info low-care text-center col">
+                        <p class="mb-0"><small>Low</small></p>
+                      </div>
+                      <% elsif @active_task.task_template.patient.severity == 'Medium Care' %>
+                        <div class="patient-room-info medium-care text-center col">
+                          <p class="mb-0"><small>Medium</small></p>
+                        </div>
+                      <% elsif @active_task.task_template.patient.severity == 'High Care' %>
+                        <div class="patient-room-info high-care text-center col">
+                          <p class="mb-0"><small>High</small></p>
+                        </div>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+                <div class="row pt-3">
+                  <div class="col d-flex">
+                    <h5 class="pr-3"><i class="fas fa-door-closed"></i> <%= patient.room %></h5>
+                    <h5><i class="fa fa-bed" aria-hidden="true"></i> <%= patient.bed %></h5>
+                  </div>
+                </div>
+                <div class="row pt-3">
+                  <div class="col d-flex">
+                    <div class="nurse-task-info-description pr-3">
+                      <h1><%= nurse_task.task_template.task.description %> (<%= nurse_task.task_template.task.duration %> mins)</h1>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="pr-0 pt-3 offset-1 col-4">
+                <div class="row">
+                  <div class="col">
+                    <%= simple_form_for nurse_task do |f| %>
+                      <%= f.input :note, label: false, input_html: {rows: 8} %>
+                      <div class="row justify-content-center">
+                        <%= f.button :submit, "Update note", class: 'my-update-button shadow w-50' %>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col p-3 text-center">
+                    <div class="row">
+                      <div class="col">
+                        <% if nurse_task.completed == false %>
+                          <div class="my-complete-button" data-toggle="modal" data-target="#exampleModal<%= nurse_task.id %>">
+                            Complete
+                          </div>
+                        <% end %>
+                      </div>
+                    </div>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal<%= nurse_task.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Complete task</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            Are you sure you want to complete this task?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <%= link_to "Complete", complete_nurse_tasks_path(nurse_task), method: :patch, class: 'complete-btn btn btn-primary' %>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
-        <div class="modal-body">
-          Are you sure you want to complete this task?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <%= link_to "Complete", complete_nurse_tasks_path(nurse_task), method: :patch, class: 'complete-btn btn btn-primary' %>
-        </div>
+
       </div>
     </div>
   </div>
