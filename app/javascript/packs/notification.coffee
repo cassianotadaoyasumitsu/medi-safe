@@ -24,7 +24,10 @@ class Notifications
       dataType: "JSON"
       method: "PATCH"
       success: ->
-        $("[data-behavior='unread-count']").text(0)
+        $("[data-behavior='unread-count']").text('')
+        $("[data-behavior='notification-bell']").removeClass('notify')
+        $("[data-behavior='unread-count']").removeClass('notification-count')
+
     )
 
   handleSuccess: (data) =>
@@ -34,10 +37,16 @@ class Notifications
     unread_count = 0
     $.each data, (i, notification) ->
       if notification.unread
+        $("[data-behavior='notification-bell']").addClass('notify')
         unread_count += 1
 
-    $("[data-behavior='unread-count']").text(unread_count)
+    if unread_count > 0
+      $("[data-behavior='unread-count']").text(unread_count)
+      $("[data-behavior='unread-count']").addClass('notification-count')
+
+
     $("[data-behavior='notification-items']").html(items)
+
 
 jQuery ->
   new Notifications

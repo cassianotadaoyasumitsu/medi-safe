@@ -3,18 +3,28 @@
   <%= link_to make_active_nurse_task_path(nurse_task),
     method: "patch",
     class: "list-group nurse-task-cards col-10 row" do %>
-    <div class="list-group-item nurse-task-card text-justify <%= "active" if nurse_task.active %>">
-      <div class="nurse-task-patient-name">
+    <div class="list-group-item align-items-center nurse-task-card <%= "active" if nurse_task.active %>">
+      <div class="nurse-task-patient-name col-3 px-0">
         <%= patient.name %>
       </div>
-      <div class="nurse-task-patient-info">
-        <p><i class="fa fa-university" aria-hidden="true"></i> <%= patient.room %>
+      <div class="nurse-task-patient-info col-3 px-0">
+        <p class="mb-0"><i class="fas fa-door-closed"></i> <%= patient.room %>
         <i class="fa fa-bed" aria-hidden="true"></i> <%= patient.bed %></p>
       </div>
-      <div class="nurse-task-info-description">
-        <%= nurse_task.task_template.task.description %>
+      <div class="nurse-task-info-description col-4 px-0">
+        <% important_tasks = ["Family conference",
+                              "Operation",
+                              "Catheter",
+                              "Chemotherapy",
+                              "Endoscopy",
+                              "Colonoscopy"] %>
+        <% current_task = nurse_task.task_template.task.description %>
+        <%= current_task %>
+        <% if  important_tasks.include? current_task %>
+          <i class="fas fa-exclamation"></i>
+        <% end %>
       </div>
-      <div class="nurse-task-info-duration">
+      <div class="nurse-task-info-duration col-2 px-0">
         <%= nurse_task.task_template.task.duration %> mins
       </div>
     </div>

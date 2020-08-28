@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require "open-uri"
+
 puts "Cleaning up start"
 NurseTask.destroy_all
 TaskTemplate.destroy_all
@@ -210,7 +212,7 @@ iv.save
 puts "Created task #{iv.id}"
 
 params = {}
-params[:description] ="Dr.round"
+params[:description] ="Doctors' rounds"
 params[:duration] = 15
 dr_round = Task.new(params)
 dr_round.save
@@ -229,6 +231,13 @@ params[:duration] = 30
 conference = Task.new(params)
 conference.save
 puts "Created task #{conference.id}"
+
+params = {}
+params[:description] ="Enema"
+params[:duration] = 10
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
 
 params = {}
 params[:description] = "Feeding"
@@ -252,7 +261,7 @@ operation.save
 puts "Created task #{operation.id}"
 
 params = {}
-params[:description] = "Suction"
+params[:description] = "ENT suction"
 params[:duration] = 5
 suction = Task.new(params)
 suction.save
@@ -280,7 +289,7 @@ shower.save
 puts "Created task #{shower.id}"
 
 params = {}
-params[:description] = "Change gown"
+params[:description] = "Gown change"
 params[:duration] = 10
 gown = Task.new(params)
 gown.save
@@ -321,6 +330,47 @@ skin = Task.new(params)
 skin.save
 puts "Created task #{skin.id}"
 
+params = {}
+params[:description] = "Chemotherapy"
+params[:duration] = 50
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] = "X-ray"
+params[:duration] = 25
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] = "MRI scan"
+params[:duration] = 25
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] = "CT scan"
+params[:duration] = 25
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] = "Endoscopy"
+params[:duration] = 25
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
+
+params = {}
+params[:description] = "Colonoscopy"
+params[:duration] = 25
+new_task = Task.new(params)
+new_task.save
+puts "Created task #{new_task.id}"
 
 puts "Tasks created"
 
@@ -330,6 +380,8 @@ params[:name] = "Tadao Yasumitsu"
 params[:email] = "cassiano@medisafe.com"
 params[:password] = "password"
 cassiano = User.new(params)
+file = URI.open('https://avatars0.githubusercontent.com/u/42375242?s=460&u=eb9477bf6759426d9863aa10fdbfb550b97dbd0b&v=4')
+cassiano.photo.attach(io: file, filename: 'cassiano.jpg', content_type: 'image/jpg')
 cassiano.save
 puts "Created user #{cassiano.id}"
 
@@ -339,6 +391,8 @@ params[:email] = "linlu@medisafe.com"
 params[:password] = "password"
 params[:leader] = cassiano
 new_user = User.new(params)
+file = URI.open('https://avatars2.githubusercontent.com/u/60726285?s=460&u=c16b83e7ee4a56cbcea5a9f24e44f85d4aada08a&v=4')
+new_user.photo.attach(io: file, filename: 'linlu.jpg', content_type: 'image/jpg')
 new_user.save
 puts "Created user #{new_user.id}"
 
@@ -348,6 +402,8 @@ params[:leader] = cassiano
 params[:email] = "davide@medisafe.com"
 params[:password] = "password"
 new_user = User.new(params)
+file = URI.open('https://avatars1.githubusercontent.com/u/47884470?s=460&u=677d96087d7aef616d840f82db7e329b55ce72f4&v=4')
+new_user.photo.attach(io: file, filename: 'davide.jpg', content_type: 'image/jpg')
 new_user.save
 puts "Created user #{new_user.id}"
 
@@ -357,6 +413,8 @@ params[:leader] = cassiano
 params[:email] = 'liam@medisafe.com'
 params[:password] = 'password'
 new_user = User.new(params)
+file = URI.open('https://avatars0.githubusercontent.com/u/46614913?s=460&u=f15367ebb4bbed86502a170cf34571c48813fedc&v=4')
+new_user.photo.attach(io: file, filename: 'liam.jpg', content_type: 'image/jpg')
 new_user.save
 puts "Created user #{new_user.id}"
 
@@ -366,6 +424,8 @@ params[:leader] = cassiano
 params[:email] = "ayako@medisafe.com"
 params[:password] = "password"
 ayako = User.new(params)
+file = URI.open('https://avatars3.githubusercontent.com/u/60478784?s=460&u=a9239a74629208ad3a3fc4ae515d75ef30a0e698&v=4')
+ayako.photo.attach(io: file, filename: 'ayako.jpg', content_type: 'image/jpg')
 ayako.save
 puts "Created user #{ayako.id}"
 
@@ -553,7 +613,7 @@ Patient.all.where.not(name: ['Yann Klein', 'Trouni Tiet', 'Doug Berkley', 'Ugo B
   Array(4..7).sample.times do
     params = {}
     params[:task] = Task.all.sample
-    if ["Urinary volume check", "VS check", "Suction", "Diaper"].include?(params[:task].description)
+    if ["Urinary volume check", "VS check", "ENT Suction", "Diaper"].include?(params[:task].description)
       params[:frequency] = [1,1,1,1,1,1,2,2].sample
     else
       params[:frequency] = 1

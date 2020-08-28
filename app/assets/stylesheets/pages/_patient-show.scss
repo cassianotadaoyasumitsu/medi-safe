@@ -1,0 +1,19 @@
+.doctor-orders {
+  background-color: $light-gray;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  h5 {
+    font-size: 24px;
+    color: rgb(10, 10, 10);
+  }
+  p {
+    font-size: 18px;
+    color: rgb(10, 10, 10);
+  }
+  ul {
+    list-style: none;
+    font-size: 14px;
+    color: rgb(50, 50, 50);
+    margin-bottom: 8px;
+  }
+}

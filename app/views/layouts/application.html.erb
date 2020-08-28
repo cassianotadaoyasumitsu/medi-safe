@@ -17,6 +17,7 @@
     <meta property="og:site_name" content="<%= meta_title %>" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <!-- Extra JS pack tag so that chartkick is loaded before the html -->
     <%= javascript_pack_tag 'chartkick', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'notification' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
@@ -27,6 +28,10 @@
     <%= render 'shared/flashes' %>
 
     <%= yield %>
+    <% if current_user && current_user.nurses.size < 1 %>
+      <%= render 'shared/nurse_assist' %>
+    <% end %>
+
     <%= render 'shared/footer' %>
   </body>
 </html>

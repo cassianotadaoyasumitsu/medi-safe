@@ -1,18 +1,14 @@
 <div class="main-container">
-  <div class="container">
-    <div class="row">
-      <div class="col-6">
-        <div class="patient-card mb-3 shadow bg-light row">
-          <div class="patient-room-info col-3">
-            <h5 class="mt-4 pl-2"><i class="fa fa-university" aria-hidden="true"></i><small> <%= @patient.room %></small></h5>
-            <h5 class="pl-2"><i class="fa fa-bed" aria-hidden="true"></i> <small><%= @patient.bed %></small></h5>
+  <div class="row">
+    <div class="col-6">
+      <div class="patient-card p-3 mb-3 shadow bg-light">
+        <div class="row px-3 align-items-center">
+          <div class="patient-room-info align-middle col-4">
+            <h5 class="mb-0"><i class="fas fa-door-closed"></i><small> <%= @patient.room %></small>
+            <i class="fa fa-bed pl-3" aria-hidden="true"></i> <small><%= @patient.bed %></small></h5>
           </div>
-          <div class="patient-info mt-4 col-6">
-            <h2><%= @patient.name %></h2>
-            <p>(ID:<%= @patient.emr_id %>)</p>
-          </div>
-          <div class="col-3">
-            <div class="row m-3">
+          <div class="offset-6 col-2">
+            <div class="row">
               <% if @patient.severity == 'Low Care' %>
                 <div class="patient-room-info p-1 low-care text-center col">
                   <p class="mb-0">Low</p>
@@ -27,61 +23,101 @@
             </div>
           </div>
         </div>
-        <div class="shadow d-flex bg-light mb-1">
-          <div>BS</div>
-          <div>
+        <div class="row">
+          <div class="patient-info align-items-center offset-2 justify-content-center col-8 d-flex">
+            <h2 class="align-middle mb-0"><%= @patient.name %></h2>
+            <p class="pl-3 align-middle mb-0"><i>(ID: <%= @patient.emr_id %>)</i></p>
+          </div>
+        </div>
+        <div class="row px-3 pt-3 align-items-center">
+          <div class="col-3 align-middle">
+            <div class="patient-info pl-3">
+              <h5><i class="fas fa-user-clock"></i> <%= @patient.age %></h5>
+              <h5><i class="fas fa-venus-mars"></i> <%= @patient.gender.capitalize %></h5>
+            </div>
+          </div>
+          <div class="col-5 align-middle">
+            <div class="doctor-info pl-3">
+              <h5><i class="fa fa-user-md" aria-hidden="true"></i>  Dr. <%= @doctor.name %></h5>
+              <h5><i class="fa fa-mobile" aria-hidden="true"></i> <%= @doctor.contact %></h5>
+            </div>
+          </div>
+          <div class="col-4 align-middle d-flex justify-content-center">
+            <div id="task-progress" data-tasks="<%= ((@patient.nurse_tasks.where(completed: true).count.to_f / @patient.nurse_tasks.count))%>"></div>
+          </div>
+        </div>
+      </div>
+      <div class="shadow doctor-orders p-3 mb-1">
+        <div class="row pb-1 justify-content-center">
+          <h5>Doctor's Orders</h5>
+        </div>
+        <div class="row align-items-center">
+          <p class="align-middle col-3">Blood sugar</p>
+          <div class="bs-orders col-9 d-flex">
             <ul>
-              <li>BS < 60 OD 1pack of glucose</li>
+              <li>BS < 60 OD 1 pack of glucose</li>
               <li> BS > 160 1U insulin</li>
+            </ul>
+            <ul>
               <li> BS > 180 2U inslin</li>
               <li> BS > 200 Call Dr</li>
             </ul>
           </div>
         </div>
-        <div class="shadow d-flex bg-light mb-1">
-          <div>HR</div>
-          <div>
+        <hr>
+        <div class="row align-items-center">
+          <p class="align-middle col-3">Heart Rate</p>
+          <div class="col-9">
             <ul>
               <li>HR < 40 Call Dr</li>
               <li>HR > 160 IV 2ml/h</li>
             </ul>
           </div>
         </div>
-        <div>
-          <% @tasktemplates.each do |template| %>
-            <div class="task-template-card shadow">
+      </div>
+      <div>
+        <% @tasktemplates.each do |template| %>
+          <div class="task-template-card row shadow">
+            <div class="col-4">
               <h5><%= template.task.description %></h5>
+            </div>
+            <div class="offset-4 col-4">
               <p><%=  pluralize template.frequency, "time" %> (<%=  pluralize template.task.duration, "min" %>)</p>
             </div>
-          <% end %>
-        </div>
-        <%= link_to 'Back', :back, class: 'btn btn-primary' %>
+          </div>
+        <% end %>
       </div>
-      <div class="col-6">
-        <div class="doctor-card shadow mb-1">
-          <h4><i class="fa fa-user-md" aria-hidden="true"></i> Dr. <%= @doctor.name %></h4>
-          <p><i class="fa fa-mobile" aria-hidden="true"></i> <%= @doctor.contact %></p>
-        </div>
-        <ul class="nav nav-tabs pt-3" id="myTab" role="tablist">
-          <li class="nav-item">
-            <a class="nav-link active" id="current-tasks" data-toggle="tab" href="#current" role="tab" aria-controls="home" aria-selected="true">Today's Tasks</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" id="old-tasks" data-toggle="tab" href="#old" role="tab" aria-controls="profile" aria-selected="false">Previous Tasks</a>
-          </li>
-        </ul>
-        <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade show active" id="current" role="tabpanel" aria-labelledby="current-tasks-tab">
-            <div class="task-cards-col">
-                <%= render 'shared/nurse_task_cards', patient: @patient, nurse_tasks: @current_tasks.order(:start_time)  %>
-            </div>
-          </div>
-          <div class="tab-pane fade" id="old" role="tabpanel" aria-labelledby="old-tasks-tab">
-            <div class="task-cards-col">
-              <%= render 'shared/nurse_task_cards', patient: @patient, nurse_tasks: @yesterdays_tasks.order(:start_time)  %>
-            </div>
+    </div>
+    <div class="col-6">
+      <ul class="nav nav-tabs pb-2" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="current-tasks" data-toggle="tab" href="#current" role="tab" aria-controls="home" aria-selected="true">Today's Tasks</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="old-tasks" data-toggle="tab" href="#old" role="tab" aria-controls="profile" aria-selected="false">Previous Tasks</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="current" role="tabpanel" aria-labelledby="current-tasks-tab">
+          <div class="task-cards-col">
+              <%= render 'shared/nurse_task_cards', patient: @patient, nurse_tasks: @current_tasks.order(:start_time)  %>
           </div>
         </div>
+        <div class="tab-pane fade" id="old" role="tabpanel" aria-labelledby="old-tasks-tab">
+          <div class="task-cards-col">
+            <%= render 'shared/nurse_task_cards', patient: @patient, nurse_tasks: @yesterdays_tasks.order(:start_time)  %>
+          </div>
+        </div>
+      </div>
+      <div class="row pr-5 justify-content-end">
+        <%= link_to :back do %>
+          <button class="my-button mt-3">
+            <div class="overlay">
+              <i class="fas fa-long-arrow-alt-left"></i>
+            </div>
+          </button>
+
+        <% end %>
       </div>
     </div>
   </div>
